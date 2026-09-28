@@ -116,6 +116,13 @@ nav button .ic{font-size:18px;display:block;margin-bottom:2px;}
   </div>
   <!-- TAB ANALISIS -->
   <div class="tab" id="tabAnalisis"><div id="analisisTab"></div></div>
+  <!-- TAB RACIK -->
+  <div class="tab" id="tabRacik">
+    <div class="empty" style="margin:4px 0 8px">Pilih 1 hero untuk racik build global + emblem.</div>
+    <div class="search"><input id="racikQ" placeholder="🔍 Cari hero…"></div>
+    <div class="grid" id="racikGrid"></div>
+    <div id="racikResult"></div>
+  </div>
   <!-- TAB DATA -->
   <div class="tab" id="tabData">
     <div class="search"><input id="qd" placeholder="🔍 Cari hero / item / emblem…"></div>
@@ -124,7 +131,8 @@ nav button .ic{font-size:18px;display:block;margin-bottom:2px;}
   </div>
 </main>
 <nav>
-  <button class="on" data-t="tabLawan"><span class="ic">🎯</span>Lawan</button>
+  <button class="on" data-t="tabLawan"><span class="ic">🎯</span>Draft</button>
+  <button data-t="tabRacik"><span class="ic">🔧</span>Racik</button>
   <button data-t="tabAnalisis"><span class="ic">🧠</span>Analisis</button>
   <button data-t="tabData"><span class="ic">📚</span>Data</button>
 </nav>
@@ -143,7 +151,7 @@ async function loadData(){
   ]);
   HEROES=h;ITEMS=i;EMBLEMS=e;
   document.getElementById('dataInfo').textContent=`${h.length} hero · ${i.length} item`;
-  buildRoleChips();renderGrid();renderDraft();buildDataChips();renderDataList();
+  buildRoleChips();renderGrid();renderDraft();buildDataChips();renderDataList();renderRacikGrid();
 }
 /*ENGINE-START*/
 const HARD_CC=['stun','suppression','knockup','taunt','pull','immobilize'];
@@ -208,6 +216,17 @@ function scoreHero(h,slot,an,usedIds,enemyIds,teamSoFar){
   return{s,why};
 }
 
+function bootFor(hero,an,ITEMS){
+  an=an||{hardCC:0};
+  const pool=FINISHED(ITEMS);
+  let boot='Warrior Boots';
+  if(an.hardCC>=3)boot='Tough Boots';
+  else if(hero.dmg==='magic')boot='Arcane Boots';
+  else if((hero.roles||[]).includes('Marksman'))boot='Swift Boots';
+  if(!byName(pool,boot))boot='Warrior Boots';
+  return byName(pool,boot);
+}
+
 function buildFor(hero,an,ITEMS){
   const pool=FINISHED(ITEMS);
   const ids=new Set(),build=[];
@@ -215,12 +234,7 @@ function buildFor(hero,an,ITEMS){
   const addName=nm=>add(byName(pool,nm));
   const isTank=['Tank','Support'].includes((hero.roles||['Fighter'])[0]);
   // 1. boots
-  let boot='Warrior Boots';
-  if(an.hardCC>=3)boot='Tough Boots';
-  else if(hero.dmg==='magic')boot='Arcane Boots';
-  else if((hero.roles||[]).includes('Marksman'))boot='Swift Boots';
-  if(!byName(pool,boot))boot='Warrior Boots';
-  addName(boot);
+  add(bootFor(hero,an,ITEMS));
   // 2. core (2)
   const coreWants=
     isTank?['Dominance Ice',"Athena's Shield",'Antique Cuirass','Immortality']:
@@ -364,6 +378,23 @@ function analyzeMatchup(ourIds,enemyIds,HEROES,ITEMS,EMBLEMS){
   }).sort((a,b)=>a.best-b.best).slice(0,2);
   return{our,enemy,an,oa,picks,warns,threats,
     strategy:makeStrategy(an).concat(macroPlaybook(an,oa))};
+}
+/* ---- build global 1 hero (tanpa konteks musuh) ---- */
+const GLOBAL_POOLS={
+  Marksman:['berserkers_fury','scarlet_phantom','windtalker','demon_hunter_sword','malefic_roar','blade_of_despair','haas_claws','corrosion_scythe','wind_of_nature','sea_halberd'],
+  Mage:['lightning_truncheon','holy_crystal','divine_glaive','blood_wings','glowing_wand','ice_queen_wand','genius_wand','clock_of_destiny','enchanted_talisman','wishing_lantern','winter_crown'],
+  Assassin:['blade_of_despair','endless_battle','hunter_strike','malefic_roar','blade_of_the_heptaseas','sky_piercer','war_axe','rose_gold_meteor','bloodlust_axe','immortality'],
+  Fighter:['war_axe','bloodlust_axe','queens_wings','brute_force_breastplate','oracle','endless_battle','hunter_strike','blade_of_despair','thunder_belt','immortality'],
+  Tank:['dominance_ice','antique_cuirass','athenas_shield','radiant_armor','immortality','guardian_helmet','cursed_helmet','thunder_belt','twilight_armor','blade_armor'],
+  Support:['fleeting_time','enchanted_talisman','flask_of_the_oasis','dominance_ice','athenas_shield','necklace_of_durance','immortality','glowing_wand']
+};
+function buildGlobal(h,ITEMS){
+  const pool=(GLOBAL_POOLS[h.roles[0]]||GLOBAL_POOLS.Fighter)
+    .map(id=>ITEMS.find(x=>x.id===id)).filter(Boolean);
+  const boot=bootFor(h,null,ITEMS);
+  const build=boot?[boot]:[];
+  pool.forEach(it=>{if(build.length<6&&!build.includes(it))build.push(it);});
+  return{build,alt:pool.filter(it=>!build.includes(it)).slice(0,3)};
 }
 /*ENGINE-END*/
 </script>
@@ -577,6 +608,37 @@ function showItem(i){
 function showEmblem(e){
   openSheet(`<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">${emblemImg(e.name,52)}<div><h3 style="margin:0">Emblem ${e.name}</h3><div style="font-size:12px;color:var(--dim)">${e.desc||''}</div></div></div>
   ${(e.talents||[]).map(t=>`<div class="skill"><div class="sd">${t}</div></div>`).join('')}`);
+}
+/* ================= RACIK ================= */
+let racikId=null;
+function renderRacikGrid(){
+  const g=$('racikGrid'),q=($('racikQ').value||'').toLowerCase();g.innerHTML='';
+  HEROES.filter(h=>h.name.toLowerCase().includes(q)).forEach(h=>{
+    const d=document.createElement('div');
+    d.className='hero'+(racikId===h.id?' sel':'');
+    d.innerHTML=heroImg(h,44)+`<div class="nm">${h.name}</div><div class="rl">${h.roles.join('/')}</div>`;
+    d.onclick=()=>{racikId=h.id;renderRacikGrid();renderRacik();};
+    g.appendChild(d);
+  });
+}
+$('racikQ').addEventListener('input',renderRacikGrid);
+function renderRacik(){
+  const box=$('racikResult'),h=byId(HEROES,racikId);
+  if(!h){box.innerHTML='';return;}
+  const G=buildGlobal(h,ITEMS),em=emblemFor(h,EMBLEMS,h.lane),mi=microTips(h);
+  box.innerHTML=`<div class="pickcard" style="margin-top:8px">
+    <div class="ph">${heroImg(h,52)}
+      <div><div class="pn" style="font-size:16px">${h.name}</div>
+      <div class="pl">${h.roles.join('/')} · Lane ${h.lane} · ${h.dmg} · ${h.range}</div></div></div>
+    <div class="secT">🛠️ BUILD GLOBAL</div>
+    <div class="build">${G.build.map(itemChip).join('')}</div>
+    ${G.alt.length?`<div class="secT">🔄 ALTERNATIF SITUASIONAL</div><div class="build">${G.alt.map(itemChip).join('')}</div>`:''}
+    <div class="emblemline" style="margin-top:6px">${emblemImg(em.name,22)} Emblem: <b>${em.name}</b> — ${em.talents.join(' · ')}</div>
+    <div style="font-size:12px;margin:6px 0">🎮 <b>Mikro:</b> <span style="color:var(--dim)">${mi.join(' ')}</span></div>
+    <div class="secT">✨ SKILL</div>
+    ${(h.skills||[]).map(s=>`<div class="skill"><div class="sn">${s.name}</div><div class="sd">${s.desc||''}</div></div>`).join('')}
+  </div>`;
+  box.scrollIntoView({behavior:'smooth',block:'start'});
 }
 /* ================= INIT ================= */
 loadData();
