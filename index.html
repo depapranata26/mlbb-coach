@@ -102,8 +102,15 @@ nav button .ic{font-size:18px;display:block;margin-bottom:2px;}
     <div class="search"><input id="q" placeholder="🔍 Cari hero musuh…"></div>
     <div class="chips" id="roleChips"></div>
     <div class="grid" id="heroGrid"></div>
+    <div class="chips" id="modeChips" style="margin-bottom:6px;flex:0 0 auto;">
+      <button class="chip on" id="modeEnemy">🎯 Pick Musuh</button>
+      <button class="chip" id="modeMy">🛡️ Pick Timku</button>
+    </div>
     <div class="selbar">
-      <div class="selslots" id="selSlots"></div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+        <div class="selslots" id="selSlots"></div>
+        <div style="font-size:10px;color:var(--dim)" id="draftCount"></div>
+      </div>
       <button class="bigbtn" id="btnAnalyze" disabled>Analisis →</button>
     </div>
   </div>
@@ -136,7 +143,7 @@ async function loadData(){
   ]);
   HEROES=h;ITEMS=i;EMBLEMS=e;
   document.getElementById('dataInfo').textContent=`${h.length} hero · ${i.length} item`;
-  buildRoleChips();renderGrid();renderSel();buildDataChips();renderDataList();
+  buildRoleChips();renderGrid();renderDraft();buildDataChips();renderDataList();
 }
 /*ENGINE-START*/
 const HARD_CC=['stun','suppression','knockup','taunt','pull','immobilize'];
@@ -292,13 +299,103 @@ function recommendTeam(enemyIds,HEROES,ITEMS,EMBLEMS){
   });
   return{enemy:team,an,picks,strategy:makeStrategy(an)};
 }
+/* ---- analisis mendalam: matchup, mikro, makro ---- */
+function matchupScore(our,e,lane){
+  let s=0;const notes=[];
+  const hard=(our.cc||[]).filter(c=>HARD_CC.includes(c));
+  if(e.mobility>=2&&hard.length){s+=3;notes.push(`CC ${hard.join('/')} mengunci mobilitas ${e.name}`);}
+  if(our.burst&&e.mobility===0&&!(e.roles||[]).includes('Tank')){s+=2;notes.push(`burst ke ${e.name} yang immobile`);}
+  if((e.roles||[]).includes('Assassin')&&hard.length&&lane==='roam'){s+=2;notes.push(`peel ${e.name} dari core`);}
+  if(our.range==='ranged'&&e.range==='melee'&&our.mobility>=1){s+=1;notes.push(`kite ${e.name} dari jauh`);}
+  if(e.heal&&(our.traits||'').match(/anti-heal|mengurangi heal/i)){s+=2;notes.push(`menekan heal ${e.name}`);}
+  if((e.roles||[]).includes('Marksman')&&our.mobility===2){s+=2;notes.push(`dive ke ${e.name} di backline`);}
+  return{s,notes};
+}
+function matchupNotes(our,enemyTeam,lane){
+  return enemyTeam.map(e=>({enemy:e.name,...matchupScore(our,e,lane)}))
+    .filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,2);
+}
+function microTips(h){
+  const t=[],roles=h.roles||[];
+  if(roles.includes('Assassin')&&h.burst)t.push('Culik backline saat CC penting musuh sudah keluar.');
+  if(h.range==='ranged'&&h.mobility>=1)t.push('Jaga jarak & poke dari jauh; jangan overextend tanpa vision.');
+  if(roles[0]==='Tank')t.push('Buka vision & inisiasi duluan; tempel lindungi core saat war.');
+  if(roles.includes('Marksman'))t.push('Fokus farming early; ikut war setelah 2 item core jadi.');
+  if(roles.includes('Mage')&&h.burst)t.push('Kombo burst dari semak; simpan skill mobilitas untuk kabur.');
+  if(h.sustain||h.heal)t.push('Manfaatkan sustain untuk menang adu poke di lane.');
+  if((h.cc||[]).length>=2)t.push('Atur timing CC beruntun dengan tim.');
+  if(h.mobility===2)t.push('Rotasi cepat bantu lane lain setelah clear wave.');
+  if(!t.length)t.push('Main sesuai role: menangkan lane lalu rotasi ke objective.');
+  return t.slice(0,3);
+}
+function macroPlaybook(an,oa){
+  const L=[];
+  if(oa.spike==='early')L.push('⏱️ EARLY: tim kita kuat awal — invasi jungle & paksa Turtle pertama.');
+  else if(an.spike==='early')L.push('⏱️ EARLY: musuh kuat awal — main aman, tukar objective, jangan paksa war.');
+  else L.push('⏱️ EARLY: menangkan lane masing-masing, rotasi cepat ke Turtle.');
+  if(oa.hardCC>=an.hardCC+2)L.push('⚔️ MID: CC kita unggul — paksa war di area sempit (pit Lord), inisiasi duluan.');
+  else if(an.hardCC>oa.hardCC+1)L.push('⚔️ MID: CC musuh lebih banyak — pancing skill mereka dulu / main split push.');
+  else L.push('⚔️ MID: kuasai vision sekitar Lord, paksa musuh yang memulai war.');
+  if(oa.mob>=1.2&&oa.ranged>=2)L.push('🏁 LATE: tim lincah + ranged — split push & pickoff, hindari 5v5 frontal.');
+  else if(oa.tanky>=2)L.push('🏁 LATE: tim tebal — deathball mid, paksa Lord & tabrak formasi musuh.');
+  else L.push('🏁 LATE: jaga posisi core, menangkan satu teamfight penentu di Lord.');
+  return L;
+}
+function analyzeMatchup(ourIds,enemyIds,HEROES,ITEMS,EMBLEMS){
+  const our=ourIds.map(id=>byId(HEROES,id)).filter(Boolean);
+  const enemy=enemyIds.map(id=>byId(HEROES,id)).filter(Boolean);
+  const an=analyzeEnemy(enemy),oa=analyzeEnemy(our);
+  const warns=[];
+  const lanes=our.map(h=>h.lane);
+  ['roam','exp','mid','jungle','gold'].forEach(l=>{
+    if(!lanes.includes(l))warns.push(`Tidak ada hero ${l.toUpperCase()} — komposisi timpang.`);
+  });
+  const phys=our.filter(h=>h.dmg==='physical').length,mag=our.filter(h=>h.dmg==='magic').length;
+  if(phys>=4)warns.push('Tim full physical — musuh cukup build armor.');
+  if(mag>=4)warns.push('Tim full magic — musuh cukup build magic defense.');
+  const picks=our.map(h=>{
+    const em=emblemFor(h,EMBLEMS,h.lane);
+    return{hero:h,lane:h.lane,build:buildFor(h,an,ITEMS),emblem:em.name,
+      matchups:matchupNotes(h,enemy,h.lane),micro:microTips(h)};
+  });
+  const threats=enemy.map(e=>{
+    const best=Math.max(...our.map(o=>matchupScore(o,e,o.lane).s));
+    return{enemy:e.name,best};
+  }).sort((a,b)=>a.best-b.best).slice(0,2);
+  return{our,enemy,an,oa,picks,warns,threats,
+    strategy:makeStrategy(an).concat(macroPlaybook(an,oa))};
+}
 /*ENGINE-END*/
 </script>
 <script>
 "use strict";
 /* ================= UI ================= */
-let enemySel=[], roleFilter='Semua', dataCat='Hero';
+let enemySel=[],mySel=[],pickMode='enemy',roleFilter='Semua',dataCat='Hero';
 const $=id=>document.getElementById(id);
+const activeSel=()=>pickMode==='enemy'?enemySel:mySel;
+$('modeEnemy').onclick=()=>{pickMode='enemy';syncMode();};
+$('modeMy').onclick=()=>{pickMode='my';syncMode();};
+function syncMode(){
+  $('modeEnemy').className='chip'+(pickMode==='enemy'?' on':'');
+  $('modeMy').className='chip'+(pickMode==='my'?' on':'');
+  renderGrid();renderDraft();
+}
+/* gambar hero/item dgn fallback huruf */
+function heroImg(h,sz){
+  const c=avatarColor(h),fs=Math.round(sz*0.45);
+  return `<span style="display:inline-flex;width:${sz}px;height:${sz}px;border-radius:50%;background:${c};`+
+  `align-items:center;justify-content:center;font-weight:800;color:#0d1220;font-size:${fs}px;overflow:hidden;flex:0 0 auto;">`+
+  `<img src="img/heroes/${h.id}.webp" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.remove()">${h.name[0]}</span>`;
+}
+function itemChip(it){
+  return `<span class="item" style="display:inline-flex;align-items:center;gap:6px;">`+
+  `<img src="img/items/${it.id}.webp" alt="" loading="lazy" style="width:30px;height:30px;border-radius:6px;object-fit:cover;background:#0f1626" onerror="this.remove()">`+
+  `<span><b>${it.name}</b><br><span style="color:var(--dim)">${(it.stats||'').split(',')[0]}</span></span></span>`;
+}
+const emblemId=n=>({basic_common:'common',tank:'tank',assassin:'assassin',mage:'mage',fighter:'fighter',support:'support',marksman:'marksman'}[(n||'').toLowerCase().replace(/ /g,'_')])||'common';
+function emblemImg(n,sz){
+  return `<img src="img/emblems/${emblemId(n)}.webp" alt="" loading="lazy" style="width:${sz}px;height:${sz}px;border-radius:50%;object-fit:cover;background:#0f1626;vertical-align:middle" onerror="this.remove()">`;
+}
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
@@ -324,39 +421,59 @@ function renderGrid(){
     (roleFilter==='Semua'||h.roles.includes(roleFilter))&&
     h.name.toLowerCase().includes(q)
   ).forEach(h=>{
+    const inE=enemySel.includes(h.id),inM=mySel.includes(h.id);
     const d=document.createElement('div');
-    d.className='hero'+(enemySel.includes(h.id)?' sel':'');
-    d.innerHTML=`<div class="avatar" style="background:${avatarColor(h)}">${h.name[0]}</div>
-      <div class="nm">${h.name}</div><div class="rl">${h.roles.join('/')}</div>`+
-      (enemySel.includes(h.id)?`<div class="ord">${enemySel.indexOf(h.id)+1}</div>`:'');
+    d.className='hero'+(inE?' sel':'')+(inM?' pick':'');
+    let badge='';
+    if(inE)badge=`<div class="ord">${enemySel.indexOf(h.id)+1}</div>`;
+    else if(inM)badge=`<div class="ord" style="background:var(--grn)">✓</div>`;
+    d.innerHTML=`${heroImg(h,44)}
+      <div class="nm">${h.name}</div><div class="rl">${h.roles.join('/')}</div>`+badge;
     d.onclick=()=>toggleHero(h.id);
     g.appendChild(d);
   });
 }
 $('q').oninput=renderGrid;
 function toggleHero(id){
-  if(enemySel.includes(id))enemySel=enemySel.filter(x=>x!==id);
-  else if(enemySel.length<5)enemySel.push(id);
-  renderGrid();renderSel();
+  const sel=activeSel();
+  if(sel.includes(id))sel.splice(sel.indexOf(id),1);
+  else if(sel.length<5){
+    if(pickMode==='my'&&enemySel.includes(id)){
+      $('draftCount').textContent='⚠️ Hero itu sudah dipakai musuh!';
+      setTimeout(renderDraft,1200);return;
+    }
+    sel.push(id);
+  }
+  renderGrid();renderDraft();
 }
-function renderSel(){
-  const w=$('selSlots');w.innerHTML='';
+function renderDraft(){
+  const sel=activeSel(),w=$('selSlots');w.innerHTML='';
   for(let i=0;i<5;i++){
     const d=document.createElement('div');
-    d.className='slot'+(enemySel[i]?' fill':'');
-    d.textContent=enemySel[i]?byId(HEROES,enemySel[i]).name:(i+1);
+    const hid=sel[i],h=hid?byId(HEROES,hid):null;
+    d.className='slot'+(h?' fill':'');
+    d.style.borderColor=h?(pickMode==='enemy'?'var(--red)':'var(--grn)'):'';
+    d.innerHTML=h?heroImg(h,34):(i+1);
+    if(h&&pickMode!=='enemy')d.style.fontSize='9px';
     w.appendChild(d);
   }
+  $('draftCount').textContent=`Musuh: ${enemySel.length}/5 · Timku: ${mySel.length}/5`+
+    (pickMode==='my'?' — pilih 5 untuk analisis matchup':'');
   $('btnAnalyze').disabled=enemySel.length!==5;
 }
 $('btnAnalyze').onclick=()=>{renderAnalysis();goTab('tabAnalisis');};
 
 function renderAnalysis(){
   const box=$('analisisTab');
-  if(enemySel.length!==5){box.innerHTML='<div class="empty">Pilih 5 hero musuh dulu di tab 🎯 Lawan.</div>';return;}
+  if(enemySel.length!==5){box.innerHTML='<div class="empty">Pilih 5 hero musuh dulu di tab 🎯.</div>';return;}
+  if(mySel.length===5)renderMatchup(box);else renderRecommend(box);
+}
+function renderRecommend(box){
   const R=recommendTeam(enemySel,HEROES,ITEMS,EMBLEMS);
   const an=R.an;
-  let h=`<div class="secT">🔍 KOMPOSISI MUSUH</div><div class="compchips">`;
+  let h=`<button class="bigbtn" style="width:100%;margin-bottom:8px" onclick="useRecommend()">⬇ Pakai tim ini sebagai Timku</button>`;
+  window._lastRec=R.picks.map(p=>p.hero.id);
+  h+=`<div class="secT">🔍 KOMPOSISI MUSUH</div><div class="compchips">`;
   h+=`<div class="cchip">⚔️ <b>${an.physical}</b> Physical / <b>${an.magic}</b> Magic</div>`;
   h+=`<div class="cchip">🌀 <b>${an.hardCC}</b> CC keras</div>`;
   if(an.heal.length)h+=`<div class="cchip">💚 Heal: <b>${an.heal.join(', ')}</b></div>`;
@@ -366,16 +483,47 @@ function renderAnalysis(){
   h+=`<div class="compchips" style="margin-top:6px">${R.enemy.map(x=>`<div class="cchip">${x.name}</div>`).join('')}</div>`;
   h+=`<div class="secT">✅ REKOMENDASI TIM COUNTER</div>`;
   R.picks.forEach(p=>{
-    h+=`<div class="pickcard"><div class="ph">
-      <div class="avatar" style="background:${avatarColor(p.hero)};width:38px;height:38px;font-size:17px">${p.hero.name[0]}</div>
+    const mu=matchupNotes(p.hero,R.enemy,p.lane),mi=microTips(p.hero);
+    h+=`<div class="pickcard"><div class="ph">${heroImg(p.hero,38)}
       <div><div class="pn">${p.hero.name}</div><div class="pl">${p.hero.roles.join('/')} · ${p.hero.traits||''}</div></div>
       <div style="flex:1"></div><div class="lanebadge">${p.slot}</div></div>`;
     if(p.reason.length)h+=`<div class="why">💡 ${p.reason.join(' · ')}</div>`;
-    h+=`<div class="build">${p.build.map(it=>`<div class="item"><b>${it.name}</b><br><span style="color:var(--dim)">${(it.stats||'').split(',')[0]}</span></div>`).join('')}</div>`;
-    h+=`<div class="emblemline">🔮 Emblem: <b>${p.emblem}</b> — ${p.talents.slice(0,2).join(' · ')}</div></div>`;
+    if(mu.length)h+=`<div style="font-size:12px;margin:4px 0">⚔️ <b>Counter ke:</b> ${mu.map(m=>`${m.enemy} <span style="color:var(--dim)">(${m.notes[0]})</span>`).join(' · ')}</div>`;
+    h+=`<div class="build">${p.build.map(itemChip).join('')}</div>`;
+    h+=`<div style="font-size:12px;margin:4px 0">🎮 <b>Mikro:</b> <span style="color:var(--dim)">${mi.join(' ')}</span></div>`;
+    h+=`<div class="emblemline">${emblemImg(p.emblem,22)} Emblem: <b>${p.emblem}</b> — ${p.talents.slice(0,2).join(' · ')}</div></div>`;
   });
-  h+=`<div class="secT">📋 STRATEGI MAIN</div>`;
-  R.strategy.forEach(s=>{h+=`<div class="strat">${s}</div>`;});
+  h+=`<div class="secT">📋 STRATEGI + MAKRO</div>`;
+  R.strategy.concat(macroPlaybook(R.an,analyzeEnemy(R.picks.map(p=>p.hero)))).forEach(s=>{h+=`<div class="strat">${s}</div>`;});
+  box.innerHTML=h;
+}
+function useRecommend(){
+  if(!window._lastRec)return;
+  mySel=window._lastRec.filter(id=>!enemySel.includes(id)).slice(0,5);
+  pickMode='my';syncMode();renderAnalysis();
+}
+function renderMatchup(box){
+  const M=analyzeMatchup(mySel,enemySel,HEROES,ITEMS,EMBLEMS);
+  let h=`<div class="secT">🛡️ TIM KITA vs 🎯 MUSUH</div><div class="compchips">`;
+  h+=`<div class="cchip">Kita: <b>${M.oa.physical}P/${M.oa.magic}M</b> · CC <b>${M.oa.hardCC}</b></div>`;
+  h+=`<div class="cchip">Musuh: <b>${M.an.physical}P/${M.an.magic}M</b> · CC <b>${M.an.hardCC}</b> · Spike <b>${M.an.spike.toUpperCase()}</b></div></div>`;
+  if(M.warns.length){h+=`<div class="secT">⚠️ PERHATIAN</div>`;M.warns.forEach(w=>{h+=`<div class="strat" style="border-color:var(--red)">${w}</div>`;});}
+  const unanswered=M.threats.filter(t=>t.best<2);
+  if(unanswered.length){h+=`<div class="secT">☠️ WASPADAI</div>`;
+    unanswered.forEach(t=>{h+=`<div class="strat" style="border-color:var(--red)"><b>${t.enemy}</b> — tidak ada counter kuat di tim kita. Lock dia duluan saat war.</div>`;});}
+  h+=`<div class="secT">🦸 HERO KITA — MATCHUP & BUILD</div>`;
+  M.picks.forEach(p=>{
+    h+=`<div class="pickcard"><div class="ph">${heroImg(p.hero,38)}
+      <div><div class="pn">${p.hero.name}</div><div class="pl">${p.hero.roles.join('/')} · ${p.hero.traits||''}</div></div>
+      <div style="flex:1"></div><div class="lanebadge">${p.lane.toUpperCase()}</div></div>`;
+    if(p.matchups.length)h+=`<div style="font-size:12px;margin:4px 0">⚔️ <b>Counter ke:</b> ${p.matchups.map(m=>`${m.enemy} <span style="color:var(--dim)">(${m.notes[0]})</span>`).join(' · ')}</div>`;
+    else h+=`<div style="font-size:12px;margin:4px 0;color:var(--dim)">Netral — tidak ada matchup unggul jelas.</div>`;
+    h+=`<div class="build">${p.build.map(itemChip).join('')}</div>`;
+    h+=`<div style="font-size:12px;margin:4px 0">🎮 <b>Mikro:</b> <span style="color:var(--dim)">${p.micro.join(' ')}</span></div>`;
+    h+=`<div class="emblemline">${emblemImg(p.emblem,22)} Emblem: <b>${p.emblem}</b></div></div>`;
+  });
+  h+=`<div class="secT">📋 STRATEGI + MAKRO</div>`;
+  M.strategy.forEach(s=>{h+=`<div class="strat">${s}</div>`;});
   box.innerHTML=h;
 }
 
@@ -396,19 +544,19 @@ function renderDataList(){
   if(dataCat==='Hero'){
     HEROES.filter(h=>h.name.toLowerCase().includes(q)).forEach(h=>{
       const d=document.createElement('div');d.className='drow';
-      d.innerHTML=`<div class="t">${h.name}</div><div class="d">${h.roles.join('/')} · ${h.lane} · ${h.dmg} · ${h.traits||''}</div>`;
+      d.innerHTML=`<div style="display:flex;align-items:center;gap:8px">${heroImg(h,36)}<div><div class="t">${h.name}</div><div class="d">${h.roles.join('/')} · ${h.lane} · ${h.dmg} · ${h.traits||''}</div></div></div>`;
       d.onclick=()=>showHero(h);L.appendChild(d);
     });
   }else if(dataCat==='Item'){
     ITEMS.filter(i=>i.name.toLowerCase().includes(q)).forEach(i=>{
       const d=document.createElement('div');d.className='drow';
-      d.innerHTML=`<div class="t">${i.name} <span style="color:var(--dim);font-weight:400">· ${i.price}g</span></div><div class="d">${i.stats||''}</div>`;
+      d.innerHTML=`<div style="display:flex;align-items:center;gap:8px"><img src="img/items/${i.id}.webp" loading="lazy" style="width:36px;height:36px;border-radius:8px;object-fit:cover;background:#0f1626" onerror="this.remove()"><div><div class="t">${i.name} <span style="color:var(--dim);font-weight:400">· ${i.price}g</span></div><div class="d">${i.stats||''}</div></div></div>`;
       d.onclick=()=>showItem(i);L.appendChild(d);
     });
   }else{
     EMBLEMS.forEach(e=>{
       const d=document.createElement('div');d.className='drow';
-      d.innerHTML=`<div class="t">${e.name}</div><div class="d">${e.desc||''}</div>`;
+      d.innerHTML=`<div style="display:flex;align-items:center;gap:8px">${emblemImg(e.name,36)}<div><div class="t">${e.name}</div><div class="d">${e.desc||''}</div></div></div>`;
       d.onclick=()=>showEmblem(e);L.appendChild(d);
     });
   }
@@ -416,18 +564,18 @@ function renderDataList(){
 function openSheet(html){$('sheet').innerHTML=`<button class="x" onclick="document.getElementById('modal').style.display='none'">✕</button>`+html;$('modal').style.display='flex';}
 $('modal').addEventListener('click',e=>{if(e.target.id==='modal')e.target.style.display='none';});
 function showHero(h){
-  openSheet(`<h3>${h.name}</h3><div style="font-size:12px;color:var(--dim)">${h.roles.join('/')} · Lane ${h.lane} · ${h.dmg} · ${h.range}</div>
+  openSheet(`<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">${heroImg(h,64)}<div><h3 style="margin:0">${h.name}</h3><div style="font-size:12px;color:var(--dim)">${h.roles.join('/')} · Lane ${h.lane} · ${h.dmg} · ${h.range}</div></div></div>
   <div style="font-size:12px;margin:6px 0">${h.traits||''}</div>
   ${(h.skills||[]).map(s=>`<div class="skill"><div class="sn">${s.name}</div><div class="sd">${s.desc||''}</div></div>`).join('')}`);
 }
 function showItem(i){
-  openSheet(`<h3>${i.name}</h3><div style="font-size:12px;color:var(--dim)">${i.cat} · ${i.price} gold</div>
+  openSheet(`<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><img src="img/items/${i.id}.webp" style="width:52px;height:52px;border-radius:10px;object-fit:cover;background:#0f1626" onerror="this.remove()"><div><h3 style="margin:0">${i.name}</h3><div style="font-size:12px;color:var(--dim)">${i.cat} · ${i.price} gold</div></div></div>
   <div class="skill"><div class="sn">Stats</div><div class="sd">${i.stats||'-'}</div></div>
   <div class="skill"><div class="sn">Pasif</div><div class="sd">${i.passive||'-'}</div></div>
   <div style="font-size:12px;color:var(--dim)">${i.desc||''}</div>`);
 }
 function showEmblem(e){
-  openSheet(`<h3>Emblem ${e.name}</h3><div style="font-size:12px;color:var(--dim);margin-bottom:6px">${e.desc||''}</div>
+  openSheet(`<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">${emblemImg(e.name,52)}<div><h3 style="margin:0">Emblem ${e.name}</h3><div style="font-size:12px;color:var(--dim)">${e.desc||''}</div></div></div>
   ${(e.talents||[]).map(t=>`<div class="skill"><div class="sd">${t}</div></div>`).join('')}`);
 }
 /* ================= INIT ================= */
