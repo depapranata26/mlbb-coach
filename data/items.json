@@ -1,0 +1,1166 @@
+[
+  {
+    "id": "berserkers_fury",
+    "name": "Berserker's Fury",
+    "cat": "attack",
+    "price": 2390,
+    "stats": "+60 Physical Attack, +25% Crit Chance, +30% Crit Damage",
+    "passive": "Doom: serangan basic yang Crit memberi True Damage tambahan 12% dari damage sebelum reduksi.",
+    "counters": [],
+    "desc": "Core untuk hero crit seperti marksman; beli setelah punya attack speed."
+  },
+  {
+    "id": "blade_of_despair",
+    "name": "Blade of Despair",
+    "cat": "attack",
+    "price": 3010,
+    "stats": "+160 Physical Attack, +5% Movement Speed",
+    "passive": "Despair: damage ke musuh non-minion di bawah 50% HP menaikkan Physical Attack 25% selama 2 detik.",
+    "counters": [],
+    "desc": "Physical attack tertinggi di game; beli saat unggul untuk snowball."
+  },
+  {
+    "id": "blade_of_the_heptaseas",
+    "name": "Blade of the Heptaseas",
+    "cat": "attack",
+    "price": 1950,
+    "stats": "+70 Physical Attack, +250 HP, +15 Physical Penetration",
+    "passive": "Ambush: setelah 5 detik tanpa damage, basic attack berikutnya memberi damage fisik tambahan dan slow 40% 1,5 detik.",
+    "counters": [],
+    "desc": "Untuk assassin poke; beli early untuk burst dari semak."
+  },
+  {
+    "id": "bloodlust_axe",
+    "name": "Bloodlust Axe",
+    "cat": "attack",
+    "price": 1970,
+    "stats": "+70 Physical Attack, +10% Cooldown Reduction, +20% Spell Vamp",
+    "passive": "",
+    "counters": [],
+    "desc": "Sudah dihapus dari game; dahulu item spell vamp untuk fighter."
+  },
+  {
+    "id": "corrosion_scythe",
+    "name": "Corrosion Scythe",
+    "cat": "attack",
+    "price": 2050,
+    "stats": "+30 Physical Attack, +30% Attack Speed, +5% Movement Speed",
+    "passive": "Corrosive: basic attack memberi damage fisik tambahan dan slow 8% (stack 5x). Impulse: basic attack menambah 6% attack speed (stack 5x).",
+    "counters": [],
+    "desc": "Untuk marksman yang butuh slow dan attack speed; bagus mengejar musuh."
+  },
+  {
+    "id": "demon_hunter_sword",
+    "name": "Demon Hunter Sword",
+    "cat": "attack",
+    "price": 2180,
+    "stats": "+35 Physical Attack, +20% Attack Speed",
+    "passive": "Engulf: basic attack memberi 8% HP musuh saat ini sebagai damage fisik tambahan. Devour: tiap basic attack memulihkan HP.",
+    "counters": [
+      "high-hp"
+    ],
+    "desc": "Wajib melawan tank atau hero HP tebal; counter HP stack."
+  },
+  {
+    "id": "endless_battle",
+    "name": "Endless Battle",
+    "cat": "attack",
+    "price": 2330,
+    "stats": "+60 Physical Attack, +250 HP, +10% Cooldown Reduction, +5% Movement Speed, +5 Mana Regen",
+    "passive": "Divine Justice: setelah pakai skill, basic attack 3 detik berikutnya memberi True Damage 60% physical attack dan memulihkan HP.",
+    "counters": [],
+    "desc": "Untuk fighter atau assassin yang spam skill dan basic attack."
+  },
+  {
+    "id": "golden_staff",
+    "name": "Golden Staff",
+    "cat": "attack",
+    "price": 2000,
+    "stats": "+55 Physical Attack, +15% Attack Speed",
+    "passive": "Swift: crit chance jadi attack speed. Tiap 2 non-crit, attack berikut 80% lebih cepat dan picu attack effect 2x.",
+    "counters": [],
+    "desc": "Untuk hero yang mengandalkan attack effect; jangan campur item crit."
+  },
+  {
+    "id": "great_dragon_spear",
+    "name": "Great Dragon Spear",
+    "cat": "attack",
+    "price": 2140,
+    "stats": "+70 Physical Attack, +10% Cooldown Reduction, +20% Crit Chance",
+    "passive": "Supreme Warrior: setelah pakai ultimate, movement speed naik 30% selama 7,5 detik (CD 15 detik).",
+    "counters": [],
+    "desc": "Untuk hero crit yang butuh CDR dan mobilitas setelah ultimate."
+  },
+  {
+    "id": "haas_claws",
+    "name": "Haas' Claws",
+    "cat": "attack",
+    "price": 2020,
+    "stats": "+40 Physical Attack, +15% Attack Speed, +20% Crit Chance, +20% Lifesteal",
+    "passive": "Frenzy: critical strike memberi 20% attack speed tambahan selama 2 detik.",
+    "counters": [],
+    "desc": "Item lifesteal dan crit untuk marksman; bagus sustain di lane."
+  },
+  {
+    "id": "hunter_strike",
+    "name": "Hunter Strike",
+    "cat": "attack",
+    "price": 2010,
+    "stats": "+80 Physical Attack, +10% Cooldown Reduction, +15 Physical Penetration",
+    "passive": "Retribution: damage 5x berturut ke musuh yang sama memberi 50% movement speed tambahan yang meluruh 3 detik (CD 8 detik).",
+    "counters": [],
+    "desc": "Untuk assassin atau fighter poke; bantu masuk-keluar war dengan cepat."
+  },
+  {
+    "id": "malefic_gun",
+    "name": "Malefic Gun",
+    "cat": "attack",
+    "price": 2120,
+    "stats": "+40 Physical Attack, +20% Attack Speed",
+    "passive": "Armor Buster: physical penetration +30%. Malefic Energy: jangkauan basic attack +12% dan +10% movement speed saat mengenai target.",
+    "counters": [],
+    "desc": "Untuk marksman yang butuh jangkauan dan penetrasi melawan defense."
+  },
+  {
+    "id": "malefic_roar",
+    "name": "Malefic Roar",
+    "cat": "attack",
+    "price": 2060,
+    "stats": "+60 Physical Attack",
+    "passive": "Armor Buster: physical penetration +30%. Breaker: tiap poin physical defense musuh menambah 0,1% penetration (maks 30%).",
+    "counters": [
+      "high-hp"
+    ],
+    "desc": "Wajib saat musuh menumpuk physical defense; counter tank armor tebal."
+  },
+  {
+    "id": "rose_gold_meteor",
+    "name": "Rose Gold Meteor",
+    "cat": "attack",
+    "price": 2030,
+    "stats": "+30 Physical Attack, +20% Attack Speed, +10% Lifesteal",
+    "passive": "Lifeline: HP di bawah 30% memberi shield dan 50% movement speed 3 detik (CD 60 detik). Tiap 4 physical attack: +1 hybrid defense (maks 50).",
+    "counters": [],
+    "desc": "Item bertahan untuk marksman atau fighter; selamatkan diri dari burst."
+  },
+  {
+    "id": "scarlet_phantom",
+    "name": "Scarlet Phantom",
+    "cat": "attack",
+    "price": 2020,
+    "stats": "+30 Physical Attack, +20% Attack Speed, +25% Crit Chance",
+    "passive": "Frenzy: critical strike memberi 30% attack speed dan 5% crit chance tambahan 2 detik.",
+    "counters": [],
+    "desc": "Sudah dihapus dari game; dahulu item crit dan attack speed."
+  },
+  {
+    "id": "sea_halberd",
+    "name": "Sea Halberd",
+    "cat": "attack",
+    "price": 2050,
+    "stats": "+80 Physical Attack, +20% Attack Speed",
+    "passive": "Lifebane: damage mengurangi shield dan HP regen target jadi 60% selama 3 detik. Punish: +8% damage ke hero dengan HP ekstra lebih tinggi.",
+    "counters": [
+      "heal",
+      "shield"
+    ],
+    "desc": "Wajib untuk physical melawan hero regen atau shield seperti Esmeralda."
+  },
+  {
+    "id": "war_axe",
+    "name": "War Axe",
+    "cat": "attack",
+    "price": 2100,
+    "stats": "+35 Physical Attack, +400 HP, +10% Cooldown Reduction, +8% Hybrid Lifesteal",
+    "passive": "Fighting Spirit: serangan menambah 12 physical attack per detik (stack 6); stack penuh memberi 10% True Damage tambahan.",
+    "counters": [],
+    "desc": "Untuk fighter yang fight lama; makin lama war makin sakit."
+  },
+  {
+    "id": "wind_of_nature",
+    "name": "Wind of Nature",
+    "cat": "attack",
+    "price": 1910,
+    "stats": "+30 Physical Attack, +20% Attack Speed, +10% Lifesteal",
+    "passive": "Wind Chant (aktif): kebal semua physical damage 2 detik (CD 90 detik; durasi setengah untuk non-marksman).",
+    "counters": [
+      "burst-physical"
+    ],
+    "desc": "Tombol penyelamat marksman melawan burst physical."
+  },
+  {
+    "id": "windtalker",
+    "name": "Windtalker",
+    "cat": "attack",
+    "price": 1880,
+    "stats": "+35% Attack Speed, +20% Crit Chance, +20 Movement Speed",
+    "passive": "Typhoon: tiap 5-2 detik, basic attack berikutnya memantul ke 3 musuh dengan magic damage (bisa crit; 200% ke minion).",
+    "counters": [],
+    "desc": "Untuk marksman clear wave cepat; bagus push dan farming."
+  },
+  {
+    "id": "fury_hammer",
+    "name": "Fury Hammer",
+    "cat": "attack",
+    "price": 830,
+    "stats": "+35 Physical Attack, +12 Physical Penetration",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen penetration murah; bahan Hunter Strike dan Malefic Gun."
+  },
+  {
+    "id": "legion_sword",
+    "name": "Legion Sword",
+    "cat": "attack",
+    "price": 910,
+    "stats": "+60 Physical Attack",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen physical attack murah; bahan Blade of Despair dan Malefic Roar."
+  },
+  {
+    "id": "magic_blade",
+    "name": "Magic Blade",
+    "cat": "attack",
+    "price": 1050,
+    "stats": "+35 Physical Attack, +10% Lifesteal",
+    "passive": "Lifeline: saat HP di bawah 30%, dapat shield dan 50% movement speed 3 detik (CD 60 detik).",
+    "counters": [],
+    "desc": "Komponen bertahan murah; bahan Rose Gold Meteor."
+  },
+  {
+    "id": "ogre_tomahawk",
+    "name": "Ogre Tomahawk",
+    "cat": "attack",
+    "price": 650,
+    "stats": "+25 Physical Attack, +230 HP",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen attack dan HP murah untuk fighter early game."
+  },
+  {
+    "id": "regular_spear",
+    "name": "Regular Spear",
+    "cat": "attack",
+    "price": 600,
+    "stats": "+20 Physical Attack, +10% Attack Speed",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen attack dan attack speed murah."
+  },
+  {
+    "id": "rogue_meteor",
+    "name": "Rogue Meteor",
+    "cat": "attack",
+    "price": 900,
+    "stats": "+15% Attack Speed, +10% Crit Chance",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen attack speed dan crit murah."
+  },
+  {
+    "id": "swift_crossbow",
+    "name": "Swift Crossbow",
+    "cat": "attack",
+    "price": 1000,
+    "stats": "+20% Attack Speed",
+    "passive": "Crossbow: tiap basic attack memberi 40 adaptive damage tambahan. Impulse: basic attack menambah 3% attack speed (stack 5).",
+    "counters": [],
+    "desc": "Komponen attack speed murah dengan damage tambahan."
+  },
+  {
+    "id": "dagger",
+    "name": "Dagger",
+    "cat": "attack",
+    "price": 250,
+    "stats": "+15 Physical Attack",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen dasar physical attack termurah."
+  },
+  {
+    "id": "iron_hunting_bow",
+    "name": "Iron Hunting Bow",
+    "cat": "attack",
+    "price": 450,
+    "stats": "+10 Physical Attack, +5% Cooldown Reduction",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen dasar attack dan CDR murah."
+  },
+  {
+    "id": "javelin",
+    "name": "Javelin",
+    "cat": "attack",
+    "price": 320,
+    "stats": "+8% Crit Chance",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen dasar crit chance termurah."
+  },
+  {
+    "id": "knife",
+    "name": "Knife",
+    "cat": "attack",
+    "price": 280,
+    "stats": "+10% Attack Speed",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen dasar attack speed termurah."
+  },
+  {
+    "id": "power_potion",
+    "name": "Power Potion",
+    "cat": "attack",
+    "price": 1500,
+    "stats": "",
+    "passive": "Increase Power: otomatis terpakai; +30 physical attack dan 15% lifesteal selama 120 detik. Satu efek potion dalam satu waktu.",
+    "counters": [],
+    "desc": "Beli saat full build untuk boost attack di late game."
+  },
+  {
+    "id": "vampire_mallet",
+    "name": "Vampire Mallet",
+    "cat": "attack",
+    "price": 400,
+    "stats": "+8 Physical Attack, +8% Lifesteal",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen dasar lifesteal murah."
+  },
+  {
+    "id": "blood_wings",
+    "name": "Blood Wings",
+    "cat": "magic",
+    "price": 2100,
+    "stats": "+90 Magic Power",
+    "passive": "Guard: mendapat shield 800 (+100% magic power) yang regen 20 detik setelah rusak; memberi movement speed.",
+    "counters": [],
+    "desc": "Untuk mage yang butuh shield dan mobilitas; selamat dari assassin."
+  },
+  {
+    "id": "calamity_reaper",
+    "name": "Calamity Reaper",
+    "cat": "magic",
+    "price": 1950,
+    "stats": "+70 Magic Power, +100 Mana, +6 Mana Regen, +10% Cooldown Reduction",
+    "passive": "Calamity: 3 detik setelah pakai skill, basic attack berikutnya memberi true damage 120% magic power (CD 1,5 detik) dan movement speed.",
+    "counters": [],
+    "desc": "Sudah dihapus dari game; dahulu item basic-attack untuk mage."
+  },
+  {
+    "id": "clock_of_destiny",
+    "name": "Clock of Destiny",
+    "cat": "magic",
+    "price": 2030,
+    "stats": "+45 Magic Power, +400 HP, +400 Mana, +10% Cooldown Reduction",
+    "passive": "Destiny: damage magic ke hero memberi hybrid defense (stack 6). Gift: HP atau mana di bawah 50% pulih 15% selama 3 detik (CD 60 detik).",
+    "counters": [],
+    "desc": "Item scaling untuk mage tanky; beli early agar stack maksimal."
+  },
+  {
+    "id": "concentrated_energy",
+    "name": "Concentrated Energy",
+    "cat": "magic",
+    "price": 2020,
+    "stats": "+75 Magic Power, +400 HP, +20% Hybrid Lifesteal",
+    "passive": "Recharge: damage magic menumpuk magic power; stack penuh menaikkan magic damage 12% selama 5 detik.",
+    "counters": [],
+    "desc": "Untuk mage yang fight lama; bagus dengan spell vamp."
+  },
+  {
+    "id": "divine_glaive",
+    "name": "Divine Glaive",
+    "cat": "magic",
+    "price": 1970,
+    "stats": "+65 Magic Power, +40% Magic Penetration",
+    "passive": "Spellbreaker: tiap poin magic defense musuh menambah 0,1% magic penetration (maks 20%).",
+    "counters": [],
+    "desc": "Wajib saat musuh menumpuk magic defense; counter Athena dan Radiant."
+  },
+  {
+    "id": "enchanted_talisman",
+    "name": "Enchanted Talisman",
+    "cat": "magic",
+    "price": 2070,
+    "stats": "+70 Magic Power, +300 HP, +15% Cooldown Reduction",
+    "passive": "Mana Spring: regen 15% max mana tiap 10 detik. Magic Mastery: batas CDR naik 5%.",
+    "counters": [],
+    "desc": "Solusi mana untuk mage spam skill; beli early."
+  },
+  {
+    "id": "feather_of_heaven",
+    "name": "Feather of Heaven",
+    "cat": "magic",
+    "price": 2030,
+    "stats": "+60 Magic Power, +20% Attack Speed, +10% Lifesteal, +5% Cooldown Reduction",
+    "passive": "Affliction: tiap basic attack memberi magic damage tambahan 50 (+30% magic power). Impulse: basic attack menambah 6% attack speed (stack 5).",
+    "counters": [],
+    "desc": "Untuk mage basic-attack; gabungkan dengan attack speed."
+  },
+  {
+    "id": "flask_of_the_oasis",
+    "name": "Flask of the Oasis",
+    "cat": "magic",
+    "price": 1850,
+    "stats": "+60 Magic Power, +300 HP, +10% Cooldown Reduction, +12% Healing Effect",
+    "passive": "Blessing: skill heal atau shield ke target HP di bawah 35% memberi shield dan mengurangi CD skill 2 detik (CD 60 detik per target).",
+    "counters": [],
+    "desc": "Untuk support healer; lindungi carry yang sekarat."
+  },
+  {
+    "id": "flower_of_hope",
+    "name": "Flower of Hope",
+    "cat": "magic",
+    "price": 0,
+    "stats": "+5% Adaptive Attack",
+    "passive": "Flower of Hope: tiap 6 detik, skill atau basic attack berikutnya memberi magic damage tambahan 60 (+30% physical)(+30% magic).",
+    "counters": [],
+    "desc": "Item khusus sekutu Floryn; tidak bisa dibeli biasa."
+  },
+  {
+    "id": "genius_wand",
+    "name": "Genius Wand",
+    "cat": "magic",
+    "price": 2000,
+    "stats": "+75 Magic Power, +5% Movement Speed, +10 Magic Penetration",
+    "passive": "Magic: damage magic ke hero mengurangi magic defense mereka (stack 3) selama 2 detik.",
+    "counters": [],
+    "desc": "Untuk mage melawan hero magic defense rendah; bagus early-mid."
+  },
+  {
+    "id": "glowing_wand",
+    "name": "Glowing Wand",
+    "cat": "magic",
+    "price": 2150,
+    "stats": "+60 Magic Power, +300 HP, +5% Movement Speed",
+    "passive": "Scorch: damage magic membakar target 3 detik (1% max HP per detik). Lifebane: shield dan HP regen target jadi 60% selama 3 detik.",
+    "counters": [
+      "heal",
+      "shield"
+    ],
+    "desc": "Wajib untuk mage melawan hero regen atau shield dan HP tebal."
+  },
+  {
+    "id": "holy_crystal",
+    "name": "Holy Crystal",
+    "cat": "magic",
+    "price": 3000,
+    "stats": "+165 Magic Power",
+    "passive": "Mystery: mendapat 21%-35% magic power tambahan (skala level).",
+    "counters": [],
+    "desc": "Magic power tertinggi; beli mid-late untuk burst maksimal."
+  },
+  {
+    "id": "ice_queen_wand",
+    "name": "Ice Queen Wand",
+    "cat": "magic",
+    "price": 2040,
+    "stats": "+60 Magic Power, +10% Spell Vamp, +300 HP, +7% Movement Speed",
+    "passive": "Ice Bound: skill yang mengenai hero memberi slow 10% 2 detik (stack 3).",
+    "counters": [],
+    "desc": "Untuk mage yang butuh slow dan kiting."
+  },
+  {
+    "id": "lantern_of_hope",
+    "name": "Lantern of Hope",
+    "cat": "magic",
+    "price": 0,
+    "stats": "+20 Magic Power, +4% Movement Speed, +2% Cooldown Reduction",
+    "passive": "Lantern of Hope: atribut item meningkat seiring level hero.",
+    "counters": [],
+    "desc": "Item khusus Floryn; tidak bisa dibeli biasa."
+  },
+  {
+    "id": "lightning_truncheon",
+    "name": "Lightning Truncheon",
+    "cat": "magic",
+    "price": 2250,
+    "stats": "+75 Magic Power, +400 Mana, +10% Cooldown Reduction",
+    "passive": "Resonate: tiap 6 detik, skill berikutnya memantul memberi magic damage ke semua musuh di sekitar.",
+    "counters": [],
+    "desc": "Untuk mage AoE atau poke; bagus clear wave dan poke war."
+  },
+  {
+    "id": "necklace_of_durance",
+    "name": "Necklace of Durance",
+    "cat": "magic",
+    "price": 2010,
+    "stats": "+60 Magic Power, +300 HP, +380 Mana, +5% Cooldown Reduction",
+    "passive": "Lifebane: damage mengurangi shield dan HP regen target 50% selama 3 detik. Gift: naik level memulihkan 20% HP dan mana 2 detik.",
+    "counters": [
+      "heal",
+      "shield"
+    ],
+    "desc": "Sudah dihapus dari game; dahulu item anti-regen untuk mage."
+  },
+  {
+    "id": "shadow_twinblades",
+    "name": "Shadow Twinblades",
+    "cat": "magic",
+    "price": 1960,
+    "stats": "+75 Magic Power, +15% Magic Lifesteal, +5% Movement Speed",
+    "passive": "Assassination: setelah 5 detik tanpa damage, basic attack berikutnya memberi magic damage tambahan dan slow 60% 1,5 detik.",
+    "counters": [],
+    "desc": "Sudah dihapus dari game; dahulu item burst untuk mage assassin."
+  },
+  {
+    "id": "starlium_scythe",
+    "name": "Starlium Scythe",
+    "cat": "magic",
+    "price": 2120,
+    "stats": "+75 Magic Power, +10% Cooldown Reduction, +8% Hybrid Lifesteal, +6 Mana Regen",
+    "passive": "Crisis: setelah pakai skill, basic attack 3 detik berikutnya memberi true damage 90 (+60% magic power) dan slow 15% (CD 1,5 detik).",
+    "counters": [],
+    "desc": "Untuk mage yang campur skill dan basic attack."
+  },
+  {
+    "id": "wishing_lantern",
+    "name": "Wishing Lantern",
+    "cat": "magic",
+    "price": 2250,
+    "stats": "+75 Magic Power, +400 Mana, +10% Cooldown Reduction",
+    "passive": "Butterfly Goddess: tiap 900 magic damage ke hero memanggil kupu-kupu yang memberi damage 8% HP musuh saat ini.",
+    "counters": [
+      "high-hp"
+    ],
+    "desc": "Untuk mage melawan hero HP tebal; counter HP stack."
+  },
+  {
+    "id": "azure_blade",
+    "name": "Azure Blade",
+    "cat": "magic",
+    "price": 600,
+    "stats": "+5 Mana Regen, +5% Cooldown Reduction",
+    "passive": "Judgement: setelah pakai skill, basic attack 3 detik berikutnya memberi 50 true damage tambahan (CD 1,5 detik).",
+    "counters": [],
+    "desc": "Komponen murah untuk mage basic-attack; bahan Starlium Scythe."
+  },
+  {
+    "id": "elegant_gem",
+    "name": "Elegant Gem",
+    "cat": "magic",
+    "price": 700,
+    "stats": "+300 HP, +380 Mana",
+    "passive": "Gift: HP di bawah 50% pulih 15% HP, mana di bawah 50% pulih 15% mana, selama 3 detik (CD 60 detik).",
+    "counters": [],
+    "desc": "Komponen HP dan mana murah untuk mage early game."
+  },
+  {
+    "id": "exotic_veil",
+    "name": "Exotic Veil",
+    "cat": "magic",
+    "price": 600,
+    "stats": "+30 Magic Power, +5% Movement Speed",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen magic power dan movement speed murah."
+  },
+  {
+    "id": "magic_wand",
+    "name": "Magic Wand",
+    "cat": "magic",
+    "price": 820,
+    "stats": "+45 Magic Power",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen magic power murah; bahan banyak item mage."
+  },
+  {
+    "id": "mystic_container",
+    "name": "Mystic Container",
+    "cat": "magic",
+    "price": 500,
+    "stats": "+15 Magic Power, +8% Spell Vamp",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen magic power dan spell vamp murah."
+  },
+  {
+    "id": "tome_of_evil",
+    "name": "Tome of Evil",
+    "cat": "magic",
+    "price": 950,
+    "stats": "+30 Magic Power, +2 Mana Regen, +10% Cooldown Reduction",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen magic power, CDR, dan mana regen murah."
+  },
+  {
+    "id": "book_of_sages",
+    "name": "Book of Sages",
+    "cat": "magic",
+    "price": 450,
+    "stats": "+8 Magic Power, +5% Cooldown Reduction",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen dasar magic power dan CDR termurah."
+  },
+  {
+    "id": "bud_of_hope",
+    "name": "Bud of Hope",
+    "cat": "magic",
+    "price": 0,
+    "stats": "+250 HP",
+    "passive": "Bud of Hope: diberikan Floryn dan Dew; kekuatannya terbuka saat Dew berevolusi.",
+    "counters": [],
+    "desc": "Sudah dihapus dari game; dahulu item khusus sekutu Floryn."
+  },
+  {
+    "id": "magic_necklace",
+    "name": "Magic Necklace",
+    "cat": "magic",
+    "price": 120,
+    "stats": "+2 Mana Regen",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen dasar mana regen termurah."
+  },
+  {
+    "id": "magic_potion",
+    "name": "Magic Potion",
+    "cat": "magic",
+    "price": 1500,
+    "stats": "",
+    "passive": "Increase Power: otomatis terpakai; +30 magic power dan 10% CDR selama 120 detik. Satu efek potion dalam satu waktu.",
+    "counters": [],
+    "desc": "Beli saat full build untuk boost magic di late game."
+  },
+  {
+    "id": "mystery_codex",
+    "name": "Mystery Codex",
+    "cat": "magic",
+    "price": 300,
+    "stats": "+15 Magic Power",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen dasar magic power termurah."
+  },
+  {
+    "id": "power_crystal",
+    "name": "Power Crystal",
+    "cat": "magic",
+    "price": 220,
+    "stats": "+280 Mana",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen dasar mana termurah."
+  },
+  {
+    "id": "shimmering_lantern",
+    "name": "Shimmering Lantern",
+    "cat": "magic",
+    "price": 0,
+    "stats": "+20 Magic Power, +5% Movement Speed",
+    "passive": "Floryn bisa berbagi kekuatan Dew's Lantern ke sekutu; berevolusi setelah menyerap energi dalam battle.",
+    "counters": [],
+    "desc": "Sudah dihapus dari game; dahulu item khusus sekutu Floryn."
+  },
+  {
+    "id": "antique_cuirass",
+    "name": "Antique Cuirass",
+    "cat": "defense",
+    "price": 2170,
+    "stats": "+920 HP, +40 Physical Defense, +4 HP Regen",
+    "passive": "Deter: terkena skill mengurangi physical damage penyerang 6% selama 2 detik (stack 3).",
+    "counters": [
+      "burst-physical"
+    ],
+    "desc": "Wajib melawan hero physical damage beruntun seperti marksman dan fighter."
+  },
+  {
+    "id": "blade_armor",
+    "name": "Blade Armor",
+    "cat": "defense",
+    "price": 1910,
+    "stats": "+80 Physical Defense, +20% Crit Damage Reduction",
+    "passive": "Bladed Armor: terkena basic attack memantulkan damage fisik ke penyerang dan slow 15% 1 detik.",
+    "counters": [
+      "burst-physical"
+    ],
+    "desc": "Counter marksman crit; beli saat musuh andalkan basic attack."
+  },
+  {
+    "id": "brute_force_breastplate",
+    "name": "Brute Force Breastplate",
+    "cat": "defense",
+    "price": 2070,
+    "stats": "+800 HP, +20 Physical Defense, +10% Cooldown Reduction",
+    "passive": "Brute Force: tiap detik setelah memberi damage, dapat adaptive attack dan movement speed (stack 6); stack penuh mengurangi durasi CC 25%.",
+    "counters": [],
+    "desc": "Untuk fighter atau tank agresif yang terus memberi damage."
+  },
+  {
+    "id": "chastise_pauldron",
+    "name": "Chastise Pauldron",
+    "cat": "defense",
+    "price": 2100,
+    "stats": "+900 HP, +40 Physical Defense",
+    "passive": "Chastise: terkena damage menurunkan attack speed penyerang jadi 75% (2 detik). Redemption: HP di bawah 30% pulih 20% max HP (CD 60 detik).",
+    "counters": [
+      "attack-speed"
+    ],
+    "desc": "Counter hero attack speed; kurangi DPS mereka."
+  },
+  {
+    "id": "cursed_helmet",
+    "name": "Cursed Helmet",
+    "cat": "defense",
+    "price": 1910,
+    "stats": "+1200 HP, +20 Magic Defense",
+    "passive": "Burning Soul: memberi magic damage 1,2% total HP per detik ke musuh sekitar. Curse: mengurangi hybrid defense target (stack 3).",
+    "counters": [],
+    "desc": "Untuk tank yang butuh clear wave dan damage area; bagus melawan kerumunan."
+  },
+  {
+    "id": "dominance_ice",
+    "name": "Dominance Ice",
+    "cat": "defense",
+    "price": 2010,
+    "stats": "+40 Physical Defense, +40 Magic Defense, +5% Movement Speed",
+    "passive": "Fortress Shield: tiap musuh di dekatnya menambah hybrid defense (maks 40). Lifebane: shield dan HP regen musuh sekitar jadi 60%.",
+    "counters": [
+      "heal",
+      "attack-speed"
+    ],
+    "desc": "Wajib untuk tank melawan regen atau shield dan hero attack speed."
+  },
+  {
+    "id": "guardian_helmet",
+    "name": "Guardian Helmet",
+    "cat": "defense",
+    "price": 2500,
+    "stats": "+1800 HP, +20 HP Regen",
+    "passive": "Recovery: 5 detik di luar combat memulihkan 2,5% total HP per detik. Defender: damage tunggal di atas 500 memulihkan sebagian kelebihannya.",
+    "counters": [],
+    "desc": "Untuk tank yang butuh regen tanpa recall; bagus sustain di map."
+  },
+  {
+    "id": "immortality",
+    "name": "Immortality",
+    "cat": "defense",
+    "price": 2120,
+    "stats": "+850 HP, +15 Physical Defense",
+    "passive": "Immortal: bangkit 2,5 detik setelah mati dengan 16% max HP dan shield (CD 210 detik).",
+    "counters": [],
+    "desc": "Beli late game; beri kesempatan kedua di war penting."
+  },
+  {
+    "id": "oracle",
+    "name": "Oracle",
+    "cat": "defense",
+    "price": 1860,
+    "stats": "+850 HP, +20 Physical Defense, +20 Magic Defense, +10% Cooldown Reduction",
+    "passive": "Bless: shield dan HP regen yang diterima naik 25%.",
+    "counters": [],
+    "desc": "Untuk tank atau fighter dengan heal atau shield sendiri; sinergi dengan support."
+  },
+  {
+    "id": "queens_wings",
+    "name": "Queen's Wings",
+    "cat": "defense",
+    "price": 2250,
+    "stats": "+750 HP, +30 Adaptive Attack, +10% Cooldown Reduction, +10% Spell Vamp",
+    "passive": "Demonize: HP di bawah 40% memberi 30% damage reduction 3 detik (CD 60 detik). Defiance: tiap 1% HP hilang, damage +0,25% (maks 15%).",
+    "counters": [],
+    "desc": "Untuk fighter yang fight di HP rendah; comeback saat sekarat."
+  },
+  {
+    "id": "radiant_armor",
+    "name": "Radiant Armor",
+    "cat": "defense",
+    "price": 1880,
+    "stats": "+950 HP, +40 Magic Defense, +12 HP Regen",
+    "passive": "Holy Blessing: terkena magic damage menumpuk magic defense (stack 6) selama 5 detik.",
+    "counters": [
+      "burst-magic"
+    ],
+    "desc": "Wajib melawan mage damage beruntun."
+  },
+  {
+    "id": "thunder_belt",
+    "name": "Thunder Belt",
+    "cat": "defense",
+    "price": 1820,
+    "stats": "+600 HP, +15 Physical Defense, +15 Magic Defense, +20 Movement Speed",
+    "passive": "Thunderbolt: tiap 4 detik, basic attack berikutnya memberi true damage area dan slow; tiap kena hero menambah hybrid defense permanen 1.",
+    "counters": [],
+    "desc": "Untuk tank yang butuh damage; makin lama game makin tebal."
+  },
+  {
+    "id": "twilight_armor",
+    "name": "Twilight Armor",
+    "cat": "defense",
+    "price": 2100,
+    "stats": "+1200 HP, +15 Physical Defense",
+    "passive": "Twilight: damage tunggal di atas 500 dikurangi kelebihannya. Redemption: HP di bawah 30% pulih 20% max HP 4 detik (CD 60 detik).",
+    "counters": [
+      "burst-magic"
+    ],
+    "desc": "Sudah dihapus dari game; dahulu counter burst damage tunggal."
+  },
+  {
+    "id": "valkyries_shield",
+    "name": "Valkyrie's Shield",
+    "cat": "defense",
+    "price": 2150,
+    "stats": "+900 HP, +48 Magic Defense, +2 HP Regen",
+    "passive": "Shield: terkena magic damage mengurangi magic damage yang diterima 25% selama 3 detik; pulih 5 detik setelah keluar combat.",
+    "counters": [
+      "burst-magic"
+    ],
+    "desc": "Counter burst magic; beli melawan kombo mage."
+  },
+  {
+    "id": "ares_belt",
+    "name": "Ares Belt",
+    "cat": "defense",
+    "price": 700,
+    "stats": "+600 HP",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen HP murah; bahan banyak item defense."
+  },
+  {
+    "id": "black_ice_shield",
+    "name": "Black Ice Shield",
+    "cat": "defense",
+    "price": 780,
+    "stats": "+20 Physical Defense, +20 Magic Defense",
+    "passive": "Fortress Shield: tiap hero musuh di dekatnya menambah hybrid defense 4 (maks 20).",
+    "counters": [],
+    "desc": "Komponen defense hybrid murah; bahan Dominance Ice."
+  },
+  {
+    "id": "dreadnaught_armor",
+    "name": "Dreadnaught Armor",
+    "cat": "defense",
+    "price": 730,
+    "stats": "+30 Physical Defense",
+    "passive": "Deter: terkena skill mengurangi physical damage penyerang 4% selama 2 detik (stack 3).",
+    "counters": [],
+    "desc": "Komponen physical defense murah melawan burst skill."
+  },
+  {
+    "id": "molten_essence",
+    "name": "Molten Essence",
+    "cat": "defense",
+    "price": 800,
+    "stats": "+540 HP",
+    "passive": "Burning Soul: memberi magic damage 0,6% total HP per detik ke musuh sekitar.",
+    "counters": [],
+    "desc": "Komponen burn murah; bantu tank clear wave."
+  },
+  {
+    "id": "silence_robe",
+    "name": "Silence Robe",
+    "cat": "defense",
+    "price": 1020,
+    "stats": "+540 HP, +23 Magic Defense",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen HP dan magic defense murah."
+  },
+  {
+    "id": "steel_legplates",
+    "name": "Steel Legplates",
+    "cat": "defense",
+    "price": 630,
+    "stats": "+35 Physical Defense",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen physical defense murah."
+  },
+  {
+    "id": "healing_necklace",
+    "name": "Healing Necklace",
+    "cat": "defense",
+    "price": 140,
+    "stats": "+4 HP Regen",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen dasar HP regen termurah."
+  },
+  {
+    "id": "heros_ring",
+    "name": "Hero's Ring",
+    "cat": "defense",
+    "price": 450,
+    "stats": "+150 HP, +5% Cooldown Reduction",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen HP dan CDR murah."
+  },
+  {
+    "id": "leather_jerkin",
+    "name": "Leather Jerkin",
+    "cat": "defense",
+    "price": 220,
+    "stats": "+14 Physical Defense",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen dasar physical defense termurah."
+  },
+  {
+    "id": "magic_resist_cloak",
+    "name": "Magic Resist Cloak",
+    "cat": "defense",
+    "price": 220,
+    "stats": "+14 Magic Defense",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen dasar magic defense termurah."
+  },
+  {
+    "id": "rock_potion",
+    "name": "Rock Potion",
+    "cat": "defense",
+    "price": 1500,
+    "stats": "",
+    "passive": "Increase Power: otomatis terpakai; +500 max HP dan 5% damage reduction selama 120 detik. Satu efek potion dalam satu waktu.",
+    "counters": [],
+    "desc": "Beli saat full build untuk boost ketahanan di late game."
+  },
+  {
+    "id": "vitality_crystal",
+    "name": "Vitality Crystal",
+    "cat": "defense",
+    "price": 300,
+    "stats": "+230 HP",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen dasar HP termurah."
+  },
+  {
+    "id": "fleeting_time",
+    "name": "Fleeting Time",
+    "cat": "defense",
+    "price": 2050,
+    "stats": "+30 Adaptive Attack, +600 HP, +15% Cooldown Reduction",
+    "passive": "Timestream: kill atau assist mengurangi CD ultimate 30% saat ini.",
+    "counters": [],
+    "desc": "Untuk hero yang andalkan ultimate; spam ult lebih sering."
+  },
+  {
+    "id": "sky_piercer",
+    "name": "Sky Piercer",
+    "cat": "attack",
+    "price": 1500,
+    "stats": "+60 Adaptive Attack, +15 Movement Speed",
+    "passive": "Lethality: mengeksekusi hero musuh di bawah 4% HP; tiap kill menambah stack yang menaikkan ambang eksekusi (maks 80 stack).",
+    "counters": [],
+    "desc": "Untuk finisher atau assassin; amankan kill saat musuh sekarat."
+  },
+  {
+    "id": "winter_crown",
+    "name": "Winter Crown",
+    "cat": "magic",
+    "price": 1910,
+    "stats": "+45 Adaptive Attack, +400 HP, +5% Cooldown Reduction",
+    "passive": "Frozen (aktif): beku 2 detik, kebal damage dan untargetable (CD 100 detik).",
+    "counters": [],
+    "desc": "Tombol penyelamat melawan burst; timing tepat selamatkan dari kombo."
+  },
+  {
+    "id": "expert_gloves",
+    "name": "Expert Gloves",
+    "cat": "attack",
+    "price": 500,
+    "stats": "+30 Adaptive Attack,",
+    "passive": "",
+    "counters": [],
+    "desc": "Komponen adaptive attack murah; bahan Sky Piercer dan Winter Crown."
+  },
+  {
+    "id": "arcane_boots",
+    "name": "Arcane Boots",
+    "cat": "movement",
+    "price": 720,
+    "stats": "+40 Movement Speed, +15 Magic Power, +10 Magic Penetration",
+    "passive": "",
+    "counters": [],
+    "desc": "Sepatu untuk mage; tambah magic penetration."
+  },
+  {
+    "id": "demon_shoes",
+    "name": "Demon Shoes",
+    "cat": "movement",
+    "price": 720,
+    "stats": "+40 Movement Speed, +10 Mana Regen",
+    "passive": "Mysticism: kill atau assist minion memulihkan 4% mana.",
+    "counters": [],
+    "desc": "Sepatu untuk hero boros mana early game."
+  },
+  {
+    "id": "magic_shoes",
+    "name": "Magic Shoes",
+    "cat": "movement",
+    "price": 720,
+    "stats": "+40 Movement Speed, +10% Cooldown Reduction, +150 HP",
+    "passive": "",
+    "counters": [],
+    "desc": "Sepatu CDR untuk hero spam skill."
+  },
+  {
+    "id": "rapid_boots",
+    "name": "Rapid Boots",
+    "cat": "movement",
+    "price": 720,
+    "stats": "+55 Movement Speed, +35% Slow Reduction, +12 HP Regen",
+    "passive": "",
+    "counters": [],
+    "desc": "Sepatu tercepat; bagus rotasi, kurang stat tempur."
+  },
+  {
+    "id": "swift_boots",
+    "name": "Swift Boots",
+    "cat": "movement",
+    "price": 720,
+    "stats": "+40 Movement Speed, +15% Attack Speed",
+    "passive": "",
+    "counters": [],
+    "desc": "Sepatu attack speed untuk marksman."
+  },
+  {
+    "id": "tough_boots",
+    "name": "Tough Boots",
+    "cat": "movement",
+    "price": 720,
+    "stats": "+40 Movement Speed, +18 Magic Defense",
+    "passive": "Fortitude: durasi CC dan slow berkurang 25%.",
+    "counters": [
+      "cc"
+    ],
+    "desc": "Wajib melawan komposisi CC berat; kurangi durasi stun."
+  },
+  {
+    "id": "warrior_boots",
+    "name": "Warrior Boots",
+    "cat": "movement",
+    "price": 720,
+    "stats": "+40 Movement Speed, +18 Physical Defense",
+    "passive": "Valor: terkena physical damage menambah 4 physical defense 3 detik (maks 20).",
+    "counters": [],
+    "desc": "Sepatu melawan physical damage di lane."
+  },
+  {
+    "id": "allow_throw",
+    "name": "Allow Throw",
+    "cat": "movement",
+    "price": 0,
+    "stats": "",
+    "passive": "Trust: mengizinkan Jawhead sekutu melemparmu.",
+    "counters": [],
+    "desc": "Item khusus sekutu Jawhead; aktifkan jika ingin dilempar Ejector."
+  },
+  {
+    "id": "boots",
+    "name": "Boots",
+    "cat": "movement",
+    "price": 250,
+    "stats": "+20 Movement Speed",
+    "passive": "",
+    "counters": [],
+    "desc": "Sepatu dasar; beli di awal untuk mobilitas."
+  },
+  {
+    "id": "broken_heart",
+    "name": "Broken Heart",
+    "cat": "movement",
+    "price": 0,
+    "stats": "",
+    "passive": "Heart Broken: kebal terhadap Moonlit Waltz Cecilion sekutu dalam match ini.",
+    "counters": [],
+    "desc": "Item khusus Carmilla; tolak tarikan Cecilion sekutu."
+  },
+  {
+    "id": "resonating_heart",
+    "name": "Resonating Heart",
+    "cat": "movement",
+    "price": 0,
+    "stats": "",
+    "passive": "Restore: mengizinkan Cecilion sekutu memakai Moonlit Waltz padamu.",
+    "counters": [],
+    "desc": "Item khusus Carmilla; izinkan tarikan Cecilion sekutu."
+  },
+  {
+    "id": "throw_forbidden",
+    "name": "Throw Forbidden",
+    "cat": "movement",
+    "price": 0,
+    "stats": "",
+    "passive": "Heavy Mountain: kebal terhadap Ejector Jawhead sekutu dalam match ini.",
+    "counters": [],
+    "desc": "Item khusus sekutu Jawhead; tolak dilempar Ejector."
+  },
+  {
+    "id": "bloody_retribution",
+    "name": "Bloody Retribution",
+    "cat": "attack",
+    "price": 0,
+    "stats": "",
+    "passive": "Retribution ke creep atau minion 150%; ke hero: 100 true damage dan curi HP 300 + 24% extra HP 3 detik. Upgrade setelah 5 kill atau assist.",
+    "counters": [],
+    "desc": "Retribution upgrade untuk jungler melawan hero HP tebal."
+  },
+  {
+    "id": "flame_retribution",
+    "name": "Flame Retribution",
+    "cat": "attack",
+    "price": 0,
+    "stats": "",
+    "passive": "Retribution ke creep atau minion 150%; ke hero: 100 true damage dan curi attack atau power 3 detik. Upgrade setelah 5 kill atau assist.",
+    "counters": [],
+    "desc": "Retribution upgrade untuk jungler; lemahkan damage hero musuh."
+  },
+  {
+    "id": "ice_retribution",
+    "name": "Ice Retribution",
+    "cat": "attack",
+    "price": 0,
+    "stats": "",
+    "passive": "Retribution ke creep atau minion 150%; ke hero: 100 true damage dan curi movement speed (3 detik). Upgrade setelah 5 kill atau assist.",
+    "counters": [],
+    "desc": "Retribution upgrade untuk jungler; kejar atau kabur dari hero musuh."
+  },
+  {
+    "id": "active_conceal",
+    "name": "Active - Conceal",
+    "cat": "movement",
+    "price": 0,
+    "stats": "",
+    "passive": "Conceal (aktif): menyamarkanmu dan sekutu di dekatmu, +40% movement speed 5 detik (CD 60 detik). Terbuka setelah 1000 gold dari Thriving.",
+    "counters": [],
+    "desc": "Blessing roaming untuk inisiasi atau gank diam-diam bersama tim."
+  },
+  {
+    "id": "passive_dire_hit",
+    "name": "Passive - Dire Hit",
+    "cat": "movement",
+    "price": 0,
+    "stats": "",
+    "passive": "Bergerak menumpuk Force (maks +40 movement speed); 20 stack: hit berikut memberi true damage tambahan. Terbuka setelah 1000 gold Thriving.",
+    "counters": [],
+    "desc": "Blessing roaming untuk roamer yang butuh damage tambahan."
+  },
+  {
+    "id": "passive_encourage",
+    "name": "Passive - Encourage",
+    "cat": "movement",
+    "price": 0,
+    "stats": "",
+    "passive": "Memberi 20 hybrid defense ekstra untukmu dan sekutu di dekatmu. Terbuka setelah 1000 gold dari Thriving.",
+    "counters": [],
+    "desc": "Blessing roaming untuk melindungi tim dengan defense ekstra."
+  },
+  {
+    "id": "passive_favor",
+    "name": "Passive - Favor",
+    "cat": "movement",
+    "price": 0,
+    "stats": "",
+    "passive": "Tiap 15 detik, skill heal atau shield berikutnya memulihkan 400 HP ekstra ke sekutu HP terendah. Terbuka setelah 1000 gold dari Thriving.",
+    "counters": [],
+    "desc": "Blessing roaming untuk roamer healer; bantu sustain tim."
+  }
+]

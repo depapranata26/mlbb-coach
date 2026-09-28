@@ -1,0 +1,5537 @@
+[
+ {
+  "id": "aamon",
+  "name": "Aamon",
+  "roles": [
+   "Assassin"
+  ],
+  "lane": "jungle",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "assassin magic, kamuflase, eksekutor HP rendah",
+  "skills": [
+   {
+    "name": "Invisible Armor",
+    "desc": "Pasif: tiap kena skill masuk kamuflase — tak bisa ditarget, regen HP, MS naik; keluar mode perkuat basic attack."
+   },
+   {
+    "name": "Soul Shards",
+    "desc": "Tiap cast/kena skill isi armor; di 5 stack serangan berikut lempar 6 pecahan ke target."
+   },
+   {
+    "name": "Slayer Shards",
+    "desc": "Lempar pecahan ke depan: slow 50% 2 detik; pecahan kembali dan aktifkan kamuflase."
+   },
+   {
+    "name": "Endless Shards",
+    "desc": "Hujani pecahan ke satu musuh 2x + slow; damage naik drastis saat HP target di bawah 30%."
+   }
+  ],
+  "desc": "Assassin magic yang menghilang lalu meledakkan pecahan ke target empuk."
+ },
+ {
+  "id": "akai",
+  "name": "Akai",
+  "roles": [
+   "Tank"
+  ],
+  "lane": "roam",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "knockup",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 1,
+  "traits": "tank inisiator, putaran pendorong, kontrol area",
+  "skills": [
+   {
+    "name": "Tai Chi",
+    "desc": "Pasif: tiap cast skill dapat shield; basic attack beri damage ekstra ke musuh bertanda."
+   },
+   {
+    "name": "Headbutt",
+    "desc": "Tanduk ke arah target; kena hero = knock-up 0,5 detik lalu bisa guling sekali."
+   },
+   {
+    "name": "Body Slam",
+    "desc": "Banting badan ke tanah: damage area + slow 45% selama 2 detik."
+   },
+   {
+    "name": "Heavy Spin",
+    "desc": "Berputar 4 detik, kebal slow, dorong musuh ke belakang; hanya bisa dihentikan suppression."
+   }
+  ],
+  "desc": "Tank inisiator yang mendorong dan mengacak formasi musuh dengan putarannya."
+ },
+ {
+  "id": "aldous",
+  "name": "Aldous",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "stun"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "one-punch stack, dash global, split push",
+  "skills": [
+   {
+    "name": "Contract: Transform",
+    "desc": "Pasif: tiap 2 serangan dapat shield; stack Soul Steal perkuat basic attack berikutnya."
+   },
+   {
+    "name": "Contract: Soul Steal",
+    "desc": "Perkuat basic attack berikutnya; bunuh musuh untuk kumpulkan stack soul permanen."
+   },
+   {
+    "name": "Contract: Explosion",
+    "desc": "Sikap bertahan: damage reduction + MS naik, lalu ledakan area beri stun hingga 1 detik."
+   },
+   {
+    "name": "Contract: Chase Fate",
+    "desc": "Dapat vision semua musuh 5 detik, lalu dash global ke target dan knock-back."
+   }
+  ],
+  "desc": "Fighter late-game yang menumpuk soul untuk satu pukulan mematikan dan terbang lintas map."
+ },
+ {
+  "id": "alice",
+  "name": "Alice",
+  "roles": [
+   "Mage",
+   "Tank"
+  ],
+  "lane": "exp",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "slow",
+   "immobilize"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "mage tanky, drain darah, blink orb",
+  "skills": [
+   {
+    "name": "Crimson Blood Banquet",
+    "desc": "Pasif: skill yang kena musuh tumpuk Crimson; 2 stack picu ledakan darah AoE + regen HP."
+   },
+   {
+    "name": "Crimson Gleam",
+    "desc": "Tembak energi darah ke depan; cast lagi untuk blink ke posisi energi."
+   },
+   {
+    "name": "Doom Waltz",
+    "desc": "Tarian area: damage + slow 70%; jika Blood Banquet aktif, bakar musuh dan pulihkan HP."
+   },
+   {
+    "name": "Throne of Ruin",
+    "desc": "Kebal CC + damage reduction 50%, lalu hantam tanah: damage besar + immobilize 1 detik."
+   }
+  ],
+  "desc": "Mage tanky yang menguras HP musuh di sekitarnya sambil terus beregenerasi."
+ },
+ {
+  "id": "alpha",
+  "name": "Alpha",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow",
+   "stun",
+   "knockup"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "kombo Beta, regen tebasan, burst area",
+  "skills": [
+   {
+    "name": "Beta, Advance!",
+    "desc": "Pasif: tiap skill panggil Beta menyerang; 2 kenaan tandai musuh, Beta tembak laser + slow kuat."
+   },
+   {
+    "name": "Rotary Impact",
+    "desc": "Gelombang energi ke depan + Beta susul serang; slow 40% selama 1 detik."
+   },
+   {
+    "name": "Force Swing",
+    "desc": "Tebasan kipas area; pulihkan HP untuk tiap musuh yang kena."
+   },
+   {
+    "name": "Spear of Alpha",
+    "desc": "Beta hantam lokasi dan stun 1 detik; Alpha lompat angkat musuh lalu hantam + slow."
+   }
+  ],
+  "desc": "Fighter kombo yang menyerang bersama robot Beta dengan damage area dan regen."
+ },
+ {
+  "id": "alucard",
+  "name": "Alucard",
+  "roles": [
+   "Assassin",
+   "Fighter"
+  ],
+  "lane": "jungle",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": true,
+  "difficulty": 1,
+  "traits": "lifesteal deras, dash kejar, duelist sustain",
+  "skills": [
+   {
+    "name": "Pursuit",
+    "desc": "Pasif: tiap cast skill, basic attack berikutnya dash ke lokasi target."
+   },
+   {
+    "name": "Groundsplitter",
+    "desc": "Guling ke lokasi target lalu hantam tanah; slow 40% selama 2 detik."
+   },
+   {
+    "name": "Whirling Smash",
+    "desc": "Putaran pedang ke musuh di sekitar."
+   },
+   {
+    "name": "Fission Wave",
+    "desc": "Pasif: lifesteal hybrid permanen. Aktif: serap energi musuh (slow + turunkan defense), lalu gelombang kejut."
+   }
+  ],
+  "desc": "Fighter/assassin lifesteal yang mengejar dan memenangkan duel berkepanjangan."
+ },
+ {
+  "id": "angela",
+  "name": "Angela",
+  "roles": [
+   "Support"
+  ],
+  "lane": "roam",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "slow",
+   "immobilize"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": true,
+  "burst": false,
+  "sustain": false,
+  "difficulty": 1,
+  "traits": "healer tempel, shield global, support protektif",
+  "skills": [
+   {
+    "name": "Smart Heart",
+    "desc": "Pasif: tiap cast skill tambah movement speed; saat menempel, bonus pindah ke kawan."
+   },
+   {
+    "name": "Love Waves",
+    "desc": "Gelombang cinta: damage + tumpuk mark (slow), sekaligus heal hero kawan yang kena."
+   },
+   {
+    "name": "Puppet-on-a-String",
+    "desc": "Ikat musuh dengan tali; slow makin kuat, tetap terikat 3 detik jadi immobilize 1,5 detik."
+   },
+   {
+    "name": "Heartguard",
+    "desc": "Channel lalu beri shield ke kawan (jarak jauh) dan menempel padanya 12 detik; skill tanpa mana."
+   }
+  ],
+  "desc": "Support yang menempel pada carry untuk heal dan melindunginya dari mana pun."
+ },
+ {
+  "id": "argus",
+  "name": "Argus",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "kebal mati, tebasan iblis, duel sustain",
+  "skills": [
+   {
+    "name": "Warmonger",
+    "desc": "Pasif: kumpulkan Malice Energy; tiap 100 energi, basic attack berikut tebasan iblis + regen HP."
+   },
+   {
+    "name": "Demonic Grip",
+    "desc": "Ulurkan tangan iblis: stun 0,7 detik + tarik; cast lagi untuk dash menebas."
+   },
+   {
+    "name": "Meteoric Sword",
+    "desc": "Tusuk pedang iblis; kena hero = energi penuh + attack speed naik."
+   },
+   {
+    "name": "Eternal Evil",
+    "desc": "Kebal mati 4 detik; damage ke hero selama itu jadi HP. Otomatis aktif jika sekarat."
+   }
+  ],
+  "desc": "Fighter yang menolak mati selama 4 detik lalu mengubah damage menjadi HP."
+ },
+ {
+  "id": "arlott",
+  "name": "Arlott",
+  "roles": [
+   "Fighter",
+   "Assassin"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "stun"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "tanda demon, dash reset, burst eksekusi",
+  "skills": [
+   {
+    "name": "Demon Gaze",
+    "desc": "Pasif: musuh yang kena CC di dekatnya ditandai 7 detik; tiap 7 detik tandai otomatis satu hero."
+   },
+   {
+    "name": "Dauntless Strike",
+    "desc": "Tebasan tombak area; stun singkat, ujung terjauh stun 1 detik."
+   },
+   {
+    "name": "Vengeance",
+    "desc": "Terjang ke musuh; jika target bertanda: damage 2x, cooldown reset, pulihkan HP."
+   },
+   {
+    "name": "Final Slash",
+    "desc": "Tebasan besar ke depan; dorong musuh ke tepi area dan ungkap posisinya."
+   }
+  ],
+  "desc": "Fighter/assassin yang menandai musuh lalu menerjang berulang dengan damage ganda."
+ },
+ {
+  "id": "atlas",
+  "name": "Atlas",
+  "roles": [
+   "Tank"
+  ],
+  "lane": "roam",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "slow",
+   "stun"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "rantai inisiator, eject mecha, kontrol area",
+  "skills": [
+   {
+    "name": "Frigid Breath",
+    "desc": "Pasif: tiap cast skill keluarkan aura dingin; musuh yang lama di dalam kena freeze + defense Atlas naik."
+   },
+   {
+    "name": "Annihilate",
+    "desc": "Ledakan tanah 3x; bisa dipakai ganda saat keluar dari mecha."
+   },
+   {
+    "name": "Perfect Match",
+    "desc": "Keluar dari mecha: MS naik + kebal slow; saat menyatu kembali beri stun 1 detik area."
+   },
+   {
+    "name": "Fatal Links",
+    "desc": "Rantai AoE: slow 40% 3 detik; cast lagi untuk tarik dan hantam musuh ke lokasi target."
+   }
+  ],
+  "desc": "Tank inisiator yang merantai dan menyeret musuh ke dalam jebakan tim."
+ },
+ {
+  "id": "aulus",
+  "name": "Aulus",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "jungle",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "kapak AoE, stack attack speed, jungler",
+  "skills": [
+   {
+    "name": "Fighting Spirit",
+    "desc": "Pasif: beri damage untuk tumpuk attack speed; stack penuh perkuat basic attack (damage %HP)."
+   },
+   {
+    "name": "Aulus, Charge!",
+    "desc": "Hapus slow, MS +30% 5 detik; tak kena CC 2 detik = mode Enraged (kebal CC)."
+   },
+   {
+    "name": "The Power of Axe",
+    "desc": "Tebasan kapak area + slow 30%; kena musuh bisa cast lagi untuk dash menghantam tanah."
+   },
+   {
+    "name": "Cleaving Axe",
+    "desc": "Tebasan kapak beruntun ke sekitar + damage reduction; tebasan terakhir area lebar besar."
+   }
+  ],
+  "desc": "Fighter jungler yang menumpuk attack speed untuk tebasan kapak area brutal."
+ },
+ {
+  "id": "aurora",
+  "name": "Aurora",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "slow",
+   "stun"
+  ],
+  "mobility": 0,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 1,
+  "traits": "freeze kombo, burst area, anti dive",
+  "skills": [
+   {
+    "name": "Pride of Ice",
+    "desc": "Pasif: terima damage fatal = beku 1,5 detik (invincible) dan pulihkan 30% HP maks."
+   },
+   {
+    "name": "Hailstone Blast",
+    "desc": "Meteor es ke lokasi: damage + slow 40%, disusul 5 hujan es kecil."
+   },
+   {
+    "name": "Frosty Breeze",
+    "desc": "Hembusan es kipas: damage + freeze 1 detik, buat zona beku di ujung serangan."
+   },
+   {
+    "name": "Frigid Glacier",
+    "desc": "Jalur es: slow 80%; jalur membesar jadi gletser lalu pecah — damage besar + freeze."
+   }
+  ],
+  "desc": "Mage burst yang membekukan lalu menghancurkan musuh dengan kombo es."
+ },
+ {
+  "id": "badang",
+  "name": "Badang",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "pukulan beruntun, stun tembok, burst tinju",
+  "skills": [
+   {
+    "name": "Chivalry Fist",
+    "desc": "Pasif: tiap 4 basic attack, serangan berikut knock-back; musuh menabrak dinding kena stun."
+   },
+   {
+    "name": "Fist Wind",
+    "desc": "Pukulan angin ke depan + slow 30%; meledak saat kena dinding. Simpan hingga 2 charge."
+   },
+   {
+    "name": "Fist Break",
+    "desc": "Dash ke depan + shield; berhenti saat kena hero, buat dinding di belakangnya."
+   },
+   {
+    "name": "Fist Crack",
+    "desc": "Rentetan 9 pukulan ke depan 2,5 detik; kebal CC; pukulan meledak di dinding."
+   }
+  ],
+  "desc": "Fighter petinju yang mengunci musuh ke dinding lalu menghajarnya."
+ },
+ {
+  "id": "balmond",
+  "name": "Balmond",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 1,
+  "traits": "putaran kapak, eksekutor ulti, regen kill",
+  "skills": [
+   {
+    "name": "Bloodthirst",
+    "desc": "Pasif: bunuh minion/creep pulihkan 5% HP maks; bunuh hero pulihkan 20%."
+   },
+   {
+    "name": "Soul Lock",
+    "desc": "Charge ke depan; knock-back ringan + slow 40% dan turunkan physical defense musuh."
+   },
+   {
+    "name": "Cyclone Sweep",
+    "desc": "Putaran kapak 3 detik: damage beruntun naik tiap kenaan + MS naik."
+   },
+   {
+    "name": "Lethal Counter",
+    "desc": "Tebasan raksasa ke depan; eksekusi musuh HP rendah (damage dibatasi ke non-hero)."
+   }
+  ],
+  "desc": "Fighter sederhana dengan putaran area dan ulti eksekusi HP rendah."
+ },
+ {
+  "id": "bane",
+  "name": "Bane",
+  "roles": [
+   "Fighter",
+   "Mage"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow",
+   "knockup"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "meriam kepiting, hiu AoE, sustain rum",
+  "skills": [
+   {
+    "name": "Shark Bite",
+    "desc": "Pasif: tiap skill isi 2 stack; basic attack berikut konsumsi stack beri damage %HP maks area."
+   },
+   {
+    "name": "Crab Claw Cannon",
+    "desc": "Tembak meriam kepiting: damage target pertama lalu memantul ke musuh di belakangnya + slow."
+   },
+   {
+    "name": "Ale",
+    "desc": "Minum arak: pulihkan HP + MS naik; cast lagi semburkan racun area (damage naik saat di-charge)."
+   },
+   {
+    "name": "Deadly Catch",
+    "desc": "Kawanan hiu menyerbu: knock-up 0,6 detik + slow 75%; beri damage ke turret juga."
+   }
+  ],
+  "desc": "Fighter/mage hibrida yang memoke dari jauh lalu menyerbu dengan kawanan hiu."
+ },
+ {
+  "id": "barats",
+  "name": "Barats",
+  "roles": [
+   "Fighter",
+   "Tank"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow",
+   "suppression"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "telan suppress, tank stack, inisiator",
+  "skills": [
+   {
+    "name": "Big Guy",
+    "desc": "Pasif: skill yang kena musuh tumpuk defense hybrid + resilience; stack penuh perkuat basic attack Detona."
+   },
+   {
+    "name": "So-Called Teamwork",
+    "desc": "Sembur minyak lalu bakar: damage area kipas; area membesar dengan stack."
+   },
+   {
+    "name": "Missile \"Expert\"",
+    "desc": "Tembak 2 misil: slow 40% + dorong musuh ke arah Barats."
+   },
+   {
+    "name": "Detona's Welcome",
+    "desc": "Detona terjang dan telan musuh pertama: suppress 1,2 detik lalu muntahkan; tabrakan sebabkan ledakan + stun."
+   }
+  ],
+  "desc": "Tank/fighter yang menelan satu musuh utuh lalu memuntahkannya ke tim."
+ },
+ {
+  "id": "baxia",
+  "name": "Baxia",
+  "roles": [
+   "Tank"
+  ],
+  "lane": "jungle",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "anti heal, jungler tank, bola stun",
+  "skills": [
+   {
+    "name": "Baxia Mark",
+    "desc": "Pasif: kurangi damage diterima; skill-nya potong shield dan regen HP musuh 50%."
+   },
+   {
+    "name": "Baxia-Shield Unity",
+    "desc": "Gulung jadi roda perisai melaju; tabrakan stun 0,8 detik; cast lagi untuk lompat lewati rintangan."
+   },
+   {
+    "name": "Shield of Spirit",
+    "desc": "Lempar perisai ke depan: damage + slow 50% 1 detik; kena hero/creep kurangi cooldown."
+   },
+   {
+    "name": "Tortoise's Puissance",
+    "desc": "Sprint 10 detik + MS 30%; tinggalkan jejak lava (damage + slow); damage reduction naik."
+   }
+  ],
+  "desc": "Tank jungler anti-regen yang menggilas musuh sambil memotong heal mereka."
+ },
+ {
+  "id": "beatrix",
+  "name": "Beatrix",
+  "roles": [
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "empat senjata, burst sniper, mekanik sulit",
+  "skills": [
+   {
+    "name": "Mechanical Genius",
+    "desc": "Pasif: bawa 4 senjata unik; tak bisa crit — tiap 1% crit chance jadi 2 physical attack."
+   },
+   {
+    "name": "Masterful Gunner",
+    "desc": "Bawa 2 senjata sekaligus; ganti senjata utama (0,6 detik) untuk gaya serang dan ulti baru."
+   },
+   {
+    "name": "Tactical Reposition",
+    "desc": "Dash/roll ke depan sesuai senjata; reload penuh senjata aktif."
+   },
+   {
+    "name": "Renner's Apathy",
+    "desc": "Bidik dengan Renner: tembakan tunggal damage besar jarak jauh; 50% lifesteal."
+   },
+   {
+    "name": "Bennett's Rage",
+    "desc": "Hujani 5 bombardir area dengan Bennett: slow 30% tiap ledakan."
+   },
+   {
+    "name": "Wesker's Elation",
+    "desc": "Tembakan ultra Wesker beruntun; damage menurun tiap kenaan ke target sama."
+   },
+   {
+    "name": "Nibiru's Passion",
+    "desc": "Rentetan 6 tembakan Nibiru ke depan; 25% lifesteal."
+   }
+  ],
+  "desc": "Marksman mekanik tinggi dengan empat senjata dan ulti berbeda tiap senjata."
+ },
+ {
+  "id": "belerick",
+  "name": "Belerick",
+  "roles": [
+   "Tank"
+  ],
+  "lane": "roam",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "taunt",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 1,
+  "traits": "taunt area, duri reflektif, tank HP",
+  "skills": [
+   {
+    "name": "Deadly Thorns",
+    "desc": "Pasif: tiap terima 50 damage berpeluang tembak duri (damage %HP maks); HP dari item +30%."
+   },
+   {
+    "name": "Ancient Seed",
+    "desc": "Lepas tanaman merambat: slow 25%, setelah 1 detik benih meledak dan taunt 1,2 detik."
+   },
+   {
+    "name": "Nature's Strike",
+    "desc": "MS +80% lalu perkuat basic attack (slow 60%); pulihkan HP 240 + 10% HP hilang."
+   },
+   {
+    "name": "Wrath of Dryad",
+    "desc": "Tanaman merambat area: 4x damage + taunt 1,5 detik."
+   }
+  ],
+  "desc": "Tank yang memaksa musuh menyerangnya lalu membalas dengan duri dan taunt massal."
+ },
+ {
+  "id": "benedetta",
+  "name": "Benedetta",
+  "roles": [
+   "Assassin",
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow",
+   "stun"
+  ],
+  "mobility": 2,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "dash beruntun, blok serangan, assassin lincah",
+  "skills": [
+   {
+    "name": "Elapsed Daytime",
+    "desc": "Pasif: tahan tombol basic attack untuk charge; lepas untuk dash menebas (damage skill)."
+   },
+   {
+    "name": "Phantom Slash",
+    "desc": "Mundur tinggalkan bayangan; bayangan tebas kipas + slow 60%, Benedetta dash menebas."
+   },
+   {
+    "name": "An Eye for An Eye",
+    "desc": "Bertahan 0,8 detik: kebal CC + blok damage; berhasil blok = tusukan (stun 1,5 detik jika blok CC)."
+   },
+   {
+    "name": "Alecto: Final Blow",
+    "desc": "Dash tak bisa ditarget lalu tebasan besar; jejak pedang beri damage + slow 50% 2,5 detik."
+   }
+  ],
+  "desc": "Assassin lincah yang menari dengan dash dan memblok serangan musuh."
+ },
+ {
+  "id": "brody",
+  "name": "Brody",
+  "roles": [
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "slow",
+   "stun"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "stack abyss, ledakan mark, dash serang",
+  "skills": [
+   {
+    "name": "Abyss Corrosion",
+    "desc": "Pasif: bisa bergerak saat charge basic attack; tiap serangan +MS 30% + 1 stack mark (maks 4)."
+   },
+   {
+    "name": "Abyss Impact",
+    "desc": "Gelombang kejut: damage + slow 30%; tiap musuh kena tambah damage, slow, dan stack mark."
+   },
+   {
+    "name": "Corrosive Strike",
+    "desc": "Dash ke musuh: stun 0,8 detik + 1 stack mark; lalu dapat MS 45%."
+   },
+   {
+    "name": "Torn-Apart Memory",
+    "desc": "Kunci semua target sekitar: damage; tiap stack Abyss Mark meledak tambah damage."
+   }
+  ],
+  "desc": "Marksman burst yang menumpuk mark lalu meledakkannya sekaligus."
+ },
+ {
+  "id": "bruno",
+  "name": "Bruno",
+  "roles": [
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "slow",
+   "stun"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "bola pantul, crit deras, slide lincah",
+  "skills": [
+   {
+    "name": "Mecha Legs",
+    "desc": "Pasif: skill yang kena musuh tambah crit chance (maks 8 stack); attack speed dari sumber lain hanya 80%."
+   },
+   {
+    "name": "Volley Shot",
+    "desc": "Tendang Powerball: damage + slow 30%; bola memantul kembali, bisa diambil untuk serang lagi."
+   },
+   {
+    "name": "Slide",
+    "desc": "Slide ke depan: stun singkat musuh di jalur; dapat Powerball di akhir dash."
+   },
+   {
+    "name": "Worldie",
+    "desc": "Tendang bola energi ke hero: knock-back + stun 0,5 detik + slow 80%; bola memantul hingga 10x."
+   }
+  ],
+  "desc": "Marksman crit yang memantulkan bola energi antar musuh."
+ },
+ {
+  "id": "carmilla",
+  "name": "Carmilla",
+  "roles": [
+   "Support",
+   "Tank"
+  ],
+  "lane": "roam",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "slow",
+   "immobilize"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "taut damage, curi defense, inisiator",
+  "skills": [
+   {
+    "name": "Vampire Pact",
+    "desc": "Pasif: tiap damage ke hero curi physical & magic defense (tumpuk 5x, 5 detik)."
+   },
+   {
+    "name": "Crimson Flower",
+    "desc": "Dua bunga berputar 5 detik: damage + slow tumpuk; tiap kenaan pulihkan HP Carmilla."
+   },
+   {
+    "name": "Bloodbath",
+    "desc": "Kumpulkan energi: MS +70%; cast lagi ke musuh: damage + stun hingga 0,6 detik (skala charge)."
+   },
+   {
+    "name": "Curse of Blood",
+    "desc": "Kutuk area: slow 50%; setelah 0,8 detik immobilize 1 detik + tautkan musuh — damage/CC dibagi rata."
+   }
+  ],
+  "desc": "Support/tank yang menautkan musuh agar damage dan CC dibagi rata."
+ },
+ {
+  "id": "cecilion",
+  "name": "Cecilion",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "immobilize"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "stack mana, late game monster, poke kelelawar",
+  "skills": [
+   {
+    "name": "Overflowing",
+    "desc": "Pasif: skill yang kena musuh tambah max mana + pulihkan mana; damage skill skala dengan max mana."
+   },
+   {
+    "name": "Bat Impact",
+    "desc": "Kelelawar raksasa menukik: damage; tinggal di tujuan lalu serang lagi; MS +30% 1 detik."
+   },
+   {
+    "name": "Sanguine Claws",
+    "desc": "Cakar dari dua sisi: tarik musuh ke tengah + immobilize 1 detik."
+   },
+   {
+    "name": "Bats Feast",
+    "desc": "Mode 6 detik: MS +60% kebal slow; 40 tembakan energi darah (slow + heal Cecilion tiap kena)."
+   }
+  ],
+  "desc": "Mage yang makin kuat tiap menit dan menghancurkan tim di late game."
+ },
+ {
+  "id": "change",
+  "name": "Chang'e",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 1,
+  "traits": "hujan meteor, poke jauh, shield bulan",
+  "skills": [
+   {
+    "name": "Trouble Maker",
+    "desc": "Pasif: damage beri mark; tiap mark kurangi MS target 1% (tumpuk 20x)."
+   },
+   {
+    "name": "Starmoon Shockwave",
+    "desc": "Bola energi ke depan + slow 10% tumpuk; bulan sabit kirim 4 bola ekstra."
+   },
+   {
+    "name": "Crescent Moon",
+    "desc": "Panggil bulan: shield + MS naik; basic attack beri magic damage ganda; skill kurangi cooldown skill ini."
+   },
+   {
+    "name": "Meteor Shower",
+    "desc": "Hujan 30 meteor 4 detik ke arah target; damage 100% ekstra ke minion/creep."
+   }
+  ],
+  "desc": "Mage poke yang menghujani meteor dari jarak aman."
+ },
+ {
+  "id": "chip",
+  "name": "Chip",
+  "roles": [
+   "Tank"
+  ],
+  "lane": "roam",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "slow",
+   "knockup"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": true,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "portal teleport, inisiator global, tank lincah",
+  "skills": [
+   {
+    "name": "Snack Time!",
+    "desc": "Pasif: makan keripik di luar combat; habiskan sebungkus untuk regen HP besar."
+   },
+   {
+    "name": "Crash Course",
+    "desc": "Tabrak hovercraft: magic damage %HP + tanda; dapat shield; basic attack berikut jadi ranged + stun 0,6 detik."
+   },
+   {
+    "name": "Overtime",
+    "desc": "Ngebut 2 detik hingga +65% MS; basic attack berikut charge ke musuh + knock-back ringan."
+   },
+   {
+    "name": "Shortcut",
+    "desc": "Taruh portal utama di musuh: slow; portal penghubung teleport tim + shield kawan; ledakan portal knock-up."
+   }
+  ],
+  "desc": "Tank unik yang memindahkan seluruh tim lewat portal ke jantung musuh."
+ },
+ {
+  "id": "chou",
+  "name": "Chou",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow",
+   "knockup"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "tendangan naga, pick-off, kombo CC",
+  "skills": [
+   {
+    "name": "Only Fast",
+    "desc": "Pasif: tiap jalan 5 unit, basic attack berikut 180% damage + slow 80% + turunkan defense."
+   },
+   {
+    "name": "Jeet Kune Do",
+    "desc": "Tendangan 3x beruntun; tendangan ke-3 knock-up; kena hero reset cooldown Shunpo."
+   },
+   {
+    "name": "Shunpo",
+    "desc": "Dash ke arah target: kebal CC + shield 200."
+   },
+   {
+    "name": "The Way of Dragon",
+    "desc": "Tendangan memutar: knock-back musuh; cast lagi untuk kejar dan tendang lanjutan."
+   }
+  ],
+  "desc": "Fighter pick-off yang menendang satu target ke timnya."
+ },
+ {
+  "id": "cici",
+  "name": "Cici",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "slow",
+   "pull"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "yoyo %HP, lompat ganda, duelist",
+  "skills": [
+   {
+    "name": "Performer's Delight",
+    "desc": "Pasif: beri damage untuk tumpuk Delight — tambah MS dan spell vamp (efek ganda di 10 stack)."
+   },
+   {
+    "name": "Yo-Yo Blitz",
+    "desc": "Yoyo serang otomatis musuh terdekat 3,5 detik (10x); tiap kenaan damage %HP maks; bisa bergerak."
+   },
+   {
+    "name": "Buoyant Bounce",
+    "desc": "Lompat ke lokasi; mendarat di unit bisa lompat lagi; mendarat di musuh beri damage."
+   },
+   {
+    "name": "Curtain Call",
+    "desc": "Kaitkan 2 hero musuh: tarik berdekatan + slow 30%; Yo-Yo Blitz serang keduanya sekaligus."
+   }
+  ],
+  "desc": "Fighter lincah yang menggerogoti HP musuh dengan yoyo persenan."
+ },
+ {
+  "id": "claude",
+  "name": "Claude",
+  "roles": [
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "duo Dexter, ulti AoE, blink bayangan",
+  "skills": [
+   {
+    "name": "Battle Side-by-side",
+    "desc": "Pasif: Dexter ikut serang tiap basic attack Claude (picu efek serangan 30%)."
+   },
+   {
+    "name": "Art of Thievery",
+    "desc": "Serangan kipas: slow MS & attack speed musuh; tiap target kena tambah MS & attack speed Claude."
+   },
+   {
+    "name": "Battle Mirror Image",
+    "desc": "Taruh bayangan Dexter 5,5 detik yang auto-serang; aktifkan lagi untuk tukar posisi."
+   },
+   {
+    "name": "Blazing Duet",
+    "desc": "Tembakan cepat 3 detik ke musuh sekitar (picu efek basic attack); dapat shield."
+   }
+  ],
+  "desc": "Marksman yang bertarung bersama Dexter dengan ulti tembakan area."
+ },
+ {
+  "id": "clint",
+  "name": "Clint",
+  "roles": [
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "slow",
+   "immobilize"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 1,
+  "traits": "double shot, granat poke, marksman mudah",
+  "skills": [
+   {
+    "name": "Double Shot",
+    "desc": "Pasif: tiap cast skill, basic attack berikut menembus garis musuh (bisa crit)."
+   },
+   {
+    "name": "Quick Draw",
+    "desc": "Tembak 5 peluru cepat kipas; target kena banyak peluru terima damage susut."
+   },
+   {
+    "name": "Trapping Recoil",
+    "desc": "Tembak jaring: lompat mundur + immobilize 1,2 detik; kena musuh kurangi cooldown 40%."
+   },
+   {
+    "name": "Grenade Bombardment",
+    "desc": "Lempar granat meledak: damage + slow 50%; isi ulang granat tiap 10-5 detik (maks 3)."
+   }
+  ],
+  "desc": "Marksman poke sederhana dengan tembakan ganda dan hujan granat."
+ },
+ {
+  "id": "cyclops",
+  "name": "Cyclops",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "immobilize"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 1,
+  "traits": "kunci target, spam skill, mage mudah",
+  "skills": [
+   {
+    "name": "Starlit Hourglass",
+    "desc": "Pasif: skill yang kena musuh kurangi semua cooldown skill 0,5 detik."
+   },
+   {
+    "name": "Stardust Shock",
+    "desc": "Dua piringan bintang ke jalur target."
+   },
+   {
+    "name": "Planets Attack",
+    "desc": "Bola planet mengelilingi: MS +30% 2 detik; bola cari musuh otomatis dan meledak."
+   },
+   {
+    "name": "Star Power Lockdown",
+    "desc": "Bola planet kejar satu target: damage + immobilize 1-2 detik (makin jauh makin lama)."
+   }
+  ],
+  "desc": "Mage mudah yang mengunci satu target lalu membombardirnya."
+ },
+ {
+  "id": "diggie",
+  "name": "Diggie",
+  "roles": [
+   "Support"
+  ],
+  "lane": "roam",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "slow",
+   "pull"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": false,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "anti CC tim, bom poke, telur abadi",
+  "skills": [
+   {
+    "name": "Young Again",
+    "desc": "Pasif: mati jadi telur — tetap bisa bergerak, tak bisa ditarget, lalu hidup kembali."
+   },
+   {
+    "name": "Auto Alarm Bomb",
+    "desc": "Pasang bom burung hantu: kejar musuh pertama, meledak (damage + slow 30%); kena hero tumpuk damage."
+   },
+   {
+    "name": "Disdain",
+    "desc": "Bentuk telur: cemooh musuh sekitar, beri damage kecil."
+   },
+   {
+    "name": "Reverse Time",
+    "desc": "Tandai hero 4 detik lalu tarik kembali ke posisi awal + slow 80%."
+   },
+   {
+    "name": "Egg Dance",
+    "desc": "Bentuk telur: tarian jig, beri damage kecil ke sekitar."
+   },
+   {
+    "name": "Time Journey",
+    "desc": "Bersihkan debuff semua kawan sekitar + shield + kebal CC 3 detik; MS +50% singkat."
+   },
+   {
+    "name": "Victory Prayer",
+    "desc": "Bentuk telur: berdoa agar base musuh meledak. Katanya mustahil terjadi."
+   }
+  ],
+  "desc": "Support anti-CC yang melindungi tim dan mengusili musuh dengan bom."
+ },
+ {
+  "id": "dori",
+  "name": "Dori",
+  "roles": [
+   "Tank",
+   "Support"
+  ],
+  "lane": "roam",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "slow",
+   "stun"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "shield CC area, inisiator ring, tank support (belum terverifikasi)",
+  "skills": [
+   {
+    "name": "Merry Mark",
+    "desc": "Pasif: damage skill tandai target 4,5 detik; skill lagi ke target bertanda meledakkan mark; tiap cast +MS."
+   },
+   {
+    "name": "Timid Courage",
+    "desc": "Dapat shield 300 (3 detik); dorong musuh sekitar + damage."
+   },
+   {
+    "name": "Banner Twirl",
+    "desc": "Ledakan cincin area: damage + slow 30% 1,5 detik; MS +15% 3 detik."
+   },
+   {
+    "name": "Starlit Parade",
+    "desc": "Cincin area besar: damage + stun 1 detik."
+   }
+  ],
+  "desc": "Tank/support area dengan shield, slow, dan stun cincin."
+ },
+ {
+  "id": "dyrroth",
+  "name": "Dyrroth",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "penghancur defense, burst rage, duelist",
+  "skills": [
+   {
+    "name": "Wrath of the Abyss",
+    "desc": "Pasif: Rage 50% perkuat skill; tiap 2 basic attack ledakan lingkaran + regen HP."
+   },
+   {
+    "name": "Burst Strike",
+    "desc": "Semburan ke depan: damage + slow 25%; mode rage: jangkauan & slow ganda."
+   },
+   {
+    "name": "Spectre Step",
+    "desc": "Dash ke depan; cast lagi kunci target: Fatal Strike (turunkan defense + slow)."
+   },
+   {
+    "name": "Abysm Strike",
+    "desc": "Tebasan destruktif tak terhentikan: damage garis + slow 55%."
+   }
+  ],
+  "desc": "Fighter yang merobek defense musuh lalu mengeksekusinya."
+ },
+ {
+  "id": "edith",
+  "name": "Edith",
+  "roles": [
+   "Marksman",
+   "Tank"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "knockup",
+   "immobilize"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "dua wujud, knock-up area, tank marksman",
+  "skills": [
+   {
+    "name": "Overload",
+    "desc": "Pasif: tiap cast skill, 3 detik basic attack picu petir berantai (magic damage %HP)."
+   },
+   {
+    "name": "Earth Shatter",
+    "desc": "Hantaman Phylax: damage + knock-up 1 detik; tak bisa diganggu CC biasa."
+   },
+   {
+    "name": "Divine Retribution",
+    "desc": "Hukuman area: damage + slow 30%, lanjut damage per 0,5 detik 1,5 detik."
+   },
+   {
+    "name": "Onward",
+    "desc": "Phylax charge ke depan; kena hero: berhenti dan banting musuh ke belakang."
+   },
+   {
+    "name": "Lightning Bolt",
+    "desc": "Sambaran petir: damage + immobilize 0,8 detik ke hero pertama."
+   },
+   {
+    "name": "Primal Wrath",
+    "desc": "Edith terlontar dari Phylax dan terbang: basic attack ranged + shield + attack speed + lifesteal."
+   }
+  ],
+  "desc": "Hibrida tank/marksman yang berubah wujud dari mecha darat ke mode terbang."
+ },
+ {
+  "id": "esmeralda",
+  "name": "Esmeralda",
+  "roles": [
+   "Mage",
+   "Tank"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow",
+   "immobilize"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": true,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "pencuri shield, konversi HP, duelist sustain",
+  "skills": [
+   {
+    "name": "Starmoon Casket",
+    "desc": "Pasif: Stardust (physical) & Frostmoon (magic, beri shield ke target); damage abaikan shield; shield jadi HP."
+   },
+   {
+    "name": "Frostmoon Shield",
+    "desc": "Dapat shield + MS 40% 4 detik; serap shield musuh sekitar jadi miliknya."
+   },
+   {
+    "name": "Stardust Dance",
+    "desc": "Kibasan dua senjata area; tiap kena hero kurangi cooldown shield + slow 10%."
+   },
+   {
+    "name": "Falling Starmoon",
+    "desc": "Charge lalu blink: Stardust damage fisik, Frostmoon damage magic + immobilize 1 detik."
+   }
+  ],
+  "desc": "Mage/tank yang mencuri shield musuh dan mengubahnya menjadi HP sendiri."
+ },
+ {
+  "id": "estes",
+  "name": "Estes",
+  "roles": [
+   "Support"
+  ],
+  "lane": "roam",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": false,
+  "sustain": false,
+  "difficulty": 1,
+  "traits": "healer massal, ulti regen, roam protektif",
+  "skills": [
+   {
+    "name": "Scripture of the Moon Elf",
+    "desc": "Pasif: kumpulkan energi; 100 stack perkuat basic attack (damage area + slow 60%)."
+   },
+   {
+    "name": "Moonlight Immersion",
+    "desc": "Heal instan + tautan 3 detik yang heal bertahap; Estes dapat defense + MS saat tertaut."
+   },
+   {
+    "name": "Domain of Moon Goddess",
+    "desc": "Zona cahaya bulan: damage + ungkap musuh; tepi zona slow 90%."
+   },
+   {
+    "name": "Blessing of Moon Goddess",
+    "desc": "Moonlight Immersion massal ke semua kawan sekitar 8 detik: heal terus-menerus."
+   }
+  ],
+  "desc": "Support healer murni yang menjaga seluruh tim tetap hidup."
+ },
+ {
+  "id": "eudora",
+  "name": "Eudora",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "stun"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 1,
+  "traits": "kombo petir, one-shot, mage mudah",
+  "skills": [
+   {
+    "name": "Superconductor",
+    "desc": "Pasif: skill beri efek Superconductor 5 detik; picu efek tambahan pada target berefek."
+   },
+   {
+    "name": "Forked Lightning",
+    "desc": "Petir kipas; ke target Superconductor: rantai petir (damage lanjutan + MS 40%) & cooldown -50%."
+   },
+   {
+    "name": "Ball Lightning",
+    "desc": "Bola petir: stun 1 detik + turunkan magic defense; ke target Superconductor: AoE stun sekitar."
+   },
+   {
+    "name": "Thunder's Wrath",
+    "desc": "Sambaran petir area: damage besar di tengah; tiap target Superconductor picu ledakan susulan."
+   }
+  ],
+  "desc": "Mage kombo yang menghapus satu target dalam sekejap."
+ },
+ {
+  "id": "fanny",
+  "name": "Fanny",
+  "roles": [
+   "Assassin"
+  ],
+  "lane": "jungle",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [],
+  "mobility": 2,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "kabel terbang, burst energi, mekanik tersulit",
+  "skills": [
+   {
+    "name": "Air Superiority",
+    "desc": "Pasif: damage +10-20% sesuai kecepatan terbang; tandai musuh (maks 2); skill ke target bertanda pulihkan energi."
+   },
+   {
+    "name": "Tornado Strike",
+    "desc": "Putaran pedang ke musuh sekitar."
+   },
+   {
+    "name": "Steel Cable",
+    "desc": "Tembak kabel ke rintangan untuk terbang; bisa cast beruntun selama energi cukup; otomatis putar saat tabrak musuh."
+   },
+   {
+    "name": "Cut Throat",
+    "desc": "Terjang ke target: damage; tiap stack mark target tambah 30% damage."
+   }
+  ],
+  "desc": "Assassin kabel dengan mobilitas tertinggi dan skill ceiling tersulit."
+ },
+ {
+  "id": "faramis",
+  "name": "Faramis",
+  "roles": [
+   "Mage",
+   "Support"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "pull"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "bangkitkan tim, tarik bayangan, support mage",
+  "skills": [
+   {
+    "name": "Vicious Retrieval",
+    "desc": "Pasif: skill ke hero hasilkan fragmen jiwa (pulihkan HP + magic power); mati konsumsi fragmen kurangi respawn."
+   },
+   {
+    "name": "Shadow Stampede",
+    "desc": "Mode bayangan 3 detik: MS +70%, tembus medan; tandai hero yang disentuh lalu tarik ke arahnya."
+   },
+   {
+    "name": "Ghost Bursters",
+    "desc": "Energi nether kipas: damage lalu memantul ke musuh sekitar (hingga 2x)."
+   },
+   {
+    "name": "Nether Realm",
+    "desc": "Zona 6 detik: kawan di dalam dapat HP ekstra; saat efek habis, bersih debuff + hidup singkat 1 detik."
+   }
+  ],
+  "desc": "Mage/support yang memberi tim kesempatan hidup kedua lewat Nether Realm."
+ },
+ {
+  "id": "floryn",
+  "name": "Floryn",
+  "roles": [
+   "Support"
+  ],
+  "lane": "roam",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "stun"
+  ],
+  "mobility": 0,
+  "heal": true,
+  "shield": false,
+  "burst": false,
+  "sustain": false,
+  "difficulty": 1,
+  "traits": "heal global, stun bunga, support mudah",
+  "skills": [
+   {
+    "name": "Dew",
+    "desc": "Pasif: lentera naikkan atribut permanen; tiap 30 detik beri Flower of Hope ke kawan (+shield tiap di-heal)."
+   },
+   {
+    "name": "Sow",
+    "desc": "Lempar biji energi: damage; buah penyembuh memantul ke kawan sekitar (heal)."
+   },
+   {
+    "name": "Sprout",
+    "desc": "Gumpalan energi meledak saat kena musuh: damage + stun 0,5 detik."
+   },
+   {
+    "name": "Bloom",
+    "desc": "Heal semua kawan di mana pun 2x; naikkan efek shield & regen mereka 12% 2 detik."
+   }
+  ],
+  "desc": "Support healer global yang menyembuhkan tim dari mana pun."
+ },
+ {
+  "id": "franco",
+  "name": "Franco",
+  "roles": [
+   "Tank"
+  ],
+  "lane": "roam",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "pull",
+   "slow",
+   "suppression"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "kait penculik, suppress ulti, pick-off",
+  "skills": [
+   {
+    "name": "Wasteland Force",
+    "desc": "Pasif: 5 detik tak terima damage: MS +10%, regen 1% HP/detik, tumpuk damage skill hingga +150%."
+   },
+   {
+    "name": "Iron Hook",
+    "desc": "Lempar kait besi: tarik unit pertama yang kena ke arah Franco."
+   },
+   {
+    "name": "Fury Shock",
+    "desc": "Hantaman sekitar: damage %HP maks + slow 70% 1,5 detik."
+   },
+   {
+    "name": "Bloody Hunt",
+    "desc": "Suppress target 1,8 detik; 6x tusukan selama durasi."
+   }
+  ],
+  "desc": "Tank penculik yang menarik satu musuh ke kematian dengan kaitnya."
+ },
+ {
+  "id": "fredrinn",
+  "name": "Fredrinn",
+  "roles": [
+   "Fighter",
+   "Tank"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow",
+   "knockup"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "combo point, konversi damage, tank fighter",
+  "skills": [
+   {
+    "name": "Crystalline Armor",
+    "desc": "Pasif: skill kena musuh beri Combo Point (maks 4); damage diterima disimpan sebagai energi lalu jadi HP."
+   },
+   {
+    "name": "Piercing Strike",
+    "desc": "Tusuk pedang: damage + slow 30% 2 detik; basic attack berikut jangkauan ekstra."
+   },
+   {
+    "name": "Brave Assault",
+    "desc": "Dash ke depan; basic attack berikut knock-up 0,3 detik."
+   },
+   {
+    "name": "Appraiser's Wrath",
+    "desc": "Tebasan area kuat; damage naik per Combo Point yang dipakai; ubah energi tersimpan jadi HP."
+   }
+  ],
+  "desc": "Fighter/tank yang menyimpan damage diterima lalu membalaskannya berlipat."
+ },
+ {
+  "id": "freya",
+  "name": "Freya",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow",
+   "knockup"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": true,
+  "burst": true,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "mode valkyrie, shield lompat, attack speed",
+  "skills": [
+   {
+    "name": "Power of Einherjar",
+    "desc": "Pasif: basic attack isi Sacred Orb (maks 6); tiap orb beri 100% attack speed serangan berikut."
+   },
+   {
+    "name": "Leap of Faith",
+    "desc": "Lompat ke area: shield + damage + knock-up 0,4 detik."
+   },
+   {
+    "name": "Valkyrie Slash",
+    "desc": "Charge menebas (pakai 2 orb): damage + slow 30%; tanpa cooldown dasar."
+   },
+   {
+    "name": "Valkyrie Descent",
+    "desc": "Terjun sebagai Valkyrie: kebal CC + damage reduction; 12 detik basic attack splash + lifesteal."
+   }
+  ],
+  "desc": "Fighter yang turun sebagai Valkyrie dengan shield dan serangan cepat."
+ },
+ {
+  "id": "gatotkaca",
+  "name": "Gatotkaca",
+  "roles": [
+   "Fighter",
+   "Tank"
+  ],
+  "lane": "exp",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "taunt",
+   "knockup"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "lompat taunt, inisiator tank, rage sustain",
+  "skills": [
+   {
+    "name": "Steel Bones",
+    "desc": "Pasif: HP hilang jadi physical defense; terima damage isi Rage — Rage penuh perkuat basic attack (damage + heal)."
+   },
+   {
+    "name": "Blast Iron Fist",
+    "desc": "Hantaman tanah: zona retak (damage per detik + slow 30%)."
+   },
+   {
+    "name": "Unbreakable",
+    "desc": "Charge maju sambil meraung: taunt musuh di jalur 1,5 detik; jarak sesuai charge."
+   },
+   {
+    "name": "Avatar of the Guardian",
+    "desc": "Lompat ke lokasi: knock-up 1 detik (tengah lebih lama) + tarik musuh tepi ke tengah."
+   }
+  ],
+  "desc": "Tank/fighter inisiator yang melompat, mengejek, dan menahan damage tim."
+ },
+ {
+  "id": "gloo",
+  "name": "Gloo",
+  "roles": [
+   "Tank"
+  ],
+  "lane": "exp",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "slow",
+   "immobilize"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "tank lengket, nempel musuh, sustain kuat",
+  "skills": [
+   {
+    "name": "Stick, Stick",
+    "desc": "Pasif: musuh terkena skill dapat tumpukan Sticky, kurangi movement speed dan damage mereka ke Gloo."
+   },
+   {
+    "name": "Slam, Slam",
+    "desc": "Hantam tanah dan tinggalkan Goo yang meledak serta immobilize; sentuh Goo untuk reset cooldown dan heal."
+   },
+   {
+    "name": "Spread, Spread",
+    "desc": "Belah jadi Goo kecil: immobilize, movement speed naik, bisa meluncur ke Goo sambil menyeret musuh."
+   },
+   {
+    "name": "Grab, Grab",
+    "desc": "Tempel pada hero bertumpuk Sticky penuh: pulihkan HP dan alihkan 80% damage yang diterima ke target."
+   }
+  ],
+  "desc": "Tank EXP yang menempel pada musuh; tumpuk Sticky lalu sedot HP dan alihkan damage."
+ },
+ {
+  "id": "gord",
+  "name": "Gord",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 0,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "poke jarak jauh, skillshot, ulti beam",
+  "skills": [
+   {
+    "name": "Mystic Favor",
+    "desc": "Pasif: setelah 4 serangan mengenai musuh, serangan berikutnya beri damage tambahan dan slow."
+   },
+   {
+    "name": "Mystic Projectile",
+    "desc": "Tembak orb yang memantul; meledak pada musuh pertama dan memberi stun serta reveal."
+   },
+   {
+    "name": "Mystic Injunction",
+    "desc": "Buat zona energi di area target yang memberi damage berulang ke musuh di dalamnya."
+   },
+   {
+    "name": "Mystic Gush",
+    "desc": "Semburkan beam energi yang bisa diarahkan joystick, beri damage berulang ke musuh."
+   }
+  ],
+  "desc": "Mage poke jarak jauh; cicil dengan skillshot lalu kunci target dengan ulti beam."
+ },
+ {
+  "id": "granger",
+  "name": "Granger",
+  "roles": [
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "burst damage jarak jauh, skillshot, eksekutor HP rendah",
+  "skills": [
+   {
+    "name": "Capriccio",
+    "desc": "Pasif: senjata diisi Demonic Energy; tiap kill permanen menaikkan kapasitas energi."
+   },
+   {
+    "name": "Rhapsody",
+    "desc": "Tembak 6 peluru beruntun, peluru terakhir pasti crit, movement speed naik saat menembak."
+   },
+   {
+    "name": "Rondo",
+    "desc": "Dash ke arah target, pulihkan energi senjata; cooldown berkurang tiap Rhapsody kena musuh."
+   },
+   {
+    "name": "Death Sonata",
+    "desc": "Tembak meriam 3x ke arah target, beri slow; bisa guling tiap tembakan."
+   }
+  ],
+  "desc": "Marksman burst jarak jauh; cicil dengan skill lalu all-in saat musuh sekarat."
+ },
+ {
+  "id": "grock",
+  "name": "Grock",
+  "roles": [
+   "Fighter",
+   "Tank"
+  ],
+  "lane": "roam",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "knockup"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "tank agresif, blokir tembok, knockup area",
+  "skills": [
+   {
+    "name": "Bastion of Stone",
+    "desc": "Pasif: dapat shield dan serangan dasar berikutnya diperkuat; tak bisa diinterupsi saat shield aktif."
+   },
+   {
+    "name": "Mighty Swing",
+    "desc": "Ayun ke depan; musuh yang terdorong ke tembok terlempar ke udara dan kena damage % Max HP."
+   },
+   {
+    "name": "Earthen Rampart",
+    "desc": "Panggil tembok batu yang mendorong musuh ke arahmu; bisa dibatalkan lebih awal."
+   },
+   {
+    "name": "Tectonic Charge",
+    "desc": "Charge ke depan; jika menabrak tembok picu ledakan knockup area."
+   }
+  ],
+  "desc": "Tank agresif; jebak musuh ke tembok lalu hantam dengan knockup beruntun."
+ },
+ {
+  "id": "guinevere",
+  "name": "Guinevere",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "knockup",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": true,
+  "difficulty": 3,
+  "traits": "kombo knockup, ulti beruntun, duelist magic",
+  "skills": [
+   {
+    "name": "Super Magic",
+    "desc": "Pasif: damage ekstra ke musuh airborne; serangan dasar diperkuat dan memulihkan HP saat penuh."
+   },
+   {
+    "name": "Energy Wave",
+    "desc": "Tembak orb energi yang slow musuh; jika kena, semua cooldown berkurang."
+   },
+   {
+    "name": "Spatial Migration",
+    "desc": "Lompat ke lokasi: stun dan knockup; bisa blink lagi sambil tak terlihat dan tinggalkan ilusi."
+   },
+   {
+    "name": "Violet Requiem",
+    "desc": "Ulti: serang area 11x beruntun; musuh airborne terangkat lagi berulang, immune CC."
+   }
+  ],
+  "desc": "Fighter kombo; angkat musuh dengan knockup lalu habisi dengan ulti beruntun."
+ },
+ {
+  "id": "gusion",
+  "name": "Gusion",
+  "roles": [
+   "Assassin"
+  ],
+  "lane": "jungle",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 2,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "kombo pisau cepat, burst single target, sulit",
+  "skills": [
+   {
+    "name": "Dagger Specialist",
+    "desc": "Pasif: tiap skill menambah rune; serangan dasar berikutnya diperkuat dan memulihkan HP."
+   },
+   {
+    "name": "Sword Spike",
+    "desc": "Lempar dagger yang menandai musuh; aktifkan lagi untuk dash ke belakang target."
+   },
+   {
+    "name": "Shadowblade Slaughter",
+    "desc": "Lempar 5 dagger lalu tarik kembali; slow menumpuk tiap dagger kena."
+   },
+   {
+    "name": "Incandescence",
+    "desc": "Dash dan reset cooldown dua skill; bisa melempar 10 dagger sekaligus setelahnya."
+   }
+  ],
+  "desc": "Assassin kombo pisau; tandai target lalu ledakkan dengan hujan dagger."
+ },
+ {
+  "id": "hanabi",
+  "name": "Hanabi",
+  "roles": [
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "slow",
+   "immobilize"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 1,
+  "traits": "basic attack memantul, shield anti-CC, late game",
+  "skills": [
+   {
+    "name": "Ninjutsu: Petal Barrage",
+    "desc": "Pasif: serangan dasar dan skill memantulkan damage ke musuh di sekitar target."
+   },
+   {
+    "name": "Ninjutsu: Equinox",
+    "desc": "Dapat shield; saat shield aktif immune control, movement dan attack speed naik."
+   },
+   {
+    "name": "Ninjutsu: Soul Scroll",
+    "desc": "Lempar kunai yang slow musuh; pantulan damage berikutnya ke target tanpa berkurang."
+   },
+   {
+    "name": "Forbidden Jutsu: Higanbana",
+    "desc": "Lempar bunga ke hero pertama: immobilize lalu meledak area setelah 1 detik."
+   }
+  ],
+  "desc": "Marksman late game; andalkan pantulan basic attack dan shield anti-CC."
+ },
+ {
+  "id": "hanzo",
+  "name": "Hanzo",
+  "roles": [
+   "Assassin"
+  ],
+  "lane": "jungle",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow",
+   "knockup"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "dua tubuh, curi objektif, sulit dimainkan",
+  "skills": [
+   {
+    "name": "Ame No Habakiri",
+    "desc": "Pasif: serangan menumpuk Dark Ninjutsu hingga 5; syarat untuk Demon Feast."
+   },
+   {
+    "name": "Ninjutsu: Demon Feast",
+    "desc": "Telan target bertumpuk penuh: pulihkan HP dan kurangi cooldown 60% ke hero/objektif."
+   },
+   {
+    "name": "Forbidden Ninjutsu: Soul Snatch",
+    "desc": "Hanekage dash ke hero; damage naik per stack, stack penuh pulihkan 30% HP."
+   },
+   {
+    "name": "Ninjutsu: Dark Mist",
+    "desc": "Dash meninggalkan kabut yang slow musuh dan beri movement speed."
+   },
+   {
+    "name": "Forbidden Ninjutsu: Black Mist",
+    "desc": "Hanekage dash menembus musuh: knockup sebentar dan tinggalkan kabut slow."
+   },
+   {
+    "name": "Kinjutsu: Pinnacle Ninja",
+    "desc": "Berubah jadi Hanekage: badan asli invincible, abaikan tembok, movement dan attack speed naik."
+   },
+   {
+    "name": "Ninjutsu Flee: Return",
+    "desc": "Hanekage kembali ke tubuh dan keluar dari mode roh."
+   }
+  ],
+  "desc": "Assassin dua tubuh; kirim Hanekage membunuh tanpa mempertaruhkan badan asli."
+ },
+ {
+  "id": "harith",
+  "name": "Harith",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "gold",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 2,
+  "heal": true,
+  "shield": true,
+  "burst": true,
+  "sustain": true,
+  "difficulty": 3,
+  "traits": "dash spam, mage duelist, lincah",
+  "skills": [
+   {
+    "name": "Key Insight",
+    "desc": "Pasif: dapat Hybrid Lifesteal untuk tiap hero musuh di dekatnya."
+   },
+   {
+    "name": "Synchro Fission",
+    "desc": "Ciptakan phantom; dua gelombang energi saling mendekat lalu meledak area."
+   },
+   {
+    "name": "Chrono Dash",
+    "desc": "Dash: curi magic power, dapat shield, dan serangan dasar diperkuat yang slow."
+   },
+   {
+    "name": "Zaman Force",
+    "desc": "Panggil rift yang slow musuh dan drastis mengurangi cooldown Chrono Dash."
+   }
+  ],
+  "desc": "Mage gold lane lincah; spam dash di dalam Zaman Force untuk cicil dan kabur."
+ },
+ {
+  "id": "harley",
+  "name": "Harley",
+  "roles": [
+   "Assassin",
+   "Mage"
+  ],
+  "lane": "jungle",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "burst kartu, ulti cincin api, hit and run",
+  "skills": [
+   {
+    "name": "Magic Master",
+    "desc": "Pasif: serangan dasar jadi magic damage dan kurangi magic defense musuh tiap kena."
+   },
+   {
+    "name": "Poker Trick",
+    "desc": "Lempar gelombang kartu beruntun; tiap kena tambah attack speed."
+   },
+   {
+    "name": "Space Escape",
+    "desc": "Blink meninggalkan topi; aktifkan lagi untuk kembali ke topi, movement speed naik."
+   },
+   {
+    "name": "Deadly Magic",
+    "desc": "Pasang cincin api ke hero; damage selama durasi memperkuat ledakan akhir."
+   }
+  ],
+  "desc": "Assassin burst; pasang cincin api lalu ledakkan dengan kombo kartu."
+ },
+ {
+  "id": "hayabusa",
+  "name": "Hayabusa",
+  "roles": [
+   "Assassin"
+  ],
+  "lane": "jungle",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 2,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "bayangan teleport, ulti single target, sulit",
+  "skills": [
+   {
+    "name": "Ninjutsu: Trace of Shadow",
+    "desc": "Pasif: serangan menumpuk mark; tiap stack menaikkan damage ke target."
+   },
+   {
+    "name": "Ninjutsu: Phantom Shuriken",
+    "desc": "Lempar 3 shuriken bolak-balik yang slow; pulihkan energy tiap kena musuh."
+   },
+   {
+    "name": "Ninjutsu: Quad Shadow",
+    "desc": "Dash dan sebar 4 bayangan; teleport ke bayangan dan reset cooldown shuriken."
+   },
+   {
+    "name": "Ougi: Shadow Kill",
+    "desc": "Menyatu dengan bayangan: 6 serangan ke musuh prioritas bertanda mark."
+   }
+  ],
+  "desc": "Assassin bayangan; tandai musuh lalu eksekusi dengan ulti single target."
+ },
+ {
+  "id": "helcurt",
+  "name": "Helcurt",
+  "roles": [
+   "Assassin"
+  ],
+  "lane": "jungle",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow",
+   "silence"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "assassin senyap, gelapkan map, burst",
+  "skills": [
+   {
+    "name": "Shadow of Styx",
+    "desc": "Pasif: bersembunyi hingga terlihat musuh; movement speed naik dan regen HP."
+   },
+   {
+    "name": "Hidden Terror",
+    "desc": "Blink ke area: silence musuh; cooldown lebih cepat saat bersembunyi."
+   },
+   {
+    "name": "Deadly Stinger",
+    "desc": "Kumpulkan stinger dari serangan lalu tembakkan semuanya ke depan."
+   },
+   {
+    "name": "Dark Night Falls",
+    "desc": "Gelapkan pandangan semua musuh dan sembunyikan posisi sekutu selama 3 detik."
+   }
+  ],
+  "desc": "Assassin senyap; gelapkan map lalu culik target dengan stinger beruntun."
+ },
+ {
+  "id": "hilda",
+  "name": "Hilda",
+  "roles": [
+   "Fighter",
+   "Tank"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": true,
+  "burst": true,
+  "sustain": true,
+  "difficulty": 1,
+  "traits": "regen semak, fighter tanky, eksekutor",
+  "skills": [
+   {
+    "name": "Blessing of Wilderness",
+    "desc": "Pasif: regen HP di semak; serangan dasar diperkuat dan menumpuk mark pengurang defense."
+   },
+   {
+    "name": "Combat Ritual",
+    "desc": "Dapat movement speed 60% dan shield 10% Max HP selama 3 detik."
+   },
+   {
+    "name": "Art of Hunting",
+    "desc": "Kunci target dan serang hingga 3x; serangan terakhir knockback area."
+   },
+   {
+    "name": "Power of Wildness",
+    "desc": "Tebas target dengan stun; damage naik per stack Wilderness Mark."
+   }
+  ],
+  "desc": "Fighter tanky; manfaatkan semak untuk regen lalu kejar dan eksekusi target."
+ },
+ {
+  "id": "hirara",
+  "name": "Hirara",
+  "roles": [
+   "Assassin"
+  ],
+  "lane": "jungle",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [],
+  "mobility": 2,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "kombo drag skill, dash ganda, burst assassin",
+  "skills": [
+   {
+    "name": "Twin Fans: Ukifune",
+    "desc": "Pasif: hanya punya 2 skill; seret satu skill ke lainnya untuk kombo, pakai Crimson/Death Energy."
+   },
+   {
+    "name": "Meisen-e",
+    "desc": "Dash hingga 2x dengan joystick, beri physical damage ke musuh yang dilewati."
+   },
+   {
+    "name": "Kaerazu",
+    "desc": "Lepas Crimson Maple area kipas; setelah jeda singkat damage 2x lipat di lokasi target."
+   }
+  ],
+  "desc": "Assassin kombo unik; seret satu skill ke skill lain untuk memicu kombo burst."
+ },
+ {
+  "id": "hylos",
+  "name": "Hylos",
+  "roles": [
+   "Tank"
+  ],
+  "lane": "roam",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 1,
+  "traits": "tank HP tebal, jalur buff tim, slow area",
+  "skills": [
+   {
+    "name": "Thickened Blood",
+    "desc": "Pasif: tiap mana ekstra menambah Max HP; bisa pakai HP saat mana habis."
+   },
+   {
+    "name": "Law and Order",
+    "desc": "Dapat movement speed; serangan dasar berikutnya knockback dan stun."
+   },
+   {
+    "name": "Ring of Punishment",
+    "desc": "Keluarkan ring damage dan slow area; makin lama makin sakit, konsumsi mana."
+   },
+   {
+    "name": "Glorious Pathway",
+    "desc": "Buat jalur: slow musuh, heal diri, dan percepat sekutu yang melewatinya."
+   }
+  ],
+  "desc": "Tank HP tebal; buka jalur buff untuk tim sambil menekan musuh dengan slow."
+ },
+ {
+  "id": "irithel",
+  "name": "Irithel",
+  "roles": [
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "tembak sambil jalan, panah area, lincah",
+  "skills": [
+   {
+    "name": "Jungle Heart",
+    "desc": "Pasif: bisa menembak sambil bergerak; bergerak menumpuk hingga tembakan ekstra."
+   },
+   {
+    "name": "Strafe",
+    "desc": "Hujan panah area yang kurangi physical defense musuh."
+   },
+   {
+    "name": "Force of the Queen",
+    "desc": "Leo mengaum: damage dan slow musuh di sekitar."
+   },
+   {
+    "name": "Heavy Crossbow",
+    "desc": "Leo melompat dan perkuat crossbow 10 detik: movement speed naik, tembakan jadi AoE."
+   }
+  ],
+  "desc": "Marksman unik yang menembak sambil bergerak; kuat di teamfight area."
+ },
+ {
+  "id": "ixia",
+  "name": "Ixia",
+  "roles": [
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "slow",
+   "pull"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "marksman area kipas, lifesteal pasif, ulti barrage (belum terverifikasi)",
+  "skills": [
+   {
+    "name": "Siphon Starlium",
+    "desc": "Pasif: serangan menumpuk Starlium Charge; serangan ke 2 stack memulihkan HP."
+   },
+   {
+    "name": "Dual Beam",
+    "desc": "Tembak 2 beam yang slow musuh; kena hero tambah movement speed."
+   },
+   {
+    "name": "Star Helix",
+    "desc": "Lempar tabung energi: knockback lalu tarik musuh ke garis tengah."
+   },
+   {
+    "name": "Full Barrage",
+    "desc": "Rakit 6 senjata 4 detik: serangan dasar dan skill jadi area kipas."
+   }
+  ],
+  "desc": "Marksman area; tumpuk Starlium Charge lalu ledakkan dengan ulti barrage."
+ },
+ {
+  "id": "jawhead",
+  "name": "Jawhead",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "stun"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "lempar musuh, inisiator, kombo stun",
+  "skills": [
+   {
+    "name": "Mecha Suppression",
+    "desc": "Pasif: serangan menumpuk stack yang menaikkan damage serangan dasar."
+   },
+   {
+    "name": "Smart Missiles",
+    "desc": "Luncurkan hingga 12 misil ke musuh acak selama 5 detik."
+   },
+   {
+    "name": "Ejector",
+    "desc": "Dapat shield dan movement speed; lempar unit terdekat ke lokasi target dan stun area."
+   },
+   {
+    "name": "Unstoppable Force",
+    "desc": "Charge ke hero target: stun dan knockback musuh sekitar; immune control."
+   }
+  ],
+  "desc": "Fighter inisiator; lempar musuh ke tim lalu kejar dengan charge."
+ },
+ {
+  "id": "johnson",
+  "name": "Johnson",
+  "roles": [
+   "Support",
+   "Tank"
+  ],
+  "lane": "roam",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 2,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "transformasi mobil, tabrak area, inisiator",
+  "skills": [
+   {
+    "name": "Electro Airbag",
+    "desc": "Pasif: saat HP di bawah 30%, dapat shield besar."
+   },
+   {
+    "name": "Impact Wrench",
+    "desc": "Lempar kunci inggris yang stun area di titik jatuh."
+   },
+   {
+    "name": "Electromagnetic Waves",
+    "desc": "Semburan listrik area kipas yang slow dan menaikkan damage berikutnya."
+   },
+   {
+    "name": "Nitrous",
+    "desc": "Tahan skill untuk akselerasi mobil hingga 5 detik."
+   },
+   {
+    "name": "Full Throttle",
+    "desc": "Berubah jadi mobil dan bisa bonceng sekutu; tabrakan meledak: stun dan zona listrik."
+   },
+   {
+    "name": "Brake",
+    "desc": "Hentikan laju mobil seketika."
+   }
+  ],
+  "desc": "Tank unik yang berubah jadi mobil; tabrak dari jauh untuk stun area."
+ },
+ {
+  "id": "joy",
+  "name": "Joy",
+  "roles": [
+   "Assassin"
+  ],
+  "lane": "jungle",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 2,
+  "heal": true,
+  "shield": true,
+  "burst": true,
+  "sustain": true,
+  "difficulty": 3,
+  "traits": "dash ritme, mage assassin, sulit",
+  "skills": [
+   {
+    "name": "Humph, Joy's Angry!",
+    "desc": "Pasif: skill yang kena musuh beri movement speed; serangan dasar jadi magic damage."
+   },
+   {
+    "name": "Look, Leonin Crystal!",
+    "desc": "Panggil kristal yang slow musuh; bisa jadi pijakan loncatan skill 2."
+   },
+   {
+    "name": "Meow, Rhythm of Joy!",
+    "desc": "Dash hingga 4x beruntun; tekan sesuai beat untuk damage 2x lipat dan shield."
+   },
+   {
+    "name": "Ha, Electrifying Beats!",
+    "desc": "Denyut damage area 8x; ritme sempurna beri spell vamp dan immune slow."
+   }
+  ],
+  "desc": "Assassin ritme; tekan skill mengikuti beat untuk dash beruntun dan damage maksimal."
+ },
+ {
+  "id": "julian",
+  "name": "Julian",
+  "roles": [
+   "Assassin",
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "slow",
+   "immobilize",
+   "knockup"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": true,
+  "difficulty": 3,
+  "traits": "kombo tiga skill, enhanced skill, duelist",
+  "skills": [
+   {
+    "name": "Smith's Legacy",
+    "desc": "Pasif: tiap 2 skill berbeda perkuat skill ketiga; dapat hybrid lifesteal tiap kena hero."
+   },
+   {
+    "name": "Scythe",
+    "desc": "Lempar sabit yang slow musuh di jalurnya."
+   },
+   {
+    "name": "Enhanced Scythe",
+    "desc": "Sabit diperkuat: terbang jauh dan beri damage berulang ke musuh sekitar."
+   },
+   {
+    "name": "Sword",
+    "desc": "Panggil pedang terbang dan dash ke arah target."
+   },
+   {
+    "name": "Enhanced Sword",
+    "desc": "Dash tak terlihat dan untargetable sambil hujan pedang berulang."
+   },
+   {
+    "name": "Chain",
+    "desc": "Rantai di lokasi target yang immobilize musuh."
+   },
+   {
+    "name": "Enhanced Chain",
+    "desc": "Rantai diperkuat: slow berulang lalu knockup dan damage ekstra di akhir."
+   }
+  ],
+  "desc": "Fighter kombo; rangkai dua skill berbeda untuk memperkuat skill ketiga."
+ },
+ {
+  "id": "kadita",
+  "name": "Kadita",
+  "roles": [
+   "Assassin",
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "slow",
+   "knockup"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "ombak kombo, burst area, sustain ombak",
+  "skills": [
+   {
+    "name": "Thalassophobia",
+    "desc": "Pasif: tiap 30 detik dapat Blessing; pulihkan 65% HP yang hilang saat kena damage."
+   },
+   {
+    "name": "Ocean Ode",
+    "desc": "Selancar ombak maju-mundur: damage dan slow; immune control, bisa tembus tembok."
+   },
+   {
+    "name": "Breath of the Ocean",
+    "desc": "Ledakan ombak di lokasi target yang knockup musuh."
+   },
+   {
+    "name": "Rough Waves",
+    "desc": "Menyelam dan kirim gelombang ke segala arah lalu kembali; untargetable dan cepat."
+   }
+  ],
+  "desc": "Mage ombak; selancar menembus musuh lalu ledakkan dengan gelombang area."
+ },
+ {
+  "id": "kagura",
+  "name": "Kagura",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "payung kombo, poke tarik, sulit",
+  "skills": [
+   {
+    "name": "Yin Yang Gathering",
+    "desc": "Pasif: ambil payung kembali memberi shield, stun, dan slow musuh sekitar."
+   },
+   {
+    "name": "Seimei Umbrella Open",
+    "desc": "Kirim payung ke lokasi: damage dan slow musuh di jalurnya."
+   },
+   {
+    "name": "Rasho Umbrella Flee",
+    "desc": "Hapus debuff dan dash, tinggalkan payung di belakang."
+   },
+   {
+    "name": "Yin Yang Overturn",
+    "desc": "Ledakkan kekuatan payung: damage, knockback, dan slow musuh sekitar."
+   }
+  ],
+  "desc": "Mage payung; kendalikan Seimei Umbrella untuk poke, tarik, dan burst."
+ },
+ {
+  "id": "kaja",
+  "name": "Kaja",
+  "roles": [
+   "Support"
+  ],
+  "lane": "roam",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "slow",
+   "suppression"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": false,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "culik musuh, suppression, roam inisiator",
+  "skills": [
+   {
+    "name": "Wings of Lightning",
+    "desc": "Pasif: skill beri Paralysis: slow musuh dan kurangi damage mereka."
+   },
+   {
+    "name": "Ring of Order",
+    "desc": "Cincin petir mengembang-menyusut: damage musuh dan heal diri."
+   },
+   {
+    "name": "Soaring Wings",
+    "desc": "Dash immune control: stun-knockback area, lalu terbang abaikan tembok."
+   },
+   {
+    "name": "Divine Binding",
+    "desc": "Lempar lasso area; musuh terjebak 2,5 detik dan bisa diseret."
+   }
+  ],
+  "desc": "Support penculik; jerat satu target dengan lasso lalu seret ke tim."
+ },
+ {
+  "id": "kalea",
+  "name": "Kalea",
+  "roles": [
+   "Fighter",
+   "Support"
+  ],
+  "lane": "roam",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "slow",
+   "knockup"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "support fighter, heal zona air, knockup (belum terverifikasi)",
+  "skills": [
+   {
+    "name": "Surge of Life",
+    "desc": "Pasif: skill buat Water Zone; serap zona untuk perkuat 3 serangan dasar: dash, heal, zona baru."
+   },
+   {
+    "name": "Wavebreaker",
+    "desc": "Hantam tanah: damage area dan slow musuh 40%."
+   },
+   {
+    "name": "Tidal Strike",
+    "desc": "Charge dan body slam hero pertama: knockup; bisa lompat lagi dari tembok atau zona."
+   },
+   {
+    "name": "Tsunami Slam",
+    "desc": "Cengkeram hero dengan ekor dan banting ke arah joystick; immune CC."
+   }
+  ],
+  "desc": "Fighter support; buat Water Zone untuk heal, knockup, dan perkuat serangan."
+ },
+ {
+  "id": "karina",
+  "name": "Karina",
+  "roles": [
+   "Assassin"
+  ],
+  "lane": "jungle",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 1,
+  "traits": "true damage, anti basic attack, eksekutor",
+  "skills": [
+   {
+    "name": "Shadow Combo",
+    "desc": "Pasif: serangan ketiga beruntun beri true damage % HP hilang; reset cooldown non-ulti ke hero."
+   },
+   {
+    "name": "Dance of Blades",
+    "desc": "Mode spin 3,5 detik: blokir basic attack, pantulkan damage, serangan dasar pasti crit."
+   },
+   {
+    "name": "Dance of Death",
+    "desc": "Tebasan berputar memberi damage ke musuh sekitar."
+   },
+   {
+    "name": "Shadow Assault",
+    "desc": "Dash ke hero target beri mark; bunuh target reset cooldown, bisa dash kembali."
+   }
+  ],
+  "desc": "Assassin anti-marksman; blokir basic attack lalu eksekusi dengan true damage."
+ },
+ {
+  "id": "karrie",
+  "name": "Karrie",
+  "roles": [
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "true damage % HP, anti tank, attack speed",
+  "skills": [
+   {
+    "name": "Lightwheel Mark",
+    "desc": "Pasif: serangan menumpuk mark; 5 stack meledak jadi true damage % Max HP."
+   },
+   {
+    "name": "Spinning Lightwheel",
+    "desc": "Lepas bola energi yang berhenti di hero: damage dan slow area."
+   },
+   {
+    "name": "Phantom Step",
+    "desc": "Dash sambil lempar lightwheel; mode Dual Wield lempar dua."
+   },
+   {
+    "name": "Speedy Lightwheel",
+    "desc": "Mode Dual Wield 6 detik: movement speed naik, tiap serangan lempar dua lightwheel."
+   }
+  ],
+  "desc": "Marksman anti-tank; tumpuk mark untuk meledakkan true damage % Max HP."
+ },
+ {
+  "id": "khaleed",
+  "name": "Khaleed",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "pull",
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "regen pasir, kombo CC, inisiator",
+  "skills": [
+   {
+    "name": "Sand Walk",
+    "desc": "Pasif: bergerak menumpuk Desert Power; penuh beri movement speed dan serangan dasar slow."
+   },
+   {
+    "name": "Desert Tornado",
+    "desc": "Pusaran pedang hingga 3x beruntun yang menarik musuh ke arahmu."
+   },
+   {
+    "name": "Quicksand Guard",
+    "desc": "Channeling: pulihkan HP, kurangi damage, dan slow musuh sekitar."
+   },
+   {
+    "name": "Raging Sandstorm",
+    "desc": "Naik badai pasir charge ke lokasi: dorong musuh lalu hantam area dengan stun; immune control."
+   }
+  ],
+  "desc": "Fighter sustain; regen di quicksand lalu inisiasi dengan badai pasir."
+ },
+ {
+  "id": "khufra",
+  "name": "Khufra",
+  "roles": [
+   "Tank"
+  ],
+  "lane": "roam",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "knockup",
+   "stun",
+   "slow",
+   "pull"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "anti blink, CC beruntun, tank inisiator",
+  "skills": [
+   {
+    "name": "Spell Curse",
+    "desc": "Pasif: tiap 12 detik perkuat serangan dasar: slow dan heal diri; CC kurangi cooldown."
+   },
+   {
+    "name": "Tyrant's Revenge",
+    "desc": "Lontarkan diri ke arah target: knockup musuh yang ditemui."
+   },
+   {
+    "name": "Bouncing Ball",
+    "desc": "Jadi bola pantul: defense naik; musuh yang blink melewatinya ter-knockup."
+   },
+   {
+    "name": "Tyrant's Rage",
+    "desc": "Tarik semua musuh sekitar ke depan; yang terbentur tembok kena stun dan damage ekstra."
+   }
+  ],
+  "desc": "Tank CC; kunci hero blink dengan bola pantul lalu tarik dan stun area."
+ },
+ {
+  "id": "kimmy",
+  "name": "Kimmy",
+  "roles": [
+   "Mage",
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "slow",
+   "immobilize",
+   "pull"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "tembak sambil gerak, spray gun, poke",
+  "skills": [
+   {
+    "name": "Aerial Dominance",
+    "desc": "Pasif: bisa menembak sambil bergerak ke arah berbeda; attack speed diubah jadi magic power."
+   },
+   {
+    "name": "Anti-Grav Thruster",
+    "desc": "Terbang 1 detik: immune slow, tembus tembok, movement speed naik, tembak 4 bolt."
+   },
+   {
+    "name": "Starlium Beam",
+    "desc": "Tembak beam yang immobilize musuh di jalurnya."
+   },
+   {
+    "name": "Traction Pulse",
+    "desc": "Tembak pulse yang meledak jadi zona slow lalu menyusut menarik hero ke tengah."
+   }
+  ],
+  "desc": "Mage marksman unik; arahkan spray gun sambil bergerak untuk poke terus-menerus."
+ },
+ {
+  "id": "lancelot",
+  "name": "Lancelot",
+  "roles": [
+   "Assassin"
+  ],
+  "lane": "jungle",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 2,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "dash tanpa henti, immune damage, sulit",
+  "skills": [
+   {
+    "name": "Soul Cutter",
+    "desc": "Pasif: tiap blink atau charge menaikkan damage hingga 30%."
+   },
+   {
+    "name": "Puncture",
+    "desc": "Charge ke arah target dan tandai musuh; tandai musuh baru reset cooldown."
+   },
+   {
+    "name": "Thorned Rose",
+    "desc": "Tebasan 3x tak terlihat dan invincible; musuh di tengah kena semua dan slow."
+   },
+   {
+    "name": "Phantom Execution",
+    "desc": "Charge lalu tebas eksekusi ke arah target; invincible selama proses."
+   }
+  ],
+  "desc": "Assassin elegan; rangkai dash beruntun dengan immune untuk eksekusi bersih."
+ },
+ {
+  "id": "lapu_lapu",
+  "name": "Lapu-Lapu",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "dua mode pedang, kombo CC, duelist",
+  "skills": [
+   {
+    "name": "Homeland Defender",
+    "desc": "Pasif: damage menumpuk rage; penuh perkuat serangan dasar/skill dan beri shield."
+   },
+   {
+    "name": "Justice Blades",
+    "desc": "Lempar 2 bumerang bolak-balik ke arah target."
+   },
+   {
+    "name": "Land Shaker",
+    "desc": "Channeling lalu hantam tanah: slow dan stun area."
+   },
+   {
+    "name": "Jungle Warrior",
+    "desc": "Dash ke arah target memberi damage."
+   },
+   {
+    "name": "Storm Sword",
+    "desc": "Putar pedang berat area; tiap hero kena beri damage reduction."
+   },
+   {
+    "name": "Bravest Fighter",
+    "desc": "Lompat dan gabung pedang 10 detik: skill diperkuat, defense dan damage naik."
+   },
+   {
+    "name": "Raging Slash",
+    "desc": "Tebasan berat 3x area; immune control dan bisa ubah arah serangan."
+   }
+  ],
+  "desc": "Fighter dua mode; kumpulkan rage lalu berubah untuk kombo pedang berat."
+ },
+ {
+  "id": "layla",
+  "name": "Layla",
+  "roles": [
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "stun"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 1,
+  "traits": "range super jauh, poke, late game",
+  "skills": [
+   {
+    "name": "Malefic Gun",
+    "desc": "Pasif: damage naik hingga 130% ke musuh yang lebih jauh."
+   },
+   {
+    "name": "Malefic Bomb",
+    "desc": "Tembak bom yang tambah range serangan dan movement speed."
+   },
+   {
+    "name": "Void Projectile",
+    "desc": "Tembak orb yang meledak area dan stun musuh bertanda."
+   },
+   {
+    "name": "Destruction Rush",
+    "desc": "Tembak beam garis damage besar; tiap upgrade tambah range serangan."
+   }
+  ],
+  "desc": "Marksman klasik; jaga jarak aman dan poke dari range terjauh."
+ },
+ {
+  "id": "leomord",
+  "name": "Leomord",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "jungle",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "naik kuda, charge area, sustain duel",
+  "skills": [
+   {
+    "name": "The Oath Keeper",
+    "desc": "Pasif: serangan menumpuk energi; penuh beri crit 200% dan pulihkan HP."
+   },
+   {
+    "name": "Momentum",
+    "desc": "Channeling lalu tusuk ke depan: damage dan slow sesuai lama channel."
+   },
+   {
+    "name": "Phantom Stomp",
+    "desc": "Barbiel melompat menghantam area dan slow musuh."
+   },
+   {
+    "name": "Decimation Assault",
+    "desc": "Charge ke arah target: damage dan slow musuh di jalur."
+   },
+   {
+    "name": "Phantom Charge",
+    "desc": "Barbiel charge dan knockback semua musuh di jalurnya."
+   },
+   {
+    "name": "Phantom Steed",
+    "desc": "Panggil Barbiel: masuk Mounted State, serangan dasar AoE sambil jalan, defense naik."
+   }
+  ],
+  "desc": "Fighter berkuda; panggil Barbiel untuk charge area dan duel sustain."
+ },
+ {
+  "id": "lesley",
+  "name": "Lesley",
+  "roles": [
+   "Assassin",
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "sniper crit, kamuflase, eksekutor jauh",
+  "skills": [
+   {
+    "name": "Lethal Shot",
+    "desc": "Pasif: tak kena damage 5 detik perkuat serangan dasar: range, crit, dan damage naik."
+   },
+   {
+    "name": "Master of Camouflage",
+    "desc": "Masuk kamuflase: movement speed dan attack naik hingga kena atau deal damage."
+   },
+   {
+    "name": "Tactical Grenade",
+    "desc": "Lempar granat sambil lompat mundur: knockback musuh kerucut."
+   },
+   {
+    "name": "Ultimate Snipe",
+    "desc": "Kunci hero target dan tembak 4 peluru fatal beruntun."
+   }
+  ],
+  "desc": "Sniper marksman; sembunyi dengan kamuflase lalu habisi dengan tembakan crit."
+ },
+ {
+  "id": "ling",
+  "name": "Ling",
+  "roles": [
+   "Assassin"
+  ],
+  "lane": "jungle",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow",
+   "knockup"
+  ],
+  "mobility": 2,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "lompat tembok, energi ringan, sulit",
+  "skills": [
+   {
+    "name": "Cloud Walker",
+    "desc": "Pasif: bisa melompat ke tembok; di tembok regen Lightness Point dan crit chance naik."
+   },
+   {
+    "name": "Finch Poise",
+    "desc": "Lompat ke tembok target: masuk semi-stealth dan movement speed naik."
+   },
+   {
+    "name": "Defiant Sword",
+    "desc": "Charge dan tusuk musuh; dari tembok jadi dash area dengan slow."
+   },
+   {
+    "name": "Tempest of Blades",
+    "desc": "Terbang invincible lalu mendarat: knockup tengah, slow area, buat Sword Field."
+   }
+  ],
+  "desc": "Assassin penjelajah tembok; gank dari sudut tak terduga dengan mobilitas tinggi."
+ },
+ {
+  "id": "lolita",
+  "name": "Lolita",
+  "roles": [
+   "Support",
+   "Tank"
+  ],
+  "lane": "roam",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "pantul proyektil, ulti stun area, protektor",
+  "skills": [
+   {
+    "name": "Noumenon Energy Core",
+    "desc": "Pasif: tiap 2,5 detik beri shield ke diri dan sekutu sekitar, bisa menumpuk."
+   },
+   {
+    "name": "Power Charge",
+    "desc": "Dash; serangan dasar berikutnya dash ke target dan stun."
+   },
+   {
+    "name": "Guardian's Reflection",
+    "desc": "Angkat perisai 3 detik: pantulkan serangan jarak jauh dan proyektil."
+   },
+   {
+    "name": "Noumenon Blast",
+    "desc": "Charge 2 detik lalu hantam: damage dan stun area sesuai lama charge."
+   }
+  ],
+  "desc": "Tank support; pantulkan proyektil musuh lalu kunci dengan ulti stun area."
+ },
+ {
+  "id": "lukas",
+  "name": "Lukas",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "pull"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "transformasi beast, kombo tonfa, duelist",
+  "skills": [
+   {
+    "name": "Hero's Resolve",
+    "desc": "Pasif: dapat Resolve tiap detik dan saat damage hero; dipakai untuk mode Beast."
+   },
+   {
+    "name": "Flash Combo",
+    "desc": "Serang tonfa hingga 2 tahap; pulihkan HP % Max HP saat kena hero."
+   },
+   {
+    "name": "Flash Step",
+    "desc": "Dash; serangan dasar berikutnya blink ke belakang musuh dan panggil badai petir."
+   },
+   {
+    "name": "Unleash the Beast",
+    "desc": "Berubah jadi Sacred Beast: semua atribut naik, skill berefek baru."
+   },
+   {
+    "name": "Shockwave Blast",
+    "desc": "Tembak gelombang kejut yang meledak saat kena hero atau jarak maks."
+   }
+  ],
+  "desc": "Fighter transformasi; kumpulkan Resolve lalu berubah jadi Sacred Beast."
+ },
+ {
+  "id": "lunox",
+  "name": "Lunox",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "dua mode chaos-order, invincible, sulit",
+  "skills": [
+   {
+    "name": "Dreamland Twist",
+    "desc": "Pasif: ubah magic penetration jadi spell vamp dan sebaliknya sesuai mode."
+   },
+   {
+    "name": "Starlight Pulse",
+    "desc": "Hujan cahaya ke musuh lalu kembali memulihkan HP."
+   },
+   {
+    "name": "Chaos Assault",
+    "desc": "Tembak energi chaos: damage % Max HP target."
+   },
+   {
+    "name": "Cosmic Fission",
+    "desc": "Tembak gelombang chaos-order yang slow musuh."
+   },
+   {
+    "name": "Order & Chaos",
+    "desc": "Pasif: mode Order beri invincible, mode Chaos beri blink dan cooldown cepat."
+   },
+   {
+    "name": "Power of Order: Brilliance",
+    "desc": "Invincible 2,5 detik sambil beri damage area dan movement speed naik."
+   },
+   {
+    "name": "Power of Chaos: Darkening",
+    "desc": "Blink dan perkuat Chaos Assault: cooldown cepat tanpa konsumsi mana."
+   }
+  ],
+  "desc": "Mage dua kutub; kelola stack Chaos dan Order untuk burst atau bertahan hidup."
+ },
+ {
+  "id": "luo_yi",
+  "name": "Luo Yi",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "stun",
+   "pull",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "yin-yang kombo, teleport tim, sulit",
+  "skills": [
+   {
+    "name": "Duality",
+    "desc": "Pasif: sigil berlawanan yang berdekatan meledak: stun, tarik, dan beri shield."
+   },
+   {
+    "name": "Dispersion",
+    "desc": "Tembak energi kipas yang tandai hero; simpan hingga 4 charge."
+   },
+   {
+    "name": "Rotation",
+    "desc": "Panggil api atau air di lokasi: damage berulang dan slow."
+   },
+   {
+    "name": "Diversion",
+    "desc": "Buat lingkaran teleport: pindahkan semua sekutu ke lokasi target."
+   }
+  ],
+  "desc": "Mage yin-yang; gabungkan sigil berlawanan untuk stun lalu teleport tim."
+ },
+ {
+  "id": "lylia",
+  "name": "Lylia",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "bom beruntun, reset HP, poke",
+  "skills": [
+   {
+    "name": "Angry Gloom",
+    "desc": "Pasif: dapat movement speed di area Gloom; naik tiap upgrade skill."
+   },
+   {
+    "name": "Magic Shockwave",
+    "desc": "Kirim Gloom garis yang slow; meledakkan Shadow Energy yang disentuh."
+   },
+   {
+    "name": "Shadow Energy",
+    "desc": "Taruh bom di lokasi; diledakkan Gloom untuk damage ekstra dan rantai ledakan."
+   },
+   {
+    "name": "Black Shoes",
+    "desc": "Blink ke posisi 4 detik lalu: pulihkan HP dan mana, dapat heal ekstra."
+   }
+  ],
+  "desc": "Mage bom; ledakkan Shadow Energy beruntun lalu reset posisi dengan sepatu."
+ },
+ {
+  "id": "marcel",
+  "name": "Marcel",
+  "roles": [
+   "Support"
+  ],
+  "lane": "roam",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "slow",
+   "stun"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": false,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "support unik, bekukan waktu, zoner area (belum terverifikasi)",
+  "skills": [
+   {
+    "name": "Platinum Snap",
+    "desc": "Pasif: Clemar otomatis foto hero musuh: Frozen Moment, true damage % Max HP, dan shield."
+   },
+   {
+    "name": "Framed Moment",
+    "desc": "Fokus area: slow 60% lalu jepret damage area setelah 2,5 detik."
+   },
+   {
+    "name": "Tracking Shot",
+    "desc": "Mode cepat 3 detik: movement speed naik, bisa dash dan tinggalkan phantom."
+   },
+   {
+    "name": "Golden Hour",
+    "desc": "Foto wide 2 detik: semua unit lain Frozen Moment, hanya Marcel yang bebas bergerak."
+   }
+  ],
+  "desc": "Support unik; bekukan momen musuh dengan kamera lalu kuasai zona dengan area foto."
+ },
+ {
+  "id": "martis",
+  "name": "Martis",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "knockup",
+   "slow",
+   "stun"
+  ],
+  "mobility": 2,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "eksekutor ulti, blink beruntun, anti CC",
+  "skills": [
+   {
+    "name": "Asura's Wrath",
+    "desc": "Pasif: tiap skill menaikkan attack speed hingga 120%."
+   },
+   {
+    "name": "Asura Aura",
+    "desc": "Sabet area: knockup dan slow musuh."
+   },
+   {
+    "name": "Mortal Coil",
+    "desc": "Blink 3x beruntun dengan knockback; dapat immune control dan damage reduction."
+   },
+   {
+    "name": "Decimation",
+    "desc": "Terjang hero target: true damage jika HP di bawah 50%; bunuh reset cooldown."
+   }
+  ],
+  "desc": "Fighter eksekutor; cicil dengan kombo blink lalu habisi dengan ulti true damage."
+ },
+ {
+  "id": "masha",
+  "name": "Masha",
+  "roles": [
+   "Fighter",
+   "Tank"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "tiga bar HP, split push, duelist tebal",
+  "skills": [
+   {
+    "name": "Primal Pact",
+    "desc": "Pasif: punya 3 bar HP; tiap bar habis hapus CC dan blokir damage; Feral jadi HP."
+   },
+   {
+    "name": "Feral Swipe",
+    "desc": "Lepas energi ke depan; kena hero beri slow 50%."
+   },
+   {
+    "name": "Claw Strike",
+    "desc": "Dash ke arah target; cooldown reset tiap bar HP habis."
+   },
+   {
+    "name": "Savage Maul",
+    "desc": "Charge ke hero: stun 1 detik dan knockback musuh sekitar."
+   }
+  ],
+  "desc": "Fighter tiga bar HP; manfaatkan ketebalan untuk duel dan split push."
+ },
+ {
+  "id": "mathilda",
+  "name": "Mathilda",
+  "roles": [
+   "Assassin",
+   "Support"
+  ],
+  "lane": "roam",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "knockup"
+  ],
+  "mobility": 2,
+  "heal": false,
+  "shield": true,
+  "burst": false,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "support mobilitas, bawa sekutu, poke wisp",
+  "skills": [
+   {
+    "name": "Ancestral Guidance",
+    "desc": "Pasif: bergerak menumpuk stack; penuh perkuat serangan dasar dan tambah movement speed."
+   },
+   {
+    "name": "Soul Bloom",
+    "desc": "Kumpulkan wisp sesuai jarak gerak; wisp mengejar dan menyerang musuh terdekat."
+   },
+   {
+    "name": "Guiding Wind",
+    "desc": "Lompat dan buat zona: shield dan movement speed; sekutu yang masuk terbimbing mengikutimu."
+   },
+   {
+    "name": "Circling Eagle",
+    "desc": "Tandai hero dan mengelilinginya; wisp menyerang lalu dash knockup ke target."
+   }
+  ],
+  "desc": "Support mobilitas tinggi; bimbing sekutu dengan angin lalu kunci target."
+ },
+ {
+  "id": "melissa",
+  "name": "Melissa",
+  "roles": [
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": false,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "marksman anti-assassin, boneka Muddles, anti-dive",
+  "skills": [
+   {
+    "name": "Doll Buster",
+    "desc": "Pasif: serangan memberi 125% damage ke minion, creep, dan unit summon."
+   },
+   {
+    "name": "Falling!",
+    "desc": "Dash ke depan, naikkan attack speed 3 detik; cooldown berkurang tiap serangan mengenai Muddles."
+   },
+   {
+    "name": "Eyes on You!",
+    "desc": "Lempar Muddles untuk mengikat musuh 6 detik dan beri slow; serangan ke Muddles melukai musuh terikat."
+   },
+   {
+    "name": "Go Away!",
+    "desc": "Buat kubah 4 detik yang melukai dan menolak musuh; menggagalkan skill pergerakan musuh."
+   }
+  ],
+  "desc": "Marksman penjaga diri dengan boneka Muddles dan zona tolak anti-dive."
+ },
+ {
+  "id": "minotaur",
+  "name": "Minotaur",
+  "roles": [
+   "Support",
+   "Tank"
+  ],
+  "lane": "roam",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "knockup",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "tank support mode rage, heal tim, inisiasi kuat",
+  "skills": [
+   {
+    "name": "Rage Incarnate",
+    "desc": "Pasif: tiap skill memberi rage dan pulihkan HP 5% dari damage musuh; efek ganda saat Enraged."
+   },
+   {
+    "name": "Despair Stomp",
+    "desc": "Lompat ke lokasi, beri damage dan knockup singkat plus slow 40%; basic attack diperkuat 2 detik."
+   },
+   {
+    "name": "Motivation Roar",
+    "desc": "Pulihkan HP diri dan rekan paling sekarat; heal lebih besar saat Enraged."
+   },
+   {
+    "name": "Minoan Fury",
+    "desc": "Masuk mode Enraged, hantam tanah 3x: slow lalu knockup 0.8 detik; kebal CC selama serangan."
+   }
+  ],
+  "desc": "Tank support yang masuk mode rage untuk heal dan knockup beruntun."
+ },
+ {
+  "id": "minsitthar",
+  "name": "Minsitthar",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "slow",
+   "pull"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "fighter anti-mobilitas, zona larangan dash, duel kuat",
+  "skills": [
+   {
+    "name": "Mark of the King",
+    "desc": "Pasif: serangan menumpuk mark; 5 tumpukan meledak, beri stun 0.8 detik dan pulihkan 400 HP."
+   },
+   {
+    "name": "Spear of Glory",
+    "desc": "Tusuk tombak: slow 30%, ujung tombak stun 0.6 detik, lalu tarik kembali menyeret musuh."
+   },
+   {
+    "name": "Shield Assault",
+    "desc": "Hantam perisai area: slow 80%, kurangi damage dari depan 25-50% selama 3 detik."
+   },
+   {
+    "name": "King's Calling",
+    "desc": "Panggil 4 penjaga membentuk zona: slow 20% dan musuh tak bisa pakai skill pergerakan."
+   }
+  ],
+  "desc": "Fighter anti-dash dengan tombak tarik dan zona ultimate mematikan mobilitas."
+ },
+ {
+  "id": "miya",
+  "name": "Miya",
+  "roles": [
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "immobilize",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": false,
+  "sustain": false,
+  "difficulty": 1,
+  "traits": "marksman attack speed, stealth ultimate, late game",
+  "skills": [
+   {
+    "name": "Moon Blessing",
+    "desc": "Pasif: basic attack menumpuk attack speed 5 lapis; penuh memanggil Moonlight Shadow."
+   },
+   {
+    "name": "Moon Arrow",
+    "desc": "Tembak 2 panah tambahan tiap serangan 4 detik; panah ekstra melukai musuh sekitar."
+   },
+   {
+    "name": "Arrow of Eclipse",
+    "desc": "Tembak panah area: immobilize 1.2 detik lalu pecah jadi 6 panah kecil dengan slow 30%."
+   },
+   {
+    "name": "Hidden Moonlight",
+    "desc": "Hapus debuff, sembunyi, dan naikkan movement speed 65% selama 2 detik."
+   }
+  ],
+  "desc": "Marksman attack speed tinggi dengan stealth dan immobilize area."
+ },
+ {
+  "id": "moskov",
+  "name": "Moskov",
+  "roles": [
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": false,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "marksman penetrasi, tombak global, stun dinding",
+  "skills": [
+   {
+    "name": "Spear of Quiescence",
+    "desc": "Pasif: basic attack menembus target; tiap kena kurangi cooldown skill 0.5 detik."
+   },
+   {
+    "name": "Abyss Walker",
+    "desc": "Teleport ke lokasi, naikkan attack speed 3 detik dan damage ke musuh di belakang target."
+   },
+   {
+    "name": "Spear of Misery",
+    "desc": "Tusuk kuat: knockback musuh; tabrak hero atau dinding beri stun 1.5 detik."
+   },
+   {
+    "name": "Spear of Destruction",
+    "desc": "Lempar tombak global: damage dan slow 50%; buat bayangan dan refresh cooldown skill 1."
+   }
+  ],
+  "desc": "Marksman dengan basic attack menembus dan tombak global eksekusi lintas map."
+ },
+ {
+  "id": "nana",
+  "name": "Nana",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 1,
+  "traits": "mage anti-mati, transform kucing, zoning molina",
+  "skills": [
+   {
+    "name": "Molina's Gift",
+    "desc": "Pasif: selamat dari damage fatal, jadi untargetable, pulihkan 10% HP, dan tambah speed 2 detik."
+   },
+   {
+    "name": "Magic Boomerang",
+    "desc": "Lempar bumerang sihir bolak-balik; damage berkurang 20% tiap musuh tambahan."
+   },
+   {
+    "name": "Molina Smooch",
+    "desc": "Panggil Molina mengejar musuh: ubah jadi kucing 1.5 detik, slow 50%, turunkan magic defense."
+   },
+   {
+    "name": "Molina Blitz",
+    "desc": "Molina menghantam area 3x: slow 50%; musuh kena beruntun kena stun 1 detik."
+   }
+  ],
+  "desc": "Mage mungil yang sulit dibunuh berkat pasif anti-mati dan Molina pengacau."
+ },
+ {
+  "id": "natalia",
+  "name": "Natalia",
+  "roles": [
+   "Assassin"
+  ],
+  "lane": "jungle",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "silence",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "assassin stealth, silence, pemburu mm/mage",
+  "skills": [
+   {
+    "name": "Assassin Instinct",
+    "desc": "Pasif: diam di semak masuk kamuflase; serangan berikutnya teleport ke belakang target dan silence."
+   },
+   {
+    "name": "Claw Dash",
+    "desc": "Dash ke depan beri damage; bisa dipakai lagi dalam 5 detik jika mengenai musuh."
+   },
+   {
+    "name": "Smoke Bomb",
+    "desc": "Lempar bom asap: slow musuh 25-75% dan Natalia kebal basic attack 4 detik."
+   },
+   {
+    "name": "The Hunt",
+    "desc": "Naikkan crit chance 15-45%; simpan 2 charge, tiap charge langsung masuk mode kamuflase."
+   }
+  ],
+  "desc": "Assassin stealth yang menghabisi target squishy dari semak dengan burst cepat."
+ },
+ {
+  "id": "natan",
+  "name": "Natan",
+  "roles": [
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "pull",
+   "stun"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "marksman magic damage, klon reverse, reposition",
+  "skills": [
+   {
+    "name": "Theory of Everything",
+    "desc": "Pasif: tumpuk attack speed dan movement speed; proyektil basic attack kembali dan melukai lagi."
+   },
+   {
+    "name": "Superposition",
+    "desc": "Tembak massa energi padat ke depan, beri magic damage ke musuh di jalurnya."
+   },
+   {
+    "name": "Interference!",
+    "desc": "Luncurkan penarik gravitasi: seret musuh, lalu ledakkan dengan knockback dan stun 0.1 detik."
+   },
+   {
+    "name": "Entropy?",
+    "desc": "Panggil klon reverse yang meniru serangan 10 detik; pakai lagi untuk tukar posisi dengan klon."
+   }
+  ],
+  "desc": "Marksman magic dengan klon yang meniru serangan dan bisa ditukar posisi."
+ },
+ {
+  "id": "nolan",
+  "name": "Nolan",
+  "roles": [
+   "Assassin"
+  ],
+  "lane": "jungle",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "pull",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "assassin dimensional rift, kombo tarik, energi",
+  "skills": [
+   {
+    "name": "Dimensional Rift",
+    "desc": "Pasif: skill tinggalkan rift; dua rift bersentuhan menarik musuh ke tengah dan pulihkan 150 HP."
+   },
+   {
+    "name": "Expansion",
+    "desc": "Tebas area persegi: damage dan tinggalkan rift di musuh pertama yang kena."
+   },
+   {
+    "name": "Gauge",
+    "desc": "Charge ke depan sambil menebas; tinggalkan rift di sepanjang jalur."
+   },
+   {
+    "name": "Fracture",
+    "desc": "Tebas lokasi 3x sambil tinggalkan 3 rift dan slow 30%; rift aktif otomatis saat Nolan dash mundur."
+   }
+  ],
+  "desc": "Assassin dengan rift dimensi yang menarik musuh lalu meledak."
+ },
+ {
+  "id": "novaria",
+  "name": "Novaria",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "mage sniper jarak jauh, vision, zoning",
+  "skills": [
+   {
+    "name": "Star Trail",
+    "desc": "Pasif: bola astral beri slow 20% dan vision ke musuh di sekitarnya."
+   },
+   {
+    "name": "Astral Meteor",
+    "desc": "Panggil bola astral: damage berkala lalu meledak dengan slow 50% setelah 2 detik."
+   },
+   {
+    "name": "Astral Recall",
+    "desc": "Tarik bola astral ke arahmu dengan speed 80% dan tembus medan; damage naik hingga 2.2x jarak."
+   },
+   {
+    "name": "Astral Echo",
+    "desc": "Sebar gema astral: slow 50%, perbesar hitbox musuh 2.5x, dan beri vision 5 detik."
+   }
+  ],
+  "desc": "Mage sniper dengan meteor jarak sangat jauh dan vision pembuka map."
+ },
+ {
+  "id": "obsidia",
+  "name": "Obsidia",
+  "roles": [
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "stun"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "marksman bone shard, anti-dash tether, scaling",
+  "skills": [
+   {
+    "name": "Return to Bone",
+    "desc": "Pasif: kumpulkan Bone Energy jadi Bone Shard (maks 25); tiap shard menambah damage basic attack."
+   },
+   {
+    "name": "Abyssal Bone Needle",
+    "desc": "Tembak jarum tulang: damage ke musuh dan picu pasif pada hero pertama yang kena."
+   },
+   {
+    "name": "Phantom Shadowmeld",
+    "desc": "Masuk bayangan: naikkan movement speed 500% selama 0.3 detik."
+   },
+   {
+    "name": "Hunt of Bone",
+    "desc": "Tembak tulang: stun hero pertama dan tarik dirimu ke dekatnya; tether cegah skill pergerakan 3 detik."
+   }
+  ],
+  "desc": "Marksman penumpuk Bone Shard yang menempel dan mematikan dash musuh dengan ultimate."
+ },
+ {
+  "id": "odette",
+  "name": "Odette",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "mage kombo johnson, ulti channeling, stun beruntun",
+  "skills": [
+   {
+    "name": "Lakeshore Ambience",
+    "desc": "Pasif: tiap habis skill, serangan berikutnya memantulkan gelombang suara antar musuh."
+   },
+   {
+    "name": "Avian Authority",
+    "desc": "Panggil angsa menyerang: magic damage dan slow 30% selama 2 detik."
+   },
+   {
+    "name": "Blue Nova",
+    "desc": "Lepas bola energi: stun 1.5 detik ke musuh kena lalu bola kedua menyerang musuh terdekat."
+   },
+   {
+    "name": "Swan Song",
+    "desc": "Channeling 5 detik: beri shield dan damage area; bisa lompat tanpa batalkan channeling."
+   }
+  ],
+  "desc": "Mage kombo area dengan ultimate channeling berdamage besar dan stun beruntun."
+ },
+ {
+  "id": "paquito",
+  "name": "Paquito",
+  "roles": [
+   "Assassin",
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "knockup",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "fighter kombo tinju, enhanced skill, burst cepat",
+  "skills": [
+   {
+    "name": "Champ Stance",
+    "desc": "Pasif: tiap 3 skill masuk Champ Stance; skill berikutnya diperkuat dan tambah movement speed."
+   },
+   {
+    "name": "Heavy Left Punch",
+    "desc": "Pukul ke depan: damage dan beri shield 2.5 detik jika kena hero; versi enhanced lebih kuat."
+   },
+   {
+    "name": "Jab",
+    "desc": "Dash dan jab ke depan; berhenti saat tabrak musuh; versi enhanced damage lebih besar."
+   },
+   {
+    "name": "Knockout Strike",
+    "desc": "Sikut knockback lalu haymaker slow 75%; versi enhanced: uppercut knockup 0.5 detik."
+   }
+  ],
+  "desc": "Fighter petinju dengan kombo skill cepat dan enhanced skill setiap 3 cast."
+ },
+ {
+  "id": "pharsa",
+  "name": "Pharsa",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "mage bird bombardir, zoning udara, stun mark",
+  "skills": [
+   {
+    "name": "Spiritual Unity",
+    "desc": "Pasif: tiap 8 detik serangan dibantu Verri: bonus magic damage 8% max HP musuh dan slow 60%."
+   },
+   {
+    "name": "Curse of Crow",
+    "desc": "Ledakan sihir menandai musuh 4 detik; serangan berikutnya ke yang bertanda beri stun 1 detik."
+   },
+   {
+    "name": "Energy Impact",
+    "desc": "Lepas energi sihir ke depan dengan damage besar."
+   },
+   {
+    "name": "Feathered Air Strike",
+    "desc": "Terbang 8 detik dan bombardir area hingga 4x dengan damage besar."
+   }
+  ],
+  "desc": "Mage burung dengan serangan udara bombardir jarak jauh."
+ },
+ {
+  "id": "phoveus",
+  "name": "Phoveus",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "knockup",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": true,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "fighter anti-blink, lompat kejar, regen",
+  "skills": [
+   {
+    "name": "Demonic Force",
+    "desc": "Pasif: basic attack berikutnya charge ke musuh, knockback, dan beri shield 8% max HP."
+   },
+   {
+    "name": "Demonic Impact",
+    "desc": "Hantam monolit ke tanah: damage area dan slow 70%; tinggalkan mata Astaros yang meledak."
+   },
+   {
+    "name": "Dark Wave",
+    "desc": "Lepas gelombang iblis: knockup dan seret musuh di jalurnya."
+   },
+   {
+    "name": "Infernal Pursuit",
+    "desc": "Lompat ke musuh bertanda: damage area plus 5% max HP target; pulihkan 6% HP hilang."
+   }
+  ],
+  "desc": "Fighter anti-mobilitas yang melompat mengejar musuh yang blink atau dash."
+ },
+ {
+  "id": "popol_and_kupa",
+  "name": "Popol and Kupa",
+  "roles": [
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "marksman duo pet, trap, stun gigitan",
+  "skills": [
+   {
+    "name": "We Are Friends",
+    "desc": "Pasif: Kupa regen 10% max HP tiap detik; Popol bisa bangkitkan Kupa dengan doa 3 detik."
+   },
+   {
+    "name": "Bite 'em, Kupa!",
+    "desc": "Lempar tombak dan perintahkan Kupa menggigit 3 detik; versi Alpha: stun 1 detik."
+   },
+   {
+    "name": "I Need You, Kupa!",
+    "desc": "Doa 3 detik untuk panggil kembali Kupa ke medan perang."
+   },
+   {
+    "name": "Kupa, Help!",
+    "desc": "Kupa melindungimu: beri shield dan slow 35% musuh sekitar; versi Alpha: knockup 0.2 detik."
+   },
+   {
+    "name": "Popol's Surprise",
+    "desc": "Pasang jebakan (maks 3): meledak saat diinjak, stun 1 detik, dan buat zona es slow 20%."
+   },
+   {
+    "name": "We Are Angry!",
+    "desc": "Masuk mode marah 12 detik: tambah movement dan attack speed; Kupa jadi Alpha dan pulih penuh."
+   }
+  ],
+  "desc": "Marksman dengan serigala Kupa, trap beku, dan gigitan stun."
+ },
+ {
+  "id": "rafaela",
+  "name": "Rafaela",
+  "roles": [
+   "Support"
+  ],
+  "lane": "roam",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 1,
+  "traits": "support heal tim, resurrect, speed boost",
+  "skills": [
+   {
+    "name": "Divine Resurrection",
+    "desc": "Pasif: bangkitkan rekan yang gugur; ia respawn di base dengan movement speed tambahan."
+   },
+   {
+    "name": "Light of Retribution",
+    "desc": "Serang 3 musuh terdekat: damage, buka vision, dan slow 40% selama 1.5 detik."
+   },
+   {
+    "name": "Holy Healing",
+    "desc": "Pulihkan HP rekan sekitar dan diri sendiri; tambah movement speed 30% dan kebal slow 1 detik."
+   },
+   {
+    "name": "Holy Baptism",
+    "desc": "Lepas kekuatan suci: damage dan stun 1.5 detik ke musuh dalam garis."
+   }
+  ],
+  "desc": "Support penyembuh dengan heal area dan skill bangkitkan rekan."
+ },
+ {
+  "id": "roger",
+  "name": "Roger",
+  "roles": [
+   "Fighter",
+   "Marksman"
+  ],
+  "lane": "jungle",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 2,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "hybrid manusia-serigala, ganti form, eksekutor",
+  "skills": [
+   {
+    "name": "Full Moon Curse",
+    "desc": "Pasif: bebas ganti form manusia-serigala; tiap form punya bonus damage berbeda."
+   },
+   {
+    "name": "Open Fire",
+    "desc": "Tembak 2x: jaring slow 80% 1.5 detik lalu peluru yang turunkan physical defense."
+   },
+   {
+    "name": "Lycan Pounce",
+    "desc": "Terjang tak terlihat ke musuh; cooldown berkurang 80% tiap kill atau assist."
+   },
+   {
+    "name": "Hunter's Steps",
+    "desc": "Naikkan movement speed 20-40% dan attack speed 20-40% selama 2.5 detik."
+   },
+   {
+    "name": "Bloodthirsty Howl",
+    "desc": "Naikkan attack speed 5 detik; tambah movement speed 50% jika ada musuh sekarat terlihat."
+   },
+   {
+    "name": "Wolf Transformation",
+    "desc": "Terjang dan berubah jadi serigala: damage, slow 90%, tambah defense dan movement speed."
+   },
+   {
+    "name": "Restore Human Form",
+    "desc": "Guling kembali ke form manusia dan dapatkan shield 1.5 detik."
+   }
+  ],
+  "desc": "Hybrid marksman-fighter yang berubah jadi serigala untuk mengejar dan menghabisi."
+ },
+ {
+  "id": "ruby",
+  "name": "Ruby",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "pull",
+   "slow"
+  ],
+  "mobility": 2,
+  "heal": true,
+  "shield": false,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "fighter lifesteal, tarik beruntun, dash tiap skill",
+  "skills": [
+   {
+    "name": "Let's Dance!",
+    "desc": "Pasif: dapat spell vamp 6-20%; tiap habis skill bisa dash dan tambah defense 4 detik."
+   },
+   {
+    "name": "Be Good!",
+    "desc": "Ayun sabit lalu gelombang kejut: damage dan slow 40% selama 1 detik."
+   },
+   {
+    "name": "Don't Run, Wolf King!",
+    "desc": "Ayun sabit 2x ke sekitar: stun 0.5 detik tiap ayunan dan tarik musuh mendekat."
+   },
+   {
+    "name": "I'm Offended!",
+    "desc": "Sabet ke depan: damage, tarik musuh ke arahmu, dan stun 0.5 detik."
+   }
+  ],
+  "desc": "Fighter dengan lifesteal deras, tarikan beruntun, dan dash tiap habis skill."
+ },
+ {
+  "id": "saber",
+  "name": "Saber",
+  "roles": [
+   "Assassin"
+  ],
+  "lane": "jungle",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "knockup",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "assassin lock-on ulti, dash, eksekutor",
+  "skills": [
+   {
+    "name": "Enemy's Bane",
+    "desc": "Pasif: serangan kurangi physical defense musuh 3-8 selama 5 detik, tumpuk 5 lapis."
+   },
+   {
+    "name": "Orbiting Swords",
+    "desc": "Keluarkan 5 pedang mengorbit 5 detik; tiap damage mengirim pedang ke target."
+   },
+   {
+    "name": "Charge",
+    "desc": "Dash ke depan: damage dan perkuat basic attack berikutnya dengan slow 60%."
+   },
+   {
+    "name": "Triple Sweep",
+    "desc": "Charge ke target: knockup 1.2 detik dan tebas 3x dengan damage besar."
+   }
+  ],
+  "desc": "Assassin dengan ultimate lock-on knockup yang menghabisi satu target."
+ },
+ {
+  "id": "selena",
+  "name": "Selena",
+  "roles": [
+   "Assassin",
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "mage assassin dua form, stun jarak jauh, burst mark",
+  "skills": [
+   {
+    "name": "Symbiosis",
+    "desc": "Pasif: bebas ganti form; skill elf menandai musuh, damage abyssal mengonsumsi mark."
+   },
+   {
+    "name": "Abyssal Trap",
+    "desc": "Pasang iblis jebakan (maks 3): slow 50% lalu meledak dengan slow; jebakan menambah damage."
+   },
+   {
+    "name": "Soul Eater",
+    "desc": "Perkuat basic attack berikutnya dengan magic damage dan beri shield."
+   },
+   {
+    "name": "Abyssal Arrow",
+    "desc": "Tembak panah sihir: stun 0.5-2.5 detik sesuai jarak; kena stun lama tambah movement speed."
+   },
+   {
+    "name": "Garotte",
+    "desc": "Charge ke depan beri damage; cooldown reset jika damage memicu efek mark."
+   },
+   {
+    "name": "Primal Darkness",
+    "desc": "Masuk Abyssal Form: reset cooldown Soul Eater dan Garotte; basic attack tambah magic damage."
+   },
+   {
+    "name": "Blessing of the Moon Goddess",
+    "desc": "Masuk Elven Form: reset cooldown trap dan panah; tambah magic power."
+   }
+  ],
+  "desc": "Mage-assassin dua form dengan stun panah jarak jauh dan burst eksekusi."
+ },
+ {
+  "id": "silvanna",
+  "name": "Silvanna",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "slow",
+   "immobilize",
+   "pull"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "fighter mage damage, kurung ulti, lifesteal",
+  "skills": [
+   {
+    "name": "Knightess' Resolve",
+    "desc": "Pasif: serangan menandai musuh, turunkan defense 5 lapis; damage +30% ke mark penuh."
+   },
+   {
+    "name": "Cometic Lance",
+    "desc": "Dash ke depan lalu ayun tombak: damage area dan stun 1 detik."
+   },
+   {
+    "name": "Spiral Strangling",
+    "desc": "Putar tombak 6x: tarik musuh ke tengah dan beri shield 350 selama berputar."
+   },
+   {
+    "name": "Imperial Justice",
+    "desc": "Lompat dan buat lingkaran cahaya: slow 40% dan kurung hero terdekat 3.5 detik; tambah attack speed dan lifesteal."
+   }
+  ],
+  "desc": "Fighter magic dengan ultimate mengurung satu musuh untuk duel satu lawan satu."
+ },
+ {
+  "id": "sora",
+  "name": "Sora",
+  "roles": [
+   "Fighter",
+   "Assassin"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "slow",
+   "knockup",
+   "pull"
+  ],
+  "mobility": 2,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "fighter dua form, petir vs tank, kombo dash",
+  "skills": [
+   {
+    "name": "Mystic Surge",
+    "desc": "Pasif: naik ke Thunder (gaya assassin) atau Torrent (gaya tank) lewat ultimate; 5 tumpukan buka True Art."
+   },
+   {
+    "name": "Sundering Strike",
+    "desc": "Pukul 2x lalu lunge ke depan; bisa dash setelah menyerang."
+   },
+   {
+    "name": "Sundering Strike - Thunderflash",
+    "desc": "Versi Thunder: pukul 4x lalu lunge; bisa bergerak bebas selama skill."
+   },
+   {
+    "name": "Sundering Strike - Overwhelm",
+    "desc": "Versi Torrent: slow 40% lalu lunge dengan stun 0.5 detik."
+   },
+   {
+    "name": "Windstride",
+    "desc": "Lompat ke depan lalu hantam tanah: slow 40%; kena musuh kurangi cooldown 2 detik."
+   },
+   {
+    "name": "Windstride - Thunder Rush",
+    "desc": "Versi Thunder: lompat dan panggil badai petir slow 50%; bisa dipakai lagi jika kena."
+   },
+   {
+    "name": "Windstride - Skyfall",
+    "desc": "Versi Torrent: lompat, tarik musuh ke titik mendarat, lalu knockup 0.5 detik."
+   },
+   {
+    "name": "Shifting Skies",
+    "desc": "Geser kiri: naik Thunder, tak terlihat sesaat, dan sambaran petir 3x; geser kanan: naik Torrent dan tarik musuh."
+   },
+   {
+    "name": "Heaven's Wrath",
+    "desc": "True Art Thunder: lompat dan serang area 15x sambil bergerak bebas."
+   },
+   {
+    "name": "Stormbind",
+    "desc": "True Art Torrent: lompat dan serang area 5x dengan stun singkat; tembus medan."
+   }
+  ],
+  "desc": "Fighter dua form yang berganti gaya assassin petir atau tank badai di tengah pertarungan."
+ },
+ {
+  "id": "sun",
+  "name": "Sun",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "fighter klon bayangan, push turret, pengecoh",
+  "skills": [
+   {
+    "name": "Simian God",
+    "desc": "Pasif: serangan kurangi physical defense musuh 6 lapis; tiap damage klon pulihkan HP Sun."
+   },
+   {
+    "name": "Endless Variety",
+    "desc": "Lempar tongkat: damage lalu berubah jadi klon 5 detik yang mewarisi 40-55% atribut."
+   },
+   {
+    "name": "Swift Exchange",
+    "desc": "Lempar tongkat dan sembunyi: buat klon di posisimu lalu bergerak bersama tongkat."
+   },
+   {
+    "name": "Instantaneous Move",
+    "desc": "Perintahkan semua klon menyerang target: damage dan slow 20% yang bisa ditumpuk."
+   },
+   {
+    "name": "Clone Techniques",
+    "desc": "Panggil klon kuat 8 detik yang mewarisi 70-100% atribut dan attack effect."
+   }
+  ],
+  "desc": "Fighter peniru diri dengan banyak klon untuk mengecoh dan menghancurkan turret."
+ },
+ {
+  "id": "suyou",
+  "name": "Suyou",
+  "roles": [
+   "Assassin",
+   "Fighter"
+  ],
+  "lane": "jungle",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "fighter tap-hold, dua gaya, burst tebasan",
+  "skills": [
+   {
+    "name": "Transient Immortal",
+    "desc": "Pasif: tap skill masuk form Mortal (cepat); tahan skill masuk form Immortal (tanky, damage reduction)."
+   },
+   {
+    "name": "Blade Surge",
+    "desc": "Tap: lempar senjata lalu blink menangkapnya; tahan: charge ke depan dan stun 0.6 detik."
+   },
+   {
+    "name": "Soul Sever",
+    "desc": "Tap: tebasan kipas; tahan: 3 tebasan kuat, tebasan terakhir pulihkan 150-230 HP."
+   },
+   {
+    "name": "Evil Queller",
+    "desc": "Tap: mundur sambil menebas dan slow 30%; tahan: tembak panah mematikan jarak jauh."
+   }
+  ],
+  "desc": "Fighter dengan skill tap/hold yang berganti gaya cepat atau tanky."
+ },
+ {
+  "id": "terizla",
+  "name": "Terizla",
+  "roles": [
+   "Fighter",
+   "Tank"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "knockup",
+   "pull",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 1,
+  "traits": "fighter tank, ulti hook beruntun, slow area",
+  "skills": [
+   {
+    "name": "Body of Smith",
+    "desc": "Pasif: makin sekarat makin kebal (hingga 20% damage reduction); attack speed diubah jadi physical attack."
+   },
+   {
+    "name": "Revenge Strike",
+    "desc": "Belah tanah dengan palu: damage 2 tahap, slow 30%, dan tambah movement speed 3.5 detik."
+   },
+   {
+    "name": "Execution Strike",
+    "desc": "Ayun palu hingga 3x ke depan: damage dan slow 20% yang bisa ditumpuk."
+   },
+   {
+    "name": "Penalty Zone",
+    "desc": "Lompat ke area: knockup 0.6 detik lalu panggil scaffold yang menarik musuh berulang kali."
+   }
+  ],
+  "desc": "Fighter-tank dengan ultimate zona hukuman yang menarik musuh berulang kali."
+ },
+ {
+  "id": "thamuz",
+  "name": "Thamuz",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "slow",
+   "pull"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "fighter lava, sabit tarik, regen duel",
+  "skills": [
+   {
+    "name": "Grand Lord Lava",
+    "desc": "Pasif: basic attack bisa picu ledakan lava; tanpa sabit tambah movement speed 25%."
+   },
+   {
+    "name": "Molten Scythes",
+    "desc": "Lempar sabit: slow 30% dan damage berkala; sabit kembali menyeret musuh di jalurnya."
+   },
+   {
+    "name": "Chasm Trample",
+    "desc": "Lompat ke area: damage dan slow 25%; panggil pulang sabit dan reset cooldown skill 1."
+   },
+   {
+    "name": "Cauterant Inferno",
+    "desc": "Sembur lava: damage area 9 detik, tambah max HP 800-1200, pulihkan HP, dan regen tiap damage."
+   }
+  ],
+  "desc": "Fighter lava dengan sabit bumerang dan regen kuat untuk duel panjang."
+ },
+ {
+  "id": "tigreal",
+  "name": "Tigreal",
+  "roles": [
+   "Tank"
+  ],
+  "lane": "roam",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "knockup",
+   "pull",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": false,
+  "sustain": false,
+  "difficulty": 1,
+  "traits": "tank inisiator, ulti tarik massal, cc beruntun",
+  "skills": [
+   {
+    "name": "Fearless",
+    "desc": "Pasif: kumpulkan 4 tumpukan untuk blokir satu basic attack musuh berikutnya."
+   },
+   {
+    "name": "Attack Wave",
+    "desc": "Hantam tanah: gelombang kejut 3x dengan slow 20/40/60% selama 1.5 detik."
+   },
+   {
+    "name": "Sacred Hammer",
+    "desc": "Charge mendorong musuh ke ujung; pakai lagi: knockup 1 detik ke musuh di depan."
+   },
+   {
+    "name": "Implosion",
+    "desc": "Ultimate: tarik dan stun musuh sekitar 2 detik; paruh kedua tak bisa dibatalkan kecuali suppression."
+   }
+  ],
+  "desc": "Tank inisiator klasik dengan ultimate menarik dan stun seluruh tim musuh."
+ },
+ {
+  "id": "uranus",
+  "name": "Uranus",
+  "roles": [
+   "Tank"
+  ],
+  "lane": "exp",
+  "dmg": "magic",
+  "range": "melee",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": true,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 1,
+  "traits": "tank regen abadi, shield, sulit dibunuh",
+  "skills": [
+   {
+    "name": "Radiance",
+    "desc": "Pasif: tiap diserang menumpuk energi; tiap 0.8 detik regen HP, makin besar di tumpukan penuh."
+   },
+   {
+    "name": "Ionic Edge",
+    "desc": "Keluarkan 2 bilah energi mengorbit: damage dan slow 30%; tiap kena menumpuk damage skill."
+   },
+   {
+    "name": "Transcendent Ward",
+    "desc": "Charge ke lokasi: damage, slow 25%, dan beri shield 4 detik yang meledak di akhir."
+   },
+   {
+    "name": "Consecration",
+    "desc": "Hapus slow, pulihkan 200-400 HP, tambah movement speed 60% 8 detik, dan perkuat regen."
+   }
+  ],
+  "desc": "Tank dengan regen HP terus-menerus yang makin kuat saat diserang."
+ },
+ {
+  "id": "vale",
+  "name": "Vale",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "knockup",
+   "pull",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 1,
+  "traits": "mage angin, knockup, kombo tornado",
+  "skills": [
+   {
+    "name": "Windtalk",
+    "desc": "Pasif: tiap kill atau assist tambah movement speed 8, tumpuk hingga 10 lapis."
+   },
+   {
+    "name": "Wind Blade",
+    "desc": "Lepas dua bilah angin ke kiri-kanan area target dengan magic damage."
+   },
+   {
+    "name": "Windblow",
+    "desc": "Kirim tornado: knockup 1 detik lalu tinggal 1.6 detik dengan damage berkala."
+   },
+   {
+    "name": "Windstorm",
+    "desc": "Panggil badai: tarik musuh ke tengah dan slow 20%, lalu meledak dengan damage besar."
+   }
+  ],
+  "desc": "Mage angin dengan knockup dan tornado penarik untuk kombo area."
+ },
+ {
+  "id": "valentina",
+  "name": "Valentina",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "mage curi ultimate, terrify, adaptif",
+  "skills": [
+   {
+    "name": "Primal Force",
+    "desc": "Pasif: damage ke hero beri EXP ekstra; 30% damage berubah jadi HP jika level musuh tak lebih tinggi."
+   },
+   {
+    "name": "Shadow Strike",
+    "desc": "Tembak bayangan: slow 40% dan tandai musuh; kena lagi dalam 4 detik beri terrify 1 detik."
+   },
+   {
+    "name": "Arcane Shade",
+    "desc": "Dash ke depan sambil tembak 3 baut bayangan; tiap kena kurangi cooldown skill 1."
+   },
+   {
+    "name": "I Am You",
+    "desc": "Slow target 70% lalu curi ultimatenya hingga 12 detik; level ultimate curian setara levelmu."
+   }
+  ],
+  "desc": "Mage pencuri ultimate musuh yang beradaptasi dengan hero apa pun."
+ },
+ {
+  "id": "valir",
+  "name": "Valir",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "mage api, stun tumpukan, zoning firewall",
+  "skills": [
+   {
+    "name": "Ashing",
+    "desc": "Pasif: skill menumpuk Ablaze; 3 tumpukan meledak: damage 6% max HP musuh dan stun 1 detik."
+   },
+   {
+    "name": "Burst Fireball",
+    "desc": "Tembak bola api: meledak dan slow 30%; simpan 2 charge, kena hero langsung isi ulang."
+   },
+   {
+    "name": "Searing Torrent",
+    "desc": "Sembur api: dorong musuh ke ujung jalur; versi diperkuat buat dinding api 4 detik."
+   },
+   {
+    "name": "Vengeance Flame",
+    "desc": "Hapus debuff, panggil 4 api dendam yang perkuat skill berikutnya; tambah movement speed 40%."
+   }
+  ],
+  "desc": "Mage api dengan stun ledakan tumpukan dan firewall penghalang."
+ },
+ {
+  "id": "vexana",
+  "name": "Vexana",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "knockup"
+  ],
+  "mobility": 0,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 1,
+  "traits": "mage summon guardian, kutukan meledak, poke",
+  "skills": [
+   {
+    "name": "Nether Touch",
+    "desc": "Pasif: tandai musuh; musuh bertanda yang mati meledak dan melukai sekitarnya."
+   },
+   {
+    "name": "Deathly Grasp",
+    "desc": "Cakar maut: terrify dan knockback hero pertama, lalu meledak dan terrify musuh sekitar 1 detik."
+   },
+   {
+    "name": "Cursed Blast",
+    "desc": "Tandai area: setelah 0.8 detik hantam dengan magic damage."
+   },
+   {
+    "name": "Eternal Guard",
+    "desc": "Panggil Eternal Guard 15 detik: knockup 0.8 detik dan serang area bersama Vexana."
+   }
+  ],
+  "desc": "Mage pemanggil Eternal Guard raksasa dengan kutukan yang meledak saat musuh mati."
+ },
+ {
+  "id": "wanwan",
+  "name": "Wanwan",
+  "roles": [
+   "Marksman"
+  ],
+  "lane": "gold",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "immobilize",
+   "slow"
+  ],
+  "mobility": 2,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "marksman dash tiap serangan, ulti eksekusi, anti-cc",
+  "skills": [
+   {
+    "name": "Tiger Pace",
+    "desc": "Pasif: tiap basic attack bisa dash pendek; kena titik lemah tambah damage 10%."
+   },
+   {
+    "name": "Swallow's Path",
+    "desc": "Lempar burung api lalu 3 belati kembali: slow 30%; kena 2x beri immobilize 0.5 detik."
+   },
+   {
+    "name": "Needles in Flowers",
+    "desc": "Hapus semua CC dan tembak jarum ke segala arah."
+   },
+   {
+    "name": "Crossbow of Tang",
+    "desc": "Lompat dan hujani panah 2.5 detik; tak terlihat dan kebal; kill memperpanjang durasi."
+   }
+  ],
+  "desc": "Marksman lincah yang dash tiap serangan dan mengeksekusi dengan hujan panah."
+ },
+ {
+  "id": "x_borg",
+  "name": "X.Borg",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "pull",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "fighter armor api, ledakan ulti, poke api",
+  "skills": [
+   {
+    "name": "Firaga Armor",
+    "desc": "Pasif: armor menyerap semua damage; armor hancur: X.Borg menghindar kebal damage lalu isi ulang energi."
+   },
+   {
+    "name": "Fire Missiles",
+    "desc": "Sembur api 7x selama 2 detik ke musuh di depan; versi tanpa armor: area lebih sempit dan jauh."
+   },
+   {
+    "name": "Fire Stake",
+    "desc": "Tembak 5 pasak api lalu tarik kembali: tiap pasak menarik musuh di jalurnya."
+   },
+   {
+    "name": "Last Insanity",
+    "desc": "Charge sambil semprot api dan slow; setelah 3 detik armor meledak dengan damage area besar."
+   }
+  ],
+  "desc": "Fighter berarmor api dengan damage bakar dan ledakan ultimate area."
+ },
+ {
+  "id": "xavier",
+  "name": "Xavier",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "immobilize",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "mage skillshot presisi, scaling transcendence, beam global",
+  "skills": [
+   {
+    "name": "Transcendence",
+    "desc": "Pasif: skill yang kena hero naikkan tahap; tahap 3 perkuat semua skill 5 detik."
+   },
+   {
+    "name": "Infinite Extension",
+    "desc": "Tembak peluru mistik: jarak bertambah tiap kena musuh atau barrier, hingga 5x."
+   },
+   {
+    "name": "Mystic Field",
+    "desc": "Buat barrier 5 detik: slow 50% dan speed untuk rekan; kena skill lain jadi zona immobilize 1.2 detik."
+   },
+   {
+    "name": "Dawning Light",
+    "desc": "Tembak berkas cahaya ke semua musuh di jalurnya; langsung masuk status Transcendence."
+   }
+  ],
+  "desc": "Mage skillshot dengan damage yang makin kuat tiap skill mengenai musuh."
+ },
+ {
+  "id": "yi_sun_shin",
+  "name": "Yi Sun-shin",
+  "roles": [
+   "Assassin",
+   "Marksman"
+  ],
+  "lane": "jungle",
+  "dmg": "physical",
+  "range": "ranged",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "marksman busur-pedang, vision map, tembakan jauh",
+  "skills": [
+   {
+    "name": "Heavenly Vow",
+    "desc": "Pasif: ganti senjata sesuai jarak; tiap ganti senjata 2 serangan berikutnya crit dan tambah speed."
+   },
+   {
+    "name": "Traceless",
+    "desc": "Dash ke depan sambil tebas: kebal CC 1 detik; tiap Weapon Mastery kurangi cooldown 1 detik."
+   },
+   {
+    "name": "Blood Floods",
+    "desc": "Tap: tebas cepat; tahan: tembak panah kuat hingga 200% damage sesuai lama menahan."
+   },
+   {
+    "name": "Mountain Shocker",
+    "desc": "Dapat vision seluruh map 5 detik; kapal kura-kura menabrak: stun 0.8 detik lalu hujan meriam dengan slow."
+   }
+  ],
+  "desc": "Marksman hibrida busur dan pedang dengan tembakan jarak jauh dan vision seluruh map."
+ },
+ {
+  "id": "yin",
+  "name": "Yin",
+  "roles": [
+   "Assassin",
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "fighter duel domain, stun, eksekutor 1v1",
+  "skills": [
+   {
+    "name": "Leave It to Me",
+    "desc": "Pasif: tanpa rekan di dekatmu, damage jadi 120% dan dapat 8% spell vamp."
+   },
+   {
+    "name": "Charged Punch",
+    "desc": "Tambah movement speed 60%; pukulan diperkuat lalu lempar pukulan beruntun ke depan."
+   },
+   {
+    "name": "Frenzy Strike",
+    "desc": "Lieh menghantam area hingga 9x: slow 75% dan kebal CC; kecepatan hantaman makin cepat."
+   },
+   {
+    "name": "Instant Blast",
+    "desc": "Dash ke depan tinggalkan cincin emas; cincin menyusul dan stun musuh 1 detik."
+   },
+   {
+    "name": "My Turn",
+    "desc": "Seret satu musuh ke domain 8 detik: duel terisolasi; Lieh lebih kuat dan tambah defense."
+   }
+  ],
+  "desc": "Fighter yang menyeret satu musuh ke domainnya untuk duel satu lawan satu."
+ },
+ {
+  "id": "yu_zhong",
+  "name": "Yu Zhong",
+  "roles": [
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [
+   "knockup",
+   "slow"
+  ],
+  "mobility": 2,
+  "heal": true,
+  "shield": false,
+  "burst": false,
+  "sustain": true,
+  "difficulty": 2,
+  "traits": "fighter naga, regen sha, transform",
+  "skills": [
+   {
+    "name": "Cursing Touch",
+    "desc": "Pasif: damage menumpuk Sha Residue; 5 tumpukan meledak, pulihkan HP hilang, dan tambah speed."
+   },
+   {
+    "name": "Dragon Tail",
+    "desc": "Jubah jadi senjata: damage area; tepi tajam beri 275% damage dan 2 tumpukan Sha."
+   },
+   {
+    "name": "Soul Grip",
+    "desc": "Lepas jiwa naga ke depan: slow 60% dan perkuat basic attack berikutnya."
+   },
+   {
+    "name": "Furious Dive",
+    "desc": "Lompat ke area dan bisa dash sekali lagi; musuh di area kena knockup 0.8 detik."
+   },
+   {
+    "name": "Black Dragon Form",
+    "desc": "Berubah jadi naga hitam 7 detik: tambah max HP, kebal CC, tembus rintangan, dan dorong musuh."
+   }
+  ],
+  "desc": "Fighter naga dengan regen Sha Residue dan transformasi naga hitam."
+ },
+ {
+  "id": "yve",
+  "name": "Yve",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "immobilize",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 3,
+  "traits": "mage starfield, zoning ulti, slow berlapis",
+  "skills": [
+   {
+    "name": "Galactic Power",
+    "desc": "Pasif: tiap kena hero dengan skill 1/2 dapat tumpukan; tiap tumpukan tambah serangan dan shield ultimate."
+   },
+   {
+    "name": "Void Blast",
+    "desc": "Ledakkan area: magic damage dan tambah movement speed 55% yang meluruh 1 detik."
+   },
+   {
+    "name": "Void Crystal",
+    "desc": "Panggil kristal: tembak energi 2.7 detik dengan slow 30% yang menumpuk hingga 60%."
+   },
+   {
+    "name": "Real World Manipulation",
+    "desc": "Buat medan bintang 15 detik: dapat shield, serang hingga 15x, dan immobilize 0.8 detik musuh keluar-masuk."
+   }
+  ],
+  "desc": "Mage dengan medan bintang raksasa yang mengurung dan menghujani musuh."
+ },
+ {
+  "id": "zetian",
+  "name": "Zetian",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "stun",
+   "slow",
+   "pull"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "mage phoenix, stun global, buff tim",
+  "skills": [
+   {
+    "name": "Celestial Armament",
+    "desc": "Pasif: dapat spell vamp bertumpuk; jubah phoenix otomatis menolak dan stun musuh yang mendekat plus beri shield."
+   },
+   {
+    "name": "Phoenix Strike",
+    "desc": "Lepas gelombang phoenix hingga 3x otomatis; gelombang ketiga area lebih besar dengan efek tarik."
+   },
+   {
+    "name": "Phoenix Descent",
+    "desc": "Panggil roh phoenix 3 detik: slow 50% dan turunkan magic defense; bisa diperintah charge."
+   },
+   {
+    "name": "Fury of the Phoenix",
+    "desc": "Beri 60% movement speed ke semua rekan; hantam semua musuh: damage dan stun 1 detik plus vision."
+   }
+  ],
+  "desc": "Mage phoenix dengan stun ke seluruh musuh dan shield pelindung diri."
+ },
+ {
+  "id": "zhask",
+  "name": "Zhask",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "stun",
+   "slow"
+  ],
+  "mobility": 0,
+  "heal": false,
+  "shield": false,
+  "burst": false,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "mage summoner, spawn alien, push kuat",
+  "skills": [
+   {
+    "name": "Decimation",
+    "desc": "Pasif: saat mati, panggil Nightmaric Spawn liar yang perlahan kehilangan HP."
+   },
+   {
+    "name": "Nightmaric Spawn",
+    "desc": "Panggil spawn alien yang menembak Death Ray otomatis dan slow; bisa dipindah saat fusion."
+   },
+   {
+    "name": "Mind Eater",
+    "desc": "Tembak misil mental: spawn ikut menyerang dan stun 0.5 detik."
+   },
+   {
+    "name": "Hive Clones",
+    "desc": "Lepas 6 klon lebah: meledak saat kontak dan slow 80%; versi fusion: 15 klon."
+   },
+   {
+    "name": "Dominator's Descent",
+    "desc": "Gabung dengan Nightmaric Spawn: spawn mewarisi 100% atribut dan semua skill diperkuat."
+   }
+  ],
+  "desc": "Mage pemanggil Nightmaric Spawn yang menyerang dari jauh sambil push."
+ },
+ {
+  "id": "zhuxin",
+  "name": "Zhuxin",
+  "roles": [
+   "Mage"
+  ],
+  "lane": "mid",
+  "dmg": "magic",
+  "range": "ranged",
+  "cc": [
+   "knockup",
+   "slow"
+  ],
+  "mobility": 1,
+  "heal": false,
+  "shield": true,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 2,
+  "traits": "mage lentera, tumpukan soul snare, lempar musuh",
+  "skills": [
+   {
+    "name": "Crimson Butterflies",
+    "desc": "Pasif: channeling ubah mana jadi kupu-kupu; tiap kupu pulihkan 3% max mana saat berhenti."
+   },
+   {
+    "name": "Fluttering Grace",
+    "desc": "Tebas kipas: damage, tumpuk Soul Snare, slow 20-40% musuh, dan tambah speed sendiri."
+   },
+   {
+    "name": "Lantern Flare",
+    "desc": "Gerakkan lentera beri damage berkala dan tumpuk Soul Snare; 10 tumpukan: tangkap dan lempar musuh (knockup 1 detik)."
+   },
+   {
+    "name": "Crimson Beacon",
+    "desc": "Blink ke lokasi dengan shield 400-700; buat medan 6 detik yang menumpuk Soul Snare."
+   }
+  ],
+  "desc": "Mage lentera yang menumpuk Soul Snare lalu melempar musuh ke udara."
+ },
+ {
+  "id": "zilong",
+  "name": "Zilong",
+  "roles": [
+   "Assassin",
+   "Fighter"
+  ],
+  "lane": "exp",
+  "dmg": "physical",
+  "range": "melee",
+  "cc": [],
+  "mobility": 2,
+  "heal": true,
+  "shield": false,
+  "burst": true,
+  "sustain": false,
+  "difficulty": 1,
+  "traits": "fighter eksekutor, reset skill, kejar cepat",
+  "skills": [
+   {
+    "name": "Dragon Flurry",
+    "desc": "Pasif: tiap 3 serangan picu 3 pukulan beruntun yang pulihkan HP; damage +30% ke musuh di bawah 50% HP."
+   },
+   {
+    "name": "Spear Flip",
+    "desc": "Lempar musuh melewati kepalamu dengan damage."
+   },
+   {
+    "name": "Spear Strike",
+    "desc": "Terjang ke musuh: damage dan turunkan physical defense; cooldown reset tiap kill."
+   },
+   {
+    "name": "Supreme Warrior",
+    "desc": "Hapus slow, tambah movement speed 40%, attack speed, dan kebal slow 7.5 detik."
+   }
+  ],
+  "desc": "Fighter pengejar dengan reset skill tiap kill dan damage bonus ke musuh sekarat."
+ }
+]

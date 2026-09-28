@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>MLBB Coach — Counter Pick 5v5</title>
+<meta name="theme-color" content="#0d1220">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{--bg:#0d1220;--card:#161e32;--line:#2a3555;--txt:#eef2f7;--dim:#93a1b8;
+--acc:#e8b64c;--blue:#4da3ff;--red:#ff5d5d;--grn:#3ecf8e;--pur:#b478ff;}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+height:100dvh;display:flex;flex-direction:column;overflow:hidden;}
+header{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;
+padding:10px 14px;border-bottom:1px solid var(--line);background:#101828;}
+header .ttl{font-weight:800;font-size:15px;letter-spacing:.5px;}
+header .ttl b{color:var(--acc);}
+header .sub{font-size:11px;color:var(--dim);}
+main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
+.tab{display:none;height:100%;flex-direction:column;padding:10px 12px;overflow:hidden;}
+.tab.on{display:flex;}
+.search{flex:0 0 auto;display:flex;gap:8px;margin-bottom:8px;}
+.search input{flex:1;background:#0f1626;border:1px solid var(--line);border-radius:10px;color:var(--txt);
+font-size:14px;padding:10px 12px;outline:none;}
+.chips{flex:0 0 auto;display:flex;gap:6px;overflow-x:auto;margin-bottom:8px;padding-bottom:2px;}
+.chip{flex:0 0 auto;padding:7px 12px;border-radius:20px;border:1px solid var(--line);background:#101827;
+color:var(--dim);font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;}
+.chip.on{background:var(--acc);border-color:var(--acc);color:#1a1206;}
+.grid{flex:1 1 auto;overflow-y:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
+align-content:start;padding-bottom:8px;}
+.hero{cursor:pointer;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:8px 4px;
+display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;}
+.hero:active{transform:scale(.96);}
+.hero.sel{border-color:var(--red);background:#2a1620;}
+.hero.pick{border-color:var(--grn);}
+.avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+font-size:20px;font-weight:800;color:#0d1220;}
+.hero .nm{font-size:11px;font-weight:700;text-align:center;line-height:1.2;}
+.hero .rl{font-size:9px;color:var(--dim);}
+.hero .ord{position:absolute;top:4px;right:6px;background:var(--red);color:#fff;font-size:10px;font-weight:800;
+width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.selbar{flex:0 0 auto;display:flex;align-items:center;gap:6px;margin-top:8px;}
+.selslots{flex:1;display:flex;gap:6px;}
+.slot{flex:1;aspect-ratio:1;border:1px dashed var(--line);border-radius:10px;display:flex;align-items:center;
+justify-content:center;font-size:11px;color:var(--dim);font-weight:800;overflow:hidden;}
+.slot.fill{border-style:solid;border-color:var(--red);color:var(--txt);font-size:9px;text-align:center;padding:2px;}
+.bigbtn{flex:0 0 auto;padding:13px 18px;border-radius:12px;border:none;background:var(--acc);color:#1a1206;
+font-size:14px;font-weight:800;cursor:pointer;}
+.bigbtn:disabled{opacity:.35;}
+#analisisTab{overflow-y:auto;}
+.secT{font-size:13px;font-weight:800;color:var(--acc);margin:12px 0 6px;letter-spacing:.3px;}
+.secT:first-child{margin-top:0;}
+.compchips{display:flex;flex-wrap:wrap;gap:6px;}
+.cchip{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:11px;}
+.cchip b{color:var(--acc);}
+.pickcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:8px;}
+.pickcard .ph{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.pickcard .pn{font-size:14px;font-weight:800;}
+.pickcard .pl{font-size:11px;color:var(--dim);}
+.lanebadge{font-size:10px;font-weight:800;background:var(--blue);color:#06121f;border-radius:6px;padding:3px 8px;}
+.why{font-size:12px;color:var(--grn);margin:4px 0 8px;}
+.build{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px;}
+.item{background:#0f1626;border:1px solid var(--line);border-radius:8px;padding:5px 8px;font-size:11px;}
+.item b{color:var(--txt);}
+.emblemline{font-size:11px;color:var(--dim);}
+.emblemline b{color:var(--pur);}
+.strat{background:#0f1626;border-left:3px solid var(--acc);border-radius:0 8px 8px 0;padding:8px 10px;
+font-size:12px;margin-bottom:6px;line-height:1.5;}
+.empty{text-align:center;color:var(--dim);font-size:13px;margin-top:40px;line-height:1.8;}
+.dlist{flex:1 1 auto;overflow-y:auto;display:flex;flex-direction:column;gap:6px;}
+.drow{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;}
+.drow .t{font-size:13px;font-weight:700;}
+.drow .d{font-size:11px;color:var(--dim);margin-top:2px;}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:flex-end;justify-content:center;z-index:50;}
+#sheet{background:var(--card);border-radius:18px 18px 0 0;max-height:82dvh;width:100%;max-width:520px;
+overflow-y:auto;padding:16px;border-top:1px solid var(--line);}
+#sheet h3{margin:0 0 4px;font-size:16px;}
+#sheet .x{float:right;background:none;border:none;color:var(--dim);font-size:20px;cursor:pointer;}
+.skill{margin:8px 0;padding:8px;background:#0f1626;border-radius:8px;}
+.skill .sn{font-size:12px;font-weight:800;color:var(--blue);}
+.skill .sd{font-size:12px;color:var(--dim);margin-top:2px;line-height:1.5;}
+nav{flex:0 0 auto;display:flex;border-top:1px solid var(--line);background:#101828;
+padding-bottom:env(safe-area-inset-bottom);}
+nav button{flex:1;background:none;border:none;color:var(--dim);font-size:12px;font-weight:700;
+padding:12px 0 10px;cursor:pointer;}
+nav button.on{color:var(--acc);}
+nav button .ic{font-size:18px;display:block;margin-bottom:2px;}
+</style>
+</head>
+<body>
+<header>
+  <div><div class="ttl">⚔️ <b>MLBB</b> COACH</div><div class="sub">Counter-pick & build 5v5</div></div>
+  <div class="sub" id="dataInfo">…</div>
+</header>
+<main>
+  <!-- TAB LAWAN -->
+  <div class="tab on" id="tabLawan">
+    <div class="search"><input id="q" placeholder="🔍 Cari hero musuh…"></div>
+    <div class="chips" id="roleChips"></div>
+    <div class="grid" id="heroGrid"></div>
+    <div class="selbar">
+      <div class="selslots" id="selSlots"></div>
+      <button class="bigbtn" id="btnAnalyze" disabled>Analisis →</button>
+    </div>
+  </div>
+  <!-- TAB ANALISIS -->
+  <div class="tab" id="tabAnalisis"><div id="analisisTab"></div></div>
+  <!-- TAB DATA -->
+  <div class="tab" id="tabData">
+    <div class="search"><input id="qd" placeholder="🔍 Cari hero / item / emblem…"></div>
+    <div class="chips" id="dataChips"></div>
+    <div class="dlist" id="dataList"></div>
+  </div>
+</main>
+<nav>
+  <button class="on" data-t="tabLawan"><span class="ic">🎯</span>Lawan</button>
+  <button data-t="tabAnalisis"><span class="ic">🧠</span>Analisis</button>
+  <button data-t="tabData"><span class="ic">📚</span>Data</button>
+</nav>
+<div id="modal"><div id="sheet"></div></div>
+<script>
+"use strict";
+/* ================= DATA ================= */
+let HEROES=[],ITEMS=[],EMBLEMS=[];
+const ROLE_COLOR={Tank:'#4da3ff',Fighter:'#ff9f43',Assassin:'#b478ff',Mage:'#4dd8ff',Marksman:'#ff5d5d',Support:'#3ecf8e'};
+const avatarColor=h=>ROLE_COLOR[(h.roles||['Fighter'])[0]]||'#888';
+async function loadData(){
+  const [h,i,e]=await Promise.all([
+    fetch('data/heroes.json').then(r=>r.json()),
+    fetch('data/items.json').then(r=>r.json()),
+    fetch('data/emblems.json').then(r=>r.json())
+  ]);
+  HEROES=h;ITEMS=i;EMBLEMS=e;
+  document.getElementById('dataInfo').textContent=`${h.length} hero · ${i.length} item`;
+  buildRoleChips();renderGrid();renderSel();buildDataChips();renderDataList();
+}
+/*ENGINE-START*/
+const HARD_CC=['stun','suppression','knockup','taunt','pull','immobilize'];
+const byId=(l,id)=>l.find(x=>x.id===id);
+const byName=(l,nm)=>l.find(x=>x.name.toLowerCase()===nm.toLowerCase());
+const FINISHED=items=>items.filter(i=>!/komponen|removed/i.test((i.desc||'')+' '+(i.name||'')));
+
+function analyzeEnemy(team){
+  const a={n:team.length,physical:0,magic:0,hardCC:0,softCC:0,heal:[],shield:[],
+    mob:0,dive:0,tanky:0,ranged:0,burst:0,early:0,late:0,names:team.map(h=>h.name)};
+  team.forEach(h=>{
+    if(h.dmg==='physical')a.physical++;else if(h.dmg==='magic')a.magic++;
+    (h.cc||[]).forEach(c=>{HARD_CC.includes(c)?a.hardCC++:a.softCC++;});
+    if(h.heal)a.heal.push(h.name); if(h.shield)a.shield.push(h.name);
+    a.mob+=h.mobility||0;
+    if((h.roles||[]).includes('Assassin')){a.dive++;a.early+=2;}
+    if((h.roles||[]).includes('Tank'))a.tanky++;
+    if(h.range==='ranged')a.ranged++;
+    if(h.burst){a.burst++;a.early++;}
+    if((h.roles||[]).includes('Marksman'))a.late+=2;
+    if(h.sustain)a.late++;
+  });
+  a.mob=+(a.mob/Math.max(1,a.n)).toFixed(2);
+  a.spike=a.early>a.late+2?'early':(a.late>a.early+2?'late':'mid');
+  return a;
+}
+
+const SLOTS=[
+  {lane:'roam',label:'Roam',roles:['Tank','Support']},
+  {lane:'exp',label:'EXP Lane',roles:['Fighter','Tank']},
+  {lane:'mid',label:'Mid Lane',roles:['Mage']},
+  {lane:'jungle',label:'Jungle',roles:['Assassin','Fighter','Tank']},
+  {lane:'gold',label:'Gold Lane',roles:['Marksman']},
+];
+
+function scoreHero(h,slot,an,usedIds,enemyIds,teamSoFar){
+  if(enemyIds.includes(h.id)||usedIds.includes(h.id))return{s:-1e9,why:[]};
+  if(!h.roles.some(r=>slot.roles.includes(r)))return{s:-1e9,why:[]};
+  let s=10;const why=[];
+  const hard=(h.cc||[]).filter(c=>HARD_CC.includes(c));
+  if(an.dive>=2&&slot.lane==='roam'&&hard.length){s+=5;why.push('CC keras untuk peel dari assassin musuh');}
+  if(an.dive>=2&&slot.lane==='roam'&&h.roles[0]==='Tank'){s+=4;why.push('tank murni untuk badan & peel');}
+  if(an.mob>=1.2&&hard.length){s+=3;why.push('CC keras mengunci hero lincah musuh');}
+  if(an.tanky>=2&&h.burst){s+=3;why.push('burst damage menembus hero tebal');}
+  if(an.tanky===0&&h.mobility===2&&(h.roles||[]).includes('Assassin')){s+=3;why.push('mudah dive ke backline tipis');}
+  if(an.ranged>=3&&h.mobility===2){s+=2;why.push('bisa menjangkau hero jarak jauh');}
+  if(an.burst>=3&&((h.roles||[]).includes('Tank'))){s+=2;why.push('badan tebal menahan burst');}
+  const phys=teamSoFar.filter(x=>x.dmg==='physical').length;
+  const mag=teamSoFar.filter(x=>x.dmg==='magic').length;
+  if(h.dmg==='magic'&&phys>=mag+1){s+=2;why.push('menyeimbangkan damage tim');}
+  if(h.dmg==='physical'&&mag>=phys+1){s+=2;why.push('menyeimbangkan damage tim');}
+  s-=(h.difficulty||2)*0.6;
+  if(slot.lane==='gold'&&an.dive>=2&&h.mobility===0)s-=2;
+  if(slot.lane==='jungle'){ // jungle butuh damage dealer
+    if(['Assassin','Fighter'].includes(h.roles[0]))s+=3;else s-=3;
+  }
+  // komposisi tim: jangan kebanyakan tank, pastikan ada damage dealer
+  const tanksSoFar=teamSoFar.filter(x=>x.roles[0]==='Tank').length;
+  if(h.roles[0]==='Tank'&&tanksSoFar>=2)s-=5;
+  const carriesSoFar=teamSoFar.filter(x=>['Assassin','Marksman','Mage'].some(r=>(x.roles||[]).includes(r))).length;
+  if(['Assassin','Marksman','Mage'].some(r=>(h.roles||[]).includes(r))&&carriesSoFar<2){s+=2;why.push('menambah damage dealer tim');}
+  return{s,why};
+}
+
+function buildFor(hero,an,ITEMS){
+  const pool=FINISHED(ITEMS);
+  const ids=new Set(),build=[];
+  const add=it=>{if(it&&!ids.has(it.id)&&build.length<6){ids.add(it.id);build.push(it);}};
+  const addName=nm=>add(byName(pool,nm));
+  const isTank=['Tank','Support'].includes((hero.roles||['Fighter'])[0]);
+  // 1. boots
+  let boot='Warrior Boots';
+  if(an.hardCC>=3)boot='Tough Boots';
+  else if(hero.dmg==='magic')boot='Arcane Boots';
+  else if((hero.roles||[]).includes('Marksman'))boot='Swift Boots';
+  if(!byName(pool,boot))boot='Warrior Boots';
+  addName(boot);
+  // 2. core (2)
+  const coreWants=
+    isTank?['Dominance Ice',"Athena's Shield",'Antique Cuirass','Immortality']:
+    hero.dmg==='magic'?['Lightning Truncheon','Holy Crystal','Divine Glaive','Blood Wings']:
+    (hero.roles||[]).includes('Marksman')?['Blade of Despair',"Berserker's Fury",'Malefic Roar',"Haas's Claws"]:
+    (hero.roles||[]).includes('Assassin')?['Blade of Despair','Hunter Strike','Malefic Roar','Blade of Heptaseas']:
+    ['Bloodlust Axe','Hunter Strike','War Axe',"Queen's Wings",'Blade of Despair'];
+  coreWants.slice(0,2).forEach(addName);
+  // 3. counter items (maks 2)
+  const counters=[];
+  if(an.heal.length||an.shield.length){
+    if(isTank)counters.push('Dominance Ice');
+    else if(hero.dmg==='magic')counters.push('Necklace of Durance');
+    else counters.push('Sea Halberd');
+  }
+  if(an.magic>=3&&!isTank)counters.push("Athena's Shield");
+  if(an.magic>=3&&isTank)counters.push('Radiant Armor');
+  if(an.physical>=3&&an.burst>=2)counters.push('Antique Cuirass');
+  if(an.ranged>=2&&(hero.roles||[]).includes('Marksman'))counters.push('Wind of Nature');
+  counters.slice(0,2).forEach(addName);
+  // 4. tambah core lagi
+  coreWants.slice(2).forEach(nm=>{if(build.length<6)addName(nm);});
+  // 5. fallback: isi berdasar stat & harga
+  if(build.length<6){
+    const kw=isTank?'HP|Physical Defense|Magic Defense':hero.dmg==='magic'?'Magic Power':'Physical Attack';
+    pool.filter(i=>new RegExp(kw,'i').test((i.stats||''))&&!ids.has(i.id)&&i.cat!=='movement')
+      .sort((a,b)=>b.price-a.price)
+      .forEach(i=>{if(build.length<6)add(i);});
+  }
+  return build.slice(0,6);
+}
+
+const EMBLEM_MAP={Assassin:'assassin',Marksman:'marksman',Mage:'mage',Tank:'tank',Support:'support',Fighter:'fighter'};
+function emblemFor(hero,EMBLEMS,lane){
+  let role=hero.roles[0];
+  if(lane==='roam')role=(hero.roles||[]).includes('Tank')?'Tank':'Support';
+  return EMBLEMS.find(e=>e.id===EMBLEM_MAP[role])||EMBLEMS[0];
+}
+
+function makeStrategy(an){
+  const s=[];
+  if(an.physical>an.magic+1)s.push(`Musuh condong Physical (${an.physical} vs ${an.magic} magic) — dahulukan Physical Defense: Antique Cuirass / Blade Armor / Dominance Ice.`);
+  else if(an.magic>an.physical+1)s.push(`Musuh condong Magic (${an.magic} vs ${an.physical} physical) — wajib Magic Defense: Athena's Shield / Radiant Armor.`);
+  else s.push('Damage musuh seimbang fisik & magic — bagi item defense di tim.');
+  if(an.hardCC>=3)s.push(`CC musuh berat (${an.hardCC} CC keras) — beli Tough Boots sejak early, jangan bergerombol saat war.`);
+  if(an.heal.length)s.push(`Musuh punya heal (${an.heal.join(', ')}) — WAJIB anti-heal: Sea Halberd / Necklace of Durance / Dominance Ice.`);
+  if(an.shield.length)s.push(`Musuh punya shield (${an.shield.join(', ')}) — siapkan penetration: Divine Glaive / Malefic Roar.`);
+  if(an.dive>=2)s.push('Assassin musuh banyak — marksman & mage jangan jalan sendiri, roam harus tempel core.');
+  if(an.mob>=1.3)s.push('Musuh sangat lincah — simpan CC single-target untuk mereka, jaga vision jungle.');
+  if(an.spike==='early')s.push('Musuh kuat EARLY — main aman, jangan paksa war sebelum item jadi; amankan Turtle pakai vision.');
+  else if(an.spike==='late')s.push('Musuh kuat LATE — percepat tempo! Akhiri sebelum menit 15, curi objective terus.');
+  else s.push('Power spike seimbang — menangkan lane phase, lalu paksa objective (Turtle/Lord).');
+  if(an.tanky>=2)s.push('Musuh banyak hero tebal — fokus satu target, andalkan burst & penetration.');
+  return s;
+}
+
+function recommendTeam(enemyIds,HEROES,ITEMS,EMBLEMS){
+  const team=enemyIds.map(id=>byId(HEROES,id)).filter(Boolean);
+  const an=analyzeEnemy(team);
+  const used=[],picks=[];
+  SLOTS.forEach(slot=>{
+    let best=null;
+    HEROES.forEach(h=>{
+      const r=scoreHero(h,slot,an,used,enemyIds,picks.map(p=>p.hero));
+      if(!best||r.s>best.r.s)best={h,r};
+    });
+    if(best&&best.r.s>-1e8){
+      used.push(best.h.id);
+      picks.push({slot:slot.label,lane:slot.lane,hero:best.h,reason:best.r.why.slice(0,2)});
+    }
+  });
+  picks.forEach(p=>{
+    p.build=buildFor(p.hero,an,ITEMS);
+    const em=emblemFor(p.hero,EMBLEMS,p.lane);
+    p.emblem=em.name;p.talents=em.talents;
+  });
+  return{enemy:team,an,picks,strategy:makeStrategy(an)};
+}
+/*ENGINE-END*/
+</script>
+<script>
+"use strict";
+/* ================= UI ================= */
+let enemySel=[], roleFilter='Semua', dataCat='Hero';
+const $=id=>document.getElementById(id);
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');$(b.dataset.t).classList.add('on');
+});
+function goTab(id){document.querySelector(`nav button[data-t="${id}"]`).click();}
+
+function buildRoleChips(){
+  const roles=['Semua','Tank','Fighter','Assassin','Mage','Marksman','Support'];
+  $('roleChips').innerHTML='';
+  roles.forEach(r=>{
+    const c=document.createElement('button');
+    c.className='chip'+(r===roleFilter?' on':'');
+    c.textContent=r;
+    c.onclick=()=>{roleFilter=r;buildRoleChips();renderGrid();};
+    $('roleChips').appendChild(c);
+  });
+}
+function renderGrid(){
+  const q=$('q').value.toLowerCase();
+  const g=$('heroGrid');g.innerHTML='';
+  HEROES.filter(h=>
+    (roleFilter==='Semua'||h.roles.includes(roleFilter))&&
+    h.name.toLowerCase().includes(q)
+  ).forEach(h=>{
+    const d=document.createElement('div');
+    d.className='hero'+(enemySel.includes(h.id)?' sel':'');
+    d.innerHTML=`<div class="avatar" style="background:${avatarColor(h)}">${h.name[0]}</div>
+      <div class="nm">${h.name}</div><div class="rl">${h.roles.join('/')}</div>`+
+      (enemySel.includes(h.id)?`<div class="ord">${enemySel.indexOf(h.id)+1}</div>`:'');
+    d.onclick=()=>toggleHero(h.id);
+    g.appendChild(d);
+  });
+}
+$('q').oninput=renderGrid;
+function toggleHero(id){
+  if(enemySel.includes(id))enemySel=enemySel.filter(x=>x!==id);
+  else if(enemySel.length<5)enemySel.push(id);
+  renderGrid();renderSel();
+}
+function renderSel(){
+  const w=$('selSlots');w.innerHTML='';
+  for(let i=0;i<5;i++){
+    const d=document.createElement('div');
+    d.className='slot'+(enemySel[i]?' fill':'');
+    d.textContent=enemySel[i]?byId(HEROES,enemySel[i]).name:(i+1);
+    w.appendChild(d);
+  }
+  $('btnAnalyze').disabled=enemySel.length!==5;
+}
+$('btnAnalyze').onclick=()=>{renderAnalysis();goTab('tabAnalisis');};
+
+function renderAnalysis(){
+  const box=$('analisisTab');
+  if(enemySel.length!==5){box.innerHTML='<div class="empty">Pilih 5 hero musuh dulu di tab 🎯 Lawan.</div>';return;}
+  const R=recommendTeam(enemySel,HEROES,ITEMS,EMBLEMS);
+  const an=R.an;
+  let h=`<div class="secT">🔍 KOMPOSISI MUSUH</div><div class="compchips">`;
+  h+=`<div class="cchip">⚔️ <b>${an.physical}</b> Physical / <b>${an.magic}</b> Magic</div>`;
+  h+=`<div class="cchip">🌀 <b>${an.hardCC}</b> CC keras</div>`;
+  if(an.heal.length)h+=`<div class="cchip">💚 Heal: <b>${an.heal.join(', ')}</b></div>`;
+  if(an.dive)h+=`<div class="cchip">🗡️ <b>${an.dive}</b> Assassin</div>`;
+  if(an.tanky)h+=`<div class="cchip">🛡️ <b>${an.tanky}</b> Tank</div>`;
+  h+=`<div class="cchip">📈 Spike: <b>${an.spike.toUpperCase()}</b></div></div>`;
+  h+=`<div class="compchips" style="margin-top:6px">${R.enemy.map(x=>`<div class="cchip">${x.name}</div>`).join('')}</div>`;
+  h+=`<div class="secT">✅ REKOMENDASI TIM COUNTER</div>`;
+  R.picks.forEach(p=>{
+    h+=`<div class="pickcard"><div class="ph">
+      <div class="avatar" style="background:${avatarColor(p.hero)};width:38px;height:38px;font-size:17px">${p.hero.name[0]}</div>
+      <div><div class="pn">${p.hero.name}</div><div class="pl">${p.hero.roles.join('/')} · ${p.hero.traits||''}</div></div>
+      <div style="flex:1"></div><div class="lanebadge">${p.slot}</div></div>`;
+    if(p.reason.length)h+=`<div class="why">💡 ${p.reason.join(' · ')}</div>`;
+    h+=`<div class="build">${p.build.map(it=>`<div class="item"><b>${it.name}</b><br><span style="color:var(--dim)">${(it.stats||'').split(',')[0]}</span></div>`).join('')}</div>`;
+    h+=`<div class="emblemline">🔮 Emblem: <b>${p.emblem}</b> — ${p.talents.slice(0,2).join(' · ')}</div></div>`;
+  });
+  h+=`<div class="secT">📋 STRATEGI MAIN</div>`;
+  R.strategy.forEach(s=>{h+=`<div class="strat">${s}</div>`;});
+  box.innerHTML=h;
+}
+
+/* ---- tab data ---- */
+function buildDataChips(){
+  $('dataChips').innerHTML='';
+  ['Hero','Item','Emblem'].forEach(c=>{
+    const b=document.createElement('button');
+    b.className='chip'+(c===dataCat?' on':'');
+    b.textContent=c;
+    b.onclick=()=>{dataCat=c;buildDataChips();renderDataList();};
+    $('dataChips').appendChild(b);
+  });
+}
+$('qd').oninput=renderDataList;
+function renderDataList(){
+  const q=$('qd').value.toLowerCase(),L=$('dataList');L.innerHTML='';
+  if(dataCat==='Hero'){
+    HEROES.filter(h=>h.name.toLowerCase().includes(q)).forEach(h=>{
+      const d=document.createElement('div');d.className='drow';
+      d.innerHTML=`<div class="t">${h.name}</div><div class="d">${h.roles.join('/')} · ${h.lane} · ${h.dmg} · ${h.traits||''}</div>`;
+      d.onclick=()=>showHero(h);L.appendChild(d);
+    });
+  }else if(dataCat==='Item'){
+    ITEMS.filter(i=>i.name.toLowerCase().includes(q)).forEach(i=>{
+      const d=document.createElement('div');d.className='drow';
+      d.innerHTML=`<div class="t">${i.name} <span style="color:var(--dim);font-weight:400">· ${i.price}g</span></div><div class="d">${i.stats||''}</div>`;
+      d.onclick=()=>showItem(i);L.appendChild(d);
+    });
+  }else{
+    EMBLEMS.forEach(e=>{
+      const d=document.createElement('div');d.className='drow';
+      d.innerHTML=`<div class="t">${e.name}</div><div class="d">${e.desc||''}</div>`;
+      d.onclick=()=>showEmblem(e);L.appendChild(d);
+    });
+  }
+}
+function openSheet(html){$('sheet').innerHTML=`<button class="x" onclick="document.getElementById('modal').style.display='none'">✕</button>`+html;$('modal').style.display='flex';}
+$('modal').addEventListener('click',e=>{if(e.target.id==='modal')e.target.style.display='none';});
+function showHero(h){
+  openSheet(`<h3>${h.name}</h3><div style="font-size:12px;color:var(--dim)">${h.roles.join('/')} · Lane ${h.lane} · ${h.dmg} · ${h.range}</div>
+  <div style="font-size:12px;margin:6px 0">${h.traits||''}</div>
+  ${(h.skills||[]).map(s=>`<div class="skill"><div class="sn">${s.name}</div><div class="sd">${s.desc||''}</div></div>`).join('')}`);
+}
+function showItem(i){
+  openSheet(`<h3>${i.name}</h3><div style="font-size:12px;color:var(--dim)">${i.cat} · ${i.price} gold</div>
+  <div class="skill"><div class="sn">Stats</div><div class="sd">${i.stats||'-'}</div></div>
+  <div class="skill"><div class="sn">Pasif</div><div class="sd">${i.passive||'-'}</div></div>
+  <div style="font-size:12px;color:var(--dim)">${i.desc||''}</div>`);
+}
+function showEmblem(e){
+  openSheet(`<h3>Emblem ${e.name}</h3><div style="font-size:12px;color:var(--dim);margin-bottom:6px">${e.desc||''}</div>
+  ${(e.talents||[]).map(t=>`<div class="skill"><div class="sd">${t}</div></div>`).join('')}`);
+}
+/* ================= INIT ================= */
+loadData();
+</script>
+</body>
+</html>
