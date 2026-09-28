@@ -388,13 +388,79 @@ const GLOBAL_POOLS={
   Tank:['dominance_ice','antique_cuirass','athenas_shield','radiant_armor','immortality','guardian_helmet','cursed_helmet','thunder_belt','twilight_armor','blade_armor'],
   Support:['fleeting_time','enchanted_talisman','flask_of_the_oasis','dominance_ice','athenas_shield','necklace_of_durance','immortality','glowing_wand']
 };
-function buildGlobal(h,ITEMS){
-  const pool=(GLOBAL_POOLS[h.roles[0]]||GLOBAL_POOLS.Fighter)
-    .map(id=>ITEMS.find(x=>x.id===id)).filter(Boolean);
+/* ---- build global 1 hero: dari logika skill/pasif + mode main ---- */
+const WANT_KEYS=[
+  ['spellvamp',/spell vamp|lifesteal/i],
+  ['attackspeed',/attack speed|kecepatan serangan/i],
+  ['crit',/crit/i],
+  ['cdr',/cooldown/i],
+  ['basicatk',/basic attack|serangan dasar/i],
+  ['shield',/shield|perisai/i],
+  ['heal',/heal|menyembuhkan|memulihkan|regen/i],
+  ['truedmg',/true damage/i],
+  ['hpscale',/max hp|% hp|% max/i],
+  ['mana',/mana/i],
+  ['penetration',/penetration/i],
+  ['defense',/physical defense|magic defense/i]
+];
+const WANT_LABEL={spellvamp:'spell vamp',attackspeed:'attack speed',crit:'crit',cdr:'cooldown',basicatk:'basic attack',shield:'shield',heal:'heal',truedmg:'true damage',hpscale:'damage %HP',mana:'mana',penetration:'penetrasi',defense:'defense',physical:'physical attack',magic:'magic power'};
+function kitWants(h){
+  const txt=((h.skills||[]).map(s=>(s.name||'')+' '+(s.desc||'')).join(' ')+' '+(h.traits||''));
+  const w={};
+  WANT_KEYS.forEach(([k,rx])=>{if(rx.test(txt))w[k]=(w[k]||0)+2;});
+  const base={Marksman:{attackspeed:1,crit:1},Mage:{cdr:1,mana:1},Assassin:{cdr:1,penetration:1},
+    Fighter:{cdr:1,spellvamp:1},Tank:{cdr:1,defense:1},Support:{cdr:1,heal:1,mana:1}}[h.roles[0]]||{};
+  Object.entries(base).forEach(([k,v])=>{w[k]=(w[k]||0)+v;});
+  if(h.dmg==='physical')w.physical=(w.physical||0)+1;
+  if(h.dmg==='magic')w.magic=(w.magic||0)+1;
+  return w;
+}
+function synergyScore(it,w){
+  const txt=(it.name+' '+it.stats+' '+it.passive+' '+it.desc).toLowerCase();
+  let s=0;const hit=[];
+  WANT_KEYS.forEach(([k,rx])=>{if(w[k]&&rx.test(txt)){s+=w[k];hit.push(k);}});
+  if(w.physical&&/physical attack/.test(txt)){s+=w.physical;hit.push('physical');}
+  if(w.magic&&/magic power/.test(txt)){s+=w.magic;hit.push('magic');}
+  return{s,hit};
+}
+function skillForWant(h,key){
+  const f=WANT_KEYS.find(k=>k[0]===key),rx=f?f[1]:null;
+  if(!rx)return null;
+  const s=(h.skills||[]).find(s=>rx.test((s.name||'')+' '+(s.desc||'')));
+  return s?s.name:null;
+}
+const MODE_POOLS={roam:'Tank',exp:'Fighter',jungle:'Assassin',mid:'Mage',gold:'Marksman'};
+const MODE_LABEL={roam:'Roam',exp:'EXP',jungle:'Jungle',mid:'Mid',gold:'Gold'};
+const MODE_BIAS={roam:{defense:3},exp:{spellvamp:1},jungle:{penetration:1,cdr:1},mid:{penetration:1,mana:1},gold:{attackspeed:1,crit:1}};
+function heroModes(h){
+  const r=h.roles[0];
+  if(r==='Tank')return['roam','exp'];
+  if(r==='Fighter')return['exp','jungle','roam'];
+  if(r==='Assassin')return['jungle','exp'];
+  if(r==='Marksman')return['gold','jungle'];
+  if(r==='Mage')return['mid','roam'];
+  if(r==='Support')return['roam','mid'];
+  return['exp'];
+}
+function buildGlobal(h,mode,ITEMS){
+  const w=kitWants(h);
+  Object.entries(MODE_BIAS[mode]||{}).forEach(([k,v])=>{w[k]=(w[k]||0)+v;});
+  const candIds=[...(GLOBAL_POOLS[h.roles[0]]||[]),...(GLOBAL_POOLS[MODE_POOLS[mode]]||[])];
+  const seen=new Set(),cands=[];
+  candIds.forEach(id=>{const it=ITEMS.find(x=>x.id===id);if(it&&!seen.has(id)){seen.add(id);cands.push(it);}});
+  const scored=cands.map(it=>({it,...synergyScore(it,w)})).sort((a,b)=>b.s-a.s);
   const boot=bootFor(h,null,ITEMS);
   const build=boot?[boot]:[];
-  pool.forEach(it=>{if(build.length<6&&!build.includes(it))build.push(it);});
-  return{build,alt:pool.filter(it=>!build.includes(it)).slice(0,3)};
+  scored.forEach(o=>{if(build.length<6&&!build.includes(o.it))build.push(o.it);});
+  const reasons={};
+  build.forEach(it=>{
+    if(it===boot){reasons[it.id]='sepatu standar '+h.roles[0]+(mode==='roam'?' — pilih blessing: Conceal/Dire Hit/Encourage/Favor':'');return;}
+    const o=scored.find(x=>x.it===it);
+    const parts=(o?o.hit:[]).map(k=>WANT_LABEL[k]+(skillForWant(h,k)?` (skill "${skillForWant(h,k)}")`:''));
+    reasons[it.id]=parts.length?('sinergi: '+[...new Set(parts)].slice(0,2).join(', ')):'item core '+h.roles[0];
+  });
+  return{build,alt:scored.filter(o=>!build.includes(o.it)).slice(0,3).map(o=>o.it),reasons,
+    wants:Object.keys(w).map(k=>WANT_LABEL[k]||k)};
 }
 /*ENGINE-END*/
 </script>
@@ -610,14 +676,14 @@ function showEmblem(e){
   ${(e.talents||[]).map(t=>`<div class="skill"><div class="sd">${t}</div></div>`).join('')}`);
 }
 /* ================= RACIK ================= */
-let racikId=null;
+let racikId=null,racikMode=null;
 function renderRacikGrid(){
   const g=$('racikGrid'),q=($('racikQ').value||'').toLowerCase();g.innerHTML='';
   HEROES.filter(h=>h.name.toLowerCase().includes(q)).forEach(h=>{
     const d=document.createElement('div');
     d.className='hero'+(racikId===h.id?' sel':'');
     d.innerHTML=heroImg(h,44)+`<div class="nm">${h.name}</div><div class="rl">${h.roles.join('/')}</div>`;
-    d.onclick=()=>{racikId=h.id;renderRacikGrid();renderRacik();};
+    d.onclick=()=>{racikId=h.id;racikMode=heroModes(h)[0];renderRacikGrid();renderRacik();};
     g.appendChild(d);
   });
 }
@@ -625,13 +691,20 @@ $('racikQ').addEventListener('input',renderRacikGrid);
 function renderRacik(){
   const box=$('racikResult'),h=byId(HEROES,racikId);
   if(!h){box.innerHTML='';return;}
-  const G=buildGlobal(h,ITEMS),em=emblemFor(h,EMBLEMS,h.lane),mi=microTips(h);
+  const modes=heroModes(h);
+  if(!modes.includes(racikMode))racikMode=modes[0];
+  const G=buildGlobal(h,racikMode,ITEMS),em=emblemFor(h,EMBLEMS,racikMode==='roam'?'roam':h.lane),mi=microTips(h);
+  const itemRow=it=>`<div class="skill"><div style="display:flex;gap:8px;align-items:center">`+
+    `<img src="img/items/${it.id}.webp" loading="lazy" style="width:34px;height:34px;border-radius:8px;object-fit:cover;background:#0f1626" onerror="this.remove()">`+
+    `<div class="sn">${it.name}</div></div><div class="sd">💡 ${G.reasons[it.id]||''}</div></div>`;
   box.innerHTML=`<div class="pickcard" style="margin-top:8px">
     <div class="ph">${heroImg(h,52)}
       <div><div class="pn" style="font-size:16px">${h.name}</div>
-      <div class="pl">${h.roles.join('/')} · Lane ${h.lane} · ${h.dmg} · ${h.range}</div></div></div>
-    <div class="secT">🛠️ BUILD GLOBAL</div>
-    <div class="build">${G.build.map(itemChip).join('')}</div>
+      <div class="pl">${h.roles.join('/')} · ${h.dmg} · ${h.range}</div></div></div>
+    <div class="chips" style="margin:6px 0">${modes.map(m=>`<button class="chip${m===racikMode?' on':''}" onclick="racikMode='${m}';renderRacik()">${MODE_LABEL[m]}</button>`).join('')}</div>
+    <div style="font-size:11px;color:var(--dim);margin-bottom:4px">🧬 Kit hero ini butuh: <b style="color:var(--txt)">${G.wants.slice(0,4).join(', ')}</b></div>
+    <div class="secT">🛠️ BUILD ${MODE_LABEL[racikMode].toUpperCase()}</div>
+    ${G.build.map(itemRow).join('')}
     ${G.alt.length?`<div class="secT">🔄 ALTERNATIF SITUASIONAL</div><div class="build">${G.alt.map(itemChip).join('')}</div>`:''}
     <div class="emblemline" style="margin-top:6px">${emblemImg(em.name,22)} Emblem: <b>${em.name}</b> — ${em.talents.join(' · ')}</div>
     <div style="font-size:12px;margin:6px 0">🎮 <b>Mikro:</b> <span style="color:var(--dim)">${mi.join(' ')}</span></div>
