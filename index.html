@@ -150,18 +150,19 @@ nav button .ic{font-size:18px;display:block;margin-bottom:2px;}
 <script>
 "use strict";
 /* ================= DATA ================= */
-let HEROES=[],ITEMS=[],EMBLEMS=[],TALENTS=null;
+let HEROES=[],ITEMS=[],EMBLEMS=[],TALENTS=null,FLEX={};
 const ROLE_COLOR={Tank:'#4da3ff',Fighter:'#ff9f43',Assassin:'#b478ff',Mage:'#4dd8ff',Marksman:'#ff5d5d',Support:'#3ecf8e'};
 const avatarColor=h=>ROLE_COLOR[(h.roles||['Fighter'])[0]]||'#888';
 const talentLine=tp=>(tp||[]).map(t=>`<div class="tl">🎯 <b>T${t.tier}: ${t.name}</b> <span class="dim">— ${t.why}</span></div>`).join('');
 async function loadData(){
-  const [h,i,e,t]=await Promise.all([
+  const [h,i,e,t,fx]=await Promise.all([
     fetch('data/heroes.json').then(r=>r.json()),
     fetch('data/items.json').then(r=>r.json()),
     fetch('data/emblems.json').then(r=>r.json()),
-    fetch('data/emblem_talents.json').then(r=>r.json()).catch(()=>null)
+    fetch('data/emblem_talents.json').then(r=>r.json()).catch(()=>null),
+    fetch('data/flex_picks.json').then(r=>r.json()).catch(()=>({}))
   ]);
-  HEROES=h;ITEMS=i;EMBLEMS=e;TALENTS=t;
+  HEROES=h;ITEMS=i;EMBLEMS=e;TALENTS=t;FLEX=fx;
   document.getElementById('dataInfo').textContent=`${h.length} hero · ${i.length} item`;
   buildRoleChips();renderGrid();renderDraft();buildDataChips();renderDataList();renderRacikGrid();
 }
@@ -172,10 +173,11 @@ const byName=(l,nm)=>l.find(x=>x.name.toLowerCase()===nm.toLowerCase());
 const FINISHED=items=>items.filter(i=>!/komponen|removed/i.test((i.desc||'')+' '+(i.name||'')));
 
 function analyzeEnemy(team){
-  const a={n:team.length,physical:0,magic:0,hardCC:0,softCC:0,heal:[],shield:[],
+  const a={n:team.length,physical:0,magic:0,hardCC:0,softCC:0,heal:[],shield:[],mm:0,
     mob:0,dive:0,tanky:0,ranged:0,burst:0,early:0,late:0,names:team.map(h=>h.name)};
   team.forEach(h=>{
     if(h.dmg==='physical')a.physical++;else if(h.dmg==='magic')a.magic++;
+    if((h.roles||[]).includes('Marksman'))a.mm++;
     (h.cc||[]).forEach(c=>{HARD_CC.includes(c)?a.hardCC++:a.softCC++;});
     if(h.heal)a.heal.push(h.name); if(h.shield)a.shield.push(h.name);
     a.mob+=h.mobility||0;
@@ -198,11 +200,20 @@ const SLOTS=[
   {lane:'jungle',label:'Jungle',roles:['Assassin','Fighter','Tank']},
   {lane:'gold',label:'Gold Lane',roles:['Marksman']},
 ];
+/* flex meta komunitas (data/flex_picks.json): 'role' = role standar, 'flex' = off-role viable */
+const slotRoles=lane=>(SLOTS.find(s=>s.lane===lane)||{roles:[]}).roles;
+function flexKind(h,lane){
+  if((h.roles||[]).some(r=>slotRoles(lane).includes(r)))return'role';
+  if(((((typeof FLEX!=='undefined'&&FLEX)||{})[h.id]||{}).lanes||[]).includes(lane))return'flex';
+  return null;
+}
 
 function scoreHero(h,slot,an,usedIds,enemyIds,teamSoFar){
   if(enemyIds.includes(h.id)||usedIds.includes(h.id))return{s:-1e9,why:[]};
-  if(!h.roles.some(r=>slot.roles.includes(r)))return{s:-1e9,why:[]};
+  const fk=flexKind(h,slot.lane);
+  if(!fk)return{s:-1e9,why:[]};
   let s=10;const why=[];
+  if(fk==='flex'){s+=3;why.push('🔀 flex meta: '+(((typeof FLEX!=='undefined'&&FLEX)||{})[h.id]||{}).note||'viable off-role');}
   const hard=(h.cc||[]).filter(c=>HARD_CC.includes(c));
   if(an.dive>=2&&slot.lane==='roam'&&hard.length){s+=5;why.push('CC keras untuk peel dari assassin musuh');}
   if(an.dive>=2&&slot.lane==='roam'&&h.roles[0]==='Tank'){s+=4;why.push('tank murni untuk badan & peel');}
@@ -218,7 +229,7 @@ function scoreHero(h,slot,an,usedIds,enemyIds,teamSoFar){
   s-=(h.difficulty||2)*0.6;
   if(slot.lane==='gold'&&an.dive>=2&&h.mobility===0)s-=2;
   if(slot.lane==='jungle'){ // jungle butuh damage dealer
-    if(['Assassin','Fighter'].includes(h.roles[0]))s+=3;else s-=3;
+    if(['Assassin','Fighter'].includes(h.roles[0]))s+=3;else if(fk!=='flex')s-=3;
   }
   // komposisi tim: jangan kebanyakan tank, pastikan ada damage dealer
   const tanksSoFar=teamSoFar.filter(x=>x.roles[0]==='Tank').length;
@@ -255,18 +266,25 @@ function buildFor(hero,an,ITEMS){
     (hero.roles||[]).includes('Assassin')?['Blade of Despair','Hunter Strike','Malefic Roar','Blade of Heptaseas']:
     ['Bloodlust Axe','Hunter Strike','War Axe',"Queen's Wings",'Blade of Despair'];
   coreWants.slice(0,2).forEach(addName);
-  // 3. counter items (maks 2)
+  // 3. counter items — yg bertanda rush dibeli lebih awal (sesudah boots), sesuai meta komunitas
   const counters=[];
+  const cRush=(name,rush)=>counters.push({name,rush:!!rush});
   if(an.heal.length||an.shield.length){
-    if(isTank)counters.push('Dominance Ice');
-    else if(hero.dmg==='magic')counters.push('Necklace of Durance');
-    else counters.push('Sea Halberd');
+    if(isTank)cRush('Dominance Ice',true);
+    else if(hero.dmg==='magic')cRush('Necklace of Durance',true);
+    else cRush('Sea Halberd',true);
   }
-  if(an.magic>=3&&!isTank)counters.push("Athena's Shield");
-  if(an.magic>=3&&isTank)counters.push('Radiant Armor');
-  if(an.physical>=3&&an.burst>=2)counters.push('Antique Cuirass');
-  if(an.ranged>=2&&(hero.roles||[]).includes('Marksman'))counters.push('Wind of Nature');
-  counters.slice(0,2).forEach(addName);
+  if(an.magic>=3&&!isTank)cRush("Athena's Shield",true);
+  if(an.magic>=3&&isTank)cRush('Radiant Armor',true);
+  if(an.physical>=3&&an.burst>=2)cRush('Antique Cuirass',true);
+  if((an.mm||0)>=2&&['Tank','Fighter','Support'].includes((hero.roles||[])[0]))cRush('Blade Armor',true);
+  if(an.ranged>=2&&(hero.roles||[]).includes('Marksman'))cRush('Wind of Nature',false);
+  const rushDone=[];
+  counters.filter(c=>c.rush).forEach(c=>{
+    const it=byName(pool,c.name);
+    if(it&&!ids.has(it.id)&&build.length<6){build.splice(1,0,it);ids.add(it.id);rushDone.push(it.name);}
+  });
+  counters.filter(c=>!c.rush).slice(0,2).forEach(c=>addName(c.name));
   // 4. tambah core lagi
   coreWants.slice(2).forEach(nm=>{if(build.length<6)addName(nm);});
   // 5. fallback: isi berdasar stat & harga
@@ -276,7 +294,7 @@ function buildFor(hero,an,ITEMS){
       .sort((a,b)=>b.price-a.price)
       .forEach(i=>{if(build.length<6)add(i);});
   }
-  return build.slice(0,6);
+  const out=build.slice(0,6);out.rush=rushDone;return out;
 }
 
 const EMBLEM_MAP={Assassin:'assassin',Marksman:'marksman',Mage:'mage',Tank:'tank',Support:'support',Fighter:'fighter'};
@@ -361,7 +379,8 @@ function recommendTeam(enemyIds,HEROES,ITEMS,EMBLEMS){
     });
     if(best&&best.r.s>-1e8){
       used.push(best.h.id);
-      picks.push({slot:slot.label,lane:slot.lane,hero:best.h,reason:best.r.why.slice(0,2)});
+      picks.push({slot:slot.label,lane:slot.lane,hero:best.h,reason:best.r.why.slice(0,2),
+        flexLane:flexKind(best.h,slot.lane)==='flex'?slot.lane:null});
     }
   });
   picks.forEach(p=>{
@@ -496,15 +515,18 @@ const MODE_LABEL={roam:'Roam',exp:'EXP',jungle:'Jungle',mid:'Mid',gold:'Gold'};
 const MODE_BIAS={roam:{defense:3},exp:{spellvamp:1},jungle:{penetration:1,cdr:1},mid:{penetration:1,mana:1},gold:{attackspeed:1,crit:1}};
 function heroModes(h){
   const r=h.roles[0];
-  if(r==='Tank')return['roam','exp'];
-  if(r==='Fighter')return['exp','jungle','roam'];
-  if(r==='Assassin')return['jungle','exp'];
-  if(r==='Marksman')return['gold','jungle'];
-  if(r==='Mage')return['mid','roam'];
-  if(r==='Support')return['roam','mid'];
-  return['exp'];
+  let base;
+  if(r==='Tank')base=['roam','exp'];
+  else if(r==='Fighter')base=['exp','jungle','roam'];
+  else if(r==='Assassin')base=['jungle','exp'];
+  else if(r==='Marksman')base=['gold','jungle'];
+  else if(r==='Mage')base=['mid','roam'];
+  else if(r==='Support')base=['roam','mid'];
+  else base=['exp'];
+  const extra=((((typeof FLEX!=='undefined'&&FLEX)||{})[h.id]||{}).lanes||[]);
+  return[...new Set([...base,...extra])];
 }
-function buildGlobal(h,mode,ITEMS){
+function buildGlobal(h,mode,ITEMS,enemyTeam){
   const w=kitWants(h);
   Object.entries(MODE_BIAS[mode]||{}).forEach(([k,v])=>{w[k]=(w[k]||0)+v;});
   const candIds=[...(GLOBAL_POOLS[h.roles[0]]||[]),...(GLOBAL_POOLS[MODE_POOLS[mode]]||[])];
@@ -514,15 +536,35 @@ function buildGlobal(h,mode,ITEMS){
   const boot=bootFor(h,null,ITEMS);
   const build=boot?[boot]:[];
   scored.forEach(o=>{if(build.length<6&&!build.includes(o.it))build.push(o.it);});
+  // konteks musuh: item counter rush dipindah ke slot awal (meta komunitas)
+  const rush=[];
+  const an=enemyTeam&&enemyTeam.length?analyzeEnemy(enemyTeam):null;
+  if(an){
+    const isTank=['Tank','Support'].includes((h.roles||['Fighter'])[0]);
+    const want=[];
+    if(an.heal.length||an.shield.length)want.push(isTank?'Dominance Ice':h.dmg==='magic'?'Necklace of Durance':'Sea Halberd');
+    if(an.magic>=3)want.push(isTank?'Radiant Armor':"Athena's Shield");
+    if(an.physical>=3&&an.burst>=2)want.push('Antique Cuirass');
+    if((an.mm||0)>=2&&['Tank','Fighter','Support'].includes((h.roles||[])[0]))want.push('Blade Armor');
+    want.forEach(nm=>{
+      const it=build.find(x=>x.name===nm)||ITEMS.find(x=>x.name===nm);
+      if(it&&!rush.includes(nm)){
+        const ix=build.indexOf(it);if(ix>=0)build.splice(ix,1);
+        build.splice(1,0,it);rush.push(nm);
+      }
+    });
+    if(build.length>6)build.length=6;
+  }
   const reasons={};
   build.forEach(it=>{
     if(it===boot){reasons[it.id]='sepatu standar '+h.roles[0]+(mode==='roam'?' — pilih blessing: Conceal/Dire Hit/Encourage/Favor':'');return;}
     const o=scored.find(x=>x.it===it);
     const parts=(o?o.hit:[]).map(k=>WANT_LABEL[k]+(skillForWant(h,k)?` (skill "${skillForWant(h,k)}")`:''));
-    reasons[it.id]=parts.length?('sinergi: '+[...new Set(parts)].slice(0,2).join(', ')):'item core '+h.roles[0];
+    reasons[it.id]=(rush.includes(it.name)?'⚡ beli awal vs musuh ini · ':'')+(parts.length?('sinergi: '+[...new Set(parts)].slice(0,2).join(', ')):'item core '+h.roles[0]);
   });
-  return{build,alt:scored.filter(o=>!build.includes(o.it)).slice(0,3).map(o=>o.it),reasons,
+  const out={build,alt:scored.filter(o=>!build.includes(o.it)).slice(0,3).map(o=>o.it),reasons,
     wants:Object.keys(w).map(k=>WANT_LABEL[k]||k)};
+  out.rush=rush;return out;
 }
 /*ENGINE-END*/
 </script>
@@ -546,10 +588,10 @@ function heroImg(h,sz){
   `align-items:center;justify-content:center;font-weight:800;color:#0d1220;font-size:${fs}px;overflow:hidden;flex:0 0 auto;">`+
   `<img src="img/heroes/${h.id}.webp" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.remove()">${h.name[0]}</span>`;
 }
-function itemChip(it){
+function itemChip(it,rush){
   return `<span class="item" style="display:inline-flex;align-items:center;gap:6px;">`+
   `<img src="img/items/${it.id}.webp" alt="" loading="lazy" style="width:30px;height:30px;border-radius:6px;object-fit:cover;background:#0f1626" onerror="this.remove()">`+
-  `<span><b>${it.name}</b><br><span style="color:var(--dim)">${(it.stats||'').split(',')[0]}</span></span></span>`;
+  `<span><b>${it.name}${rush?' ⚡':''}</b><br><span style="color:var(--dim)">${(it.stats||'').split(',')[0]}</span></span></span>`;
 }
 const emblemId=n=>({basic_common:'common',tank:'tank',assassin:'assassin',mage:'mage',fighter:'fighter',support:'support',marksman:'marksman'}[(n||'').toLowerCase().replace(/ /g,'_')])||'common';
 function emblemImg(n,sz){
@@ -645,10 +687,11 @@ function renderRecommend(box){
     const mu=matchupNotes(p.hero,R.enemy,p.lane),mi=microTips(p.hero,p.lane);
     h+=`<div class="pickcard"><div class="ph">${heroImg(p.hero,38)}
       <div><div class="pn">${p.hero.name}</div><div class="pl">${p.hero.roles.join('/')} · ${p.hero.traits||''}</div></div>
-      <div style="flex:1"></div><div class="lanebadge">${p.slot}</div></div>`;
+      <div style="flex:1"></div>${p.flexLane?'<div class="lanebadge" style="background:#6a4dff;margin-right:4px">🔀 flex</div>':''}<div class="lanebadge">${p.slot}</div></div>`;
     if(p.reason.length)h+=`<div class="why">💡 ${p.reason.join(' · ')}</div>`;
     if(mu.length)h+=`<div style="font-size:12px;margin:4px 0">⚔️ <b>Counter ke:</b> ${mu.map(m=>`${m.enemy} <span style="color:var(--dim)">(${m.notes[0]})</span>`).join(' · ')}</div>`;
-    h+=`<div class="build">${p.build.map(itemChip).join('')}</div>`;
+    h+=`<div class="build">${p.build.map(it=>itemChip(it,(p.build.rush||[]).includes(it.name))).join('')}</div>`;
+    if((p.build.rush||[]).length)h+=`<div style="font-size:11px;color:var(--dim);margin:2px 0 4px">⚡ = dibeli lebih awal khusus lawan musuh ini.</div>`;
     h+=`<div style="font-size:12px;margin:4px 0">🎮 <b>Mikro:</b> <span style="color:var(--dim)">${mi.join(' ')}</span></div>`;
     h+=`<div class="emblemline">${emblemImg(p.emblem,22)} Emblem: <b>${p.emblem}</b></div>${talentLine(p.talentPick)}</div>`;
   });
@@ -677,7 +720,8 @@ function renderMatchup(box){
       <div style="flex:1"></div><div class="lanebadge">${p.lane.toUpperCase()}</div></div>`;
     if(p.matchups.length)h+=`<div style="font-size:12px;margin:4px 0">⚔️ <b>Counter ke:</b> ${p.matchups.map(m=>`${m.enemy} <span style="color:var(--dim)">(${m.notes[0]})</span>`).join(' · ')}</div>`;
     else h+=`<div style="font-size:12px;margin:4px 0;color:var(--dim)">Netral — tidak ada matchup unggul jelas.</div>`;
-    h+=`<div class="build">${p.build.map(itemChip).join('')}</div>`;
+    h+=`<div class="build">${p.build.map(it=>itemChip(it,(p.build.rush||[]).includes(it.name))).join('')}</div>`;
+    if((p.build.rush||[]).length)h+=`<div style="font-size:11px;color:var(--dim);margin:2px 0 4px">⚡ = dibeli lebih awal khusus lawan musuh ini.</div>`;
     h+=`<div style="font-size:12px;margin:4px 0">🎮 <b>Mikro:</b> <span style="color:var(--dim)">${p.micro.join(' ')}</span></div>`;
     h+=`<div class="emblemline">${emblemImg(p.emblem,22)} Emblem: <b>${p.emblem}</b></div>${talentLine(p.talentPick)}</div>`;
   });
@@ -744,7 +788,7 @@ function showEmblem(e){
   ${(e.talents||[]).map(t=>`<div class="skill"><div class="sd">${t}</div></div>`).join('')}`);
 }
 /* ================= RACIK ================= */
-let racikId=null,racikMode=null;
+let racikId=null,racikMode=null,racikEnemy=true;
 function renderRacikGrid(){
   const g=$('racikGrid'),q=($('racikQ').value||'').toLowerCase();g.innerHTML='';
   HEROES.filter(h=>h.name.toLowerCase().includes(q)).forEach(h=>{
@@ -762,20 +806,25 @@ function renderRacik(){
   if(!h){box.innerHTML='';return;}
   const modes=heroModes(h);
   if(!modes.includes(racikMode))racikMode=modes[0];
-  const G=buildGlobal(h,racikMode,ITEMS),em=emblemFor(h,EMBLEMS,racikMode==='roam'?'roam':h.lane),mi=microTips(h,racikMode==='roam'?'roam':h.lane);
-  const tp=talentFor(em.id,h,racikMode==='roam'?'roam':h.lane,[]);
+  const useEnemy=racikEnemy&&enemySel.length>0;
+  const eTeam=useEnemy?enemySel.map(id=>byId(HEROES,id)).filter(Boolean):[];
+  const G=buildGlobal(h,racikMode,ITEMS,eTeam),em=emblemFor(h,EMBLEMS,racikMode==='roam'?'roam':h.lane),mi=microTips(h,racikMode==='roam'?'roam':h.lane);
+  const tp=talentFor(em.id,h,racikMode==='roam'?'roam':h.lane,eTeam);
   const itemRow=it=>`<div class="skill"><div style="display:flex;gap:8px;align-items:center">`+
     `<img src="img/items/${it.id}.webp" loading="lazy" style="width:34px;height:34px;border-radius:8px;object-fit:cover;background:#0f1626" onerror="this.remove()">`+
-    `<div class="sn">${it.name}</div></div><div class="sd">💡 ${G.reasons[it.id]||''}</div></div>`;
+    `<div class="sn">${it.name}${(G.rush||[]).includes(it.name)?' ⚡':''}</div></div><div class="sd">💡 ${G.reasons[it.id]||''}</div></div>`;
   box.innerHTML=`<div class="pickcard">
     <button class="chip" onclick="clearRacik()" style="margin-bottom:6px">‹ Ganti hero</button>
     <div class="ph">${heroImg(h,52)}
       <div><div class="pn" style="font-size:16px">${h.name}</div>
       <div class="pl">${h.roles.join('/')} · ${h.dmg} · ${h.range}</div></div></div>
     <div class="chips" style="margin:6px 0">${modes.map(m=>`<button class="chip${m===racikMode?' on':''}" onclick="racikMode='${m}';renderRacik()">${MODE_LABEL[m]}</button>`).join('')}</div>
+    <div class="chips" style="margin:6px 0"><button class="chip${racikEnemy?' on':''}" onclick="racikEnemy=!racikEnemy;renderRacik()">🎯 Sesuaikan ke musuh${enemySel.length?` (${enemySel.length})`:''}</button></div>
+    ${useEnemy?`<div style="font-size:11px;color:var(--dim);margin-bottom:4px">Build disesuaikan vs: <b style="color:var(--txt)">${eTeam.map(x=>x.name).join(', ')}</b></div>`:''}
     <div style="font-size:11px;color:var(--dim);margin-bottom:4px">🧬 Kit hero ini butuh: <b style="color:var(--txt)">${G.wants.slice(0,4).join(', ')}</b></div>
     <div class="secT">🛠️ BUILD ${MODE_LABEL[racikMode].toUpperCase()}</div>
     ${G.build.map(itemRow).join('')}
+    ${(G.rush||[]).length?`<div style="font-size:11px;color:var(--dim);margin:4px 0">⚡ = dibeli lebih awal khusus lawan musuh ini.</div>`:''}
     ${G.alt.length?`<div class="secT">🔄 ALTERNATIF SITUASIONAL</div><div class="build">${G.alt.map(itemChip).join('')}</div>`:''}
     <div class="emblemline" style="margin-top:6px">${emblemImg(em.name,22)} Emblem: <b>${em.name}</b></div>
     ${talentLine(tp)}

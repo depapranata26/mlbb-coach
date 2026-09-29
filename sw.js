@@ -1,5 +1,5 @@
-const CACHE='mlbb-coach-v1';
-const CORE=['./','./index.html','./manifest.json','./data/heroes.json','./data/items.json','./data/emblems.json'];
+const CACHE='mlbb-coach-v6';
+const CORE=['./','./index.html','./manifest.json','./data/heroes.json','./data/items.json','./data/emblems.json','./data/flex_picks.json'];
 self.addEventListener('install',e=>{
   e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting()));
 });
