@@ -152,6 +152,7 @@ nav button .ic{font-size:18px;display:block;margin-bottom:2px;}
 /* ================= DATA ================= */
 let HEROES=[],ITEMS=[],EMBLEMS=[],TALENTS=null;
 const ROLE_COLOR={Tank:'#4da3ff',Fighter:'#ff9f43',Assassin:'#b478ff',Mage:'#4dd8ff',Marksman:'#ff5d5d',Support:'#3ecf8e'};
+const avatarColor=h=>ROLE_COLOR[(h.roles||['Fighter'])[0]]||'#888';
 const talentLine=tp=>(tp||[]).map(t=>`<div class="tl">🎯 <b>T${t.tier}: ${t.name}</b> <span class="dim">— ${t.why}</span></div>`).join('');
 async function loadData(){
   const [h,i,e,t]=await Promise.all([
