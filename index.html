@@ -30,6 +30,7 @@ font-size:14px;padding:10px 12px;outline:none;}
 .chip{flex:0 0 auto;padding:7px 12px;border-radius:20px;border:1px solid var(--line);background:#101827;
 color:var(--dim);font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;}
 .chip.on{background:var(--acc);border-color:var(--acc);color:#1a1206;}
+.chip.free{opacity:.55;border-style:dashed;}
 .grid{flex:1 1 auto;overflow-y:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
 align-content:start;padding-bottom:8px;}
 .hero{cursor:pointer;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:8px 4px;
@@ -513,18 +514,26 @@ function skillForWant(h,key){
 const MODE_POOLS={roam:'Tank',exp:'Fighter',jungle:'Assassin',mid:'Mage',gold:'Marksman'};
 const MODE_LABEL={roam:'Roam',exp:'EXP',jungle:'Jungle',mid:'Mid',gold:'Gold'};
 const MODE_BIAS={roam:{defense:3},exp:{spellvamp:1},jungle:{penetration:1,cdr:1},mid:{penetration:1,mana:1},gold:{attackspeed:1,crit:1}};
+const ALL_MODES=['roam','exp','jungle','mid','gold'];
+function baseModes(h){
+  const r=(h.roles||[])[0];
+  if(r==='Tank')return['roam','exp'];
+  if(r==='Fighter')return['exp','jungle','roam'];
+  if(r==='Assassin')return['jungle','exp'];
+  if(r==='Marksman')return['gold','jungle'];
+  if(r==='Mage')return['mid','roam'];
+  if(r==='Support')return['roam','mid'];
+  return['exp'];
+}
+function flexLanes(h){return((((typeof FLEX!=='undefined'&&FLEX)||{})[h.id]||{}).lanes||[]);}
 function heroModes(h){
-  const r=h.roles[0];
-  let base;
-  if(r==='Tank')base=['roam','exp'];
-  else if(r==='Fighter')base=['exp','jungle','roam'];
-  else if(r==='Assassin')base=['jungle','exp'];
-  else if(r==='Marksman')base=['gold','jungle'];
-  else if(r==='Mage')base=['mid','roam'];
-  else if(r==='Support')base=['roam','mid'];
-  else base=['exp'];
-  const extra=((((typeof FLEX!=='undefined'&&FLEX)||{})[h.id]||{}).lanes||[]);
-  return[...new Set([...base,...extra])];
+  return[...new Set([...baseModes(h),...flexLanes(h)])];
+}
+// status lane per hero: 'role' = role wajar, 'flex' = flex meta terverifikasi, 'free' = lane bebas (belum terverifikasi)
+function modeStatus(h,m){
+  if(flexLanes(h).includes(m))return'flex';
+  if(baseModes(h).includes(m))return'role';
+  return'free';
 }
 function buildGlobal(h,mode,ITEMS,enemyTeam){
   const w=kitWants(h);
@@ -804,12 +813,12 @@ function clearRacik(){racikId=null;racikMode=null;$('tabRacik').classList.remove
 function renderRacik(){
   const box=$('racikResult'),h=byId(HEROES,racikId);
   if(!h){box.innerHTML='';return;}
-  const modes=heroModes(h);
-  if(!modes.includes(racikMode))racikMode=modes[0];
+  if(!ALL_MODES.includes(racikMode))racikMode=heroModes(h)[0];
+  const stNow=modeStatus(h,racikMode);
   const useEnemy=racikEnemy&&enemySel.length>0;
   const eTeam=useEnemy?enemySel.map(id=>byId(HEROES,id)).filter(Boolean):[];
-  const G=buildGlobal(h,racikMode,ITEMS,eTeam),em=emblemFor(h,EMBLEMS,racikMode==='roam'?'roam':h.lane),mi=microTips(h,racikMode==='roam'?'roam':h.lane);
-  const tp=talentFor(em.id,h,racikMode==='roam'?'roam':h.lane,eTeam);
+  const G=buildGlobal(h,racikMode,ITEMS,eTeam),em=emblemFor(h,EMBLEMS,racikMode),mi=microTips(h,racikMode);
+  const tp=talentFor(em.id,h,racikMode,eTeam);
   const itemRow=it=>`<div class="skill"><div style="display:flex;gap:8px;align-items:center">`+
     `<img src="img/items/${it.id}.webp" loading="lazy" style="width:34px;height:34px;border-radius:8px;object-fit:cover;background:#0f1626" onerror="this.remove()">`+
     `<div class="sn">${it.name}${(G.rush||[]).includes(it.name)?' ⚡':''}</div></div><div class="sd">💡 ${G.reasons[it.id]||''}</div></div>`;
@@ -818,7 +827,9 @@ function renderRacik(){
     <div class="ph">${heroImg(h,52)}
       <div><div class="pn" style="font-size:16px">${h.name}</div>
       <div class="pl">${h.roles.join('/')} · ${h.dmg} · ${h.range}</div></div></div>
-    <div class="chips" style="margin:6px 0">${modes.map(m=>`<button class="chip${m===racikMode?' on':''}" onclick="racikMode='${m}';renderRacik()">${MODE_LABEL[m]}</button>`).join('')}</div>
+    <div class="chips" style="margin:6px 0">${ALL_MODES.map(m=>{const st=modeStatus(h,m);return`<button class="chip${m===racikMode?' on':''}${st==='free'?' free':''}" onclick="racikMode='${m}';renderRacik()">${st==='flex'?'🔀 ':''}${MODE_LABEL[m]}</button>`;}).join('')}</div>
+    <div style="font-size:10px;color:var(--dim);margin:-2px 0 6px">🔀 = flex meta terverifikasi · chip garis putus-putus = lane bebas</div>
+    ${stNow==='free'?`<div style="font-size:11px;color:#f0b429;margin-bottom:6px">⚠️ Lane bebas — ${h.name} belum terverifikasi di meta ${MODE_LABEL[racikMode]}. Build di bawah generik, sesuaikan manual di game.</div>`:''}
     <div class="chips" style="margin:6px 0"><button class="chip${racikEnemy?' on':''}" onclick="racikEnemy=!racikEnemy;renderRacik()">🎯 Sesuaikan ke musuh${enemySel.length?` (${enemySel.length})`:''}</button></div>
     ${useEnemy?`<div style="font-size:11px;color:var(--dim);margin-bottom:4px">Build disesuaikan vs: <b style="color:var(--txt)">${eTeam.map(x=>x.name).join(', ')}</b></div>`:''}
     <div style="font-size:11px;color:var(--dim);margin-bottom:4px">🧬 Kit hero ini butuh: <b style="color:var(--txt)">${G.wants.slice(0,4).join(', ')}</b></div>

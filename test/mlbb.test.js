@@ -68,6 +68,18 @@ ok(fok&&Object.keys(FLEX).length>=15,'flex valid ('+Object.keys(FLEX).length+')'
 ok(scoreHero(B('layla'),goldSlot,an0,[],[],[]).s>-1e8,'Layla tetap kandidat gold');
 const roamSlot=SLOTS.find(s=>s.lane==='roam');
 ok(scoreHero(B('miya'),roamSlot,an0,[],[],[]).s<-1e8,'Miya tetap bukan roam');
+// 11. lane bebas: semua hero bisa pilih semua lane di Racik
+const layla=B('layla');
+ok(ALL_MODES.length===5&&ALL_MODES.every(m=>['role','flex','free'].includes(modeStatus(layla,m))),'modeStatus 5 lane valid');
+ok(modeStatus(layla,'gold')==='role','Layla gold = role');
+ok(modeStatus(B('harith'),'jungle')==='flex','Harith jungle = flex');
+ok(modeStatus(layla,'roam')==='free','Layla roam = free');
+ok(modeStatus(B('franco'),'mid')==='free','Franco mid = free');
+const Gfree=buildGlobal(layla,'roam',ITEMS,[]);
+ok(Gfree.build.length===6,'buildGlobal lane bebas 6 item: '+Gfree.build.map(i=>i.name).join(','));
+const Gfree2=buildGlobal(B('franco'),'mid',ITEMS,[]);
+ok(Gfree2.build.length===6&&Gfree2.wants.length>0,'buildGlobal franco mid jalan');
+ok(heroModes(layla).indexOf('gold')===0,'default mode tetap natural pertama');
 console.log('\\n'+pass+' lolos, '+fail+' gagal');
 process.exit(fail?1:0);
 })();
