@@ -71,6 +71,9 @@ font-size:14px;font-weight:800;cursor:pointer;}
 .item b{color:var(--txt);}
 .emblemline{font-size:11px;color:var(--dim);}
 .emblemline b{color:var(--pur);}
+.tl{font-size:11px;margin:3px 0 0 28px;color:var(--txt);}
+.tl b{color:var(--acc);}
+.tl .dim{color:var(--dim);}
 .strat{background:#0f1626;border-left:3px solid var(--acc);border-radius:0 8px 8px 0;padding:8px 10px;
 font-size:12px;margin-bottom:6px;line-height:1.5;}
 .empty{text-align:center;color:var(--dim);font-size:13px;margin-top:40px;line-height:1.8;}
@@ -147,16 +150,17 @@ nav button .ic{font-size:18px;display:block;margin-bottom:2px;}
 <script>
 "use strict";
 /* ================= DATA ================= */
-let HEROES=[],ITEMS=[],EMBLEMS=[];
+let HEROES=[],ITEMS=[],EMBLEMS=[],TALENTS=null;
 const ROLE_COLOR={Tank:'#4da3ff',Fighter:'#ff9f43',Assassin:'#b478ff',Mage:'#4dd8ff',Marksman:'#ff5d5d',Support:'#3ecf8e'};
-const avatarColor=h=>ROLE_COLOR[(h.roles||['Fighter'])[0]]||'#888';
+const talentLine=tp=>(tp||[]).map(t=>`<div class="tl">🎯 <b>T${t.tier}: ${t.name}</b> <span class="dim">— ${t.why}</span></div>`).join('');
 async function loadData(){
-  const [h,i,e]=await Promise.all([
+  const [h,i,e,t]=await Promise.all([
     fetch('data/heroes.json').then(r=>r.json()),
     fetch('data/items.json').then(r=>r.json()),
-    fetch('data/emblems.json').then(r=>r.json())
+    fetch('data/emblems.json').then(r=>r.json()),
+    fetch('data/emblem_talents.json').then(r=>r.json()).catch(()=>null)
   ]);
-  HEROES=h;ITEMS=i;EMBLEMS=e;
+  HEROES=h;ITEMS=i;EMBLEMS=e;TALENTS=t;
   document.getElementById('dataInfo').textContent=`${h.length} hero · ${i.length} item`;
   buildRoleChips();renderGrid();renderDraft();buildDataChips();renderDataList();renderRacikGrid();
 }
@@ -280,6 +284,52 @@ function emblemFor(hero,EMBLEMS,lane){
   if(lane==='roam')role=(hero.roles||[]).includes('Tank')?'Tank':'Support';
   return EMBLEMS.find(e=>e.id===EMBLEM_MAP[role])||EMBLEMS[0];
 }
+/* Pilihan talent per tier: T1/T2/T3 dari pool kurasi emblem, dipilih sesuai kit hero, mode, & lawan */
+function talentFor(emblemId,hero,lane,enemy){
+  const sets=(typeof TALENTS!=='undefined'&&TALENTS&&TALENTS.sets)||[];
+  const set=sets.find(s=>s.emblem_id===emblemId)||sets[0];
+  if(!set)return[];
+  const P=set.tiers,wants=kitWants(hero),has=k=>!!wants[k];
+  const hasCC=(hero.cc||[]).length>=1,isBurst=!!hero.burst;
+  // pool kurasi emblem + fallback pool global (di game talent bisa dipilih lintas emblem)
+  const allT={t1:[...P.t1],t2:[...P.t2],t3:[...P.t3]};
+  ['t1','t2','t3'].forEach(tr=>{((TALENTS.full_pools||{})[tr]||[]).forEach(g=>{if(!allT[tr].some(t=>t.name===g.name))allT[tr].push(g);});});
+  const inPool=(tier,nm)=>allT[tier].some(t=>t.name===nm);
+  const desc=(tier,nm)=>{const t=allT[tier].find(t=>t.name===nm);return t?t.desc:'';};
+  const enemyCC=(enemy||[]).reduce((n,h)=>n+(h.cc||[]).filter(c=>HARD_CC.includes(c)).length,0);
+  // --- T1 ---
+  let t1=P.t1[0].name,w1='default emblem';
+  if(inPool('t1','Swift')&&has('attackspeed')){t1='Swift';w1='hero butuh attack speed';}
+  else if(inPool('t1','Fatal')&&has('crit')){t1='Fatal';w1='main critical';}
+  else if(inPool('t1','Inspire')&&(has('cdr')||has('mana'))){t1='Inspire';w1='butuh CDR & regen mana';}
+  else if(inPool('t1','Rupture')&&has('penetration')){t1='Rupture';w1='butuh penetrasi';}
+  else if(inPool('t1','Firmness')&&has('defense')){t1='Firmness';w1='butuh defense';}
+  else if(inPool('t1','Vitality')&&(has('defense')||has('shield'))){t1='Vitality';w1='butuh HP tebal';}
+  else if(inPool('t1','Thrill')&&lane==='jungle'){t1='Thrill';w1='adaptive attack buat clear jungle';}
+  else if(inPool('t1','Agility')){t1='Agility';w1='mobilitas rotasi';}
+  // --- T2 ---
+  let t2=P.t2[0].name,w2='default emblem';
+  if(lane==='jungle'&&inPool('t2','Seasoned Hunter')){t2='Seasoned Hunter';w2='+15% damage ke Turtle & Lord';}
+  else if(enemyCC>=3&&inPool('t2','Tenacity')){t2='Tenacity';w2='CC musuh berat — damage reduction saat HP rendah';}
+  else if(lane==='roam'&&inPool('t2','Wilderness Blessing')){t2='Wilderness Blessing';w2='rotasi cepat via jungle & river';}
+  else if(has('spellvamp')&&inPool('t2','Festival of Blood')){t2='Festival of Blood';w2='spell vamp tambahan';}
+  else if((hero.roles||[]).includes('Marksman')&&inPool('t2','Weapon Master')){t2='Weapon Master';w2='scale attack dari item';}
+  else if(inPool('t2','Bargain Hunter')&&isBurst){t2='Bargain Hunter';w2='item lebih murah — spike lebih cepat';}
+  else if(inPool('t2','Master Assassin')&&lane==='jungle'){t2='Master Assassin';w2='duel 1v1 lebih kuat';}
+  else if(inPool('t2','Pull Yourself Together')&&lane==='roam'){t2='Pull Yourself Together';w2='CD battle spell & revive lebih cepat';}
+  // --- T3 (core): pilih 1 dari 2 sesuai gaya main ---
+  const cA=P.t3[0].name,cB=P.t3.length>1?P.t3[1].name:cA;
+  let t3=cA,w3='core bawaan emblem';
+  const pick=(nm,why)=>{if(inPool('t3',nm)){t3=nm;w3=why;}};
+  if(emblemId==='assassin')pick(isBurst?'Lethal Ignition':'Killing Spree',isBurst?'eksekusi burst':'snowball reset tiap kill');
+  else if(emblemId==='mage')pick(isBurst?'Lethal Ignition':'Impure Rage',isBurst?'eksekusi burst':'poke + sustain mana');
+  else if(emblemId==='marksman')pick((has('attackspeed')||has('basicatk'))?'Weakness Finder':'Quantum Charge',(has('attackspeed')||has('basicatk'))?'slow & kurangi AS musuh':'mobilitas tiap basic attack');
+  else if(emblemId==='fighter')pick((hasCC||has('shield'))?'Brave Smite':'Quantum Charge',(hasCC||has('shield'))?'CC beri heal & slow':'mobilitas tiap basic attack');
+  else if(emblemId==='tank')pick(lane==='roam'?'Focusing Mark':'Concussive Blast',lane==='roam'?'tandai target — tim deal damage lebih':'AoE damage + slow tiap kena hit');
+  else if(emblemId==='support')pick(has('heal')?'Focusing Mark':'Impure Rage',has('heal')?'tandai target buat tim':'poke + sustain mana');
+  else pick((has('cdr')||has('mana'))?'Impure Rage':'Quantum Charge',(has('cdr')||has('mana'))?'sustain skill':'mobilitas tiap basic attack');
+  return[{tier:1,name:t1,desc:desc('t1',t1),why:w1},{tier:2,name:t2,desc:desc('t2',t2),why:w2},{tier:3,name:t3,desc:desc('t3',t3),why:w3}];
+}
 
 function makeStrategy(an){
   const s=[];
@@ -317,6 +367,7 @@ function recommendTeam(enemyIds,HEROES,ITEMS,EMBLEMS){
     p.build=buildFor(p.hero,an,ITEMS);
     const em=emblemFor(p.hero,EMBLEMS,p.lane);
     p.emblem=em.name;p.talents=em.talents;
+    p.talentPick=talentFor(em.id,p.hero,p.lane,team);
   });
   return{enemy:team,an,picks,strategy:makeStrategy(an)};
 }
@@ -336,8 +387,9 @@ function matchupNotes(our,enemyTeam,lane){
   return enemyTeam.map(e=>({enemy:e.name,...matchupScore(our,e,lane)}))
     .filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,2);
 }
-function microTips(h){
+function microTips(h,lane){
   const t=[],roles=h.roles||[];
+  if(lane==='jungle')t.push('Rute: buff Ungu (hemat mana/CD) → Lithowanderer → gank lane terdekat sebelum Turtle 2:00.');
   if(roles.includes('Assassin')&&h.burst)t.push('Culik backline saat CC penting musuh sudah keluar.');
   if(h.range==='ranged'&&h.mobility>=1)t.push('Jaga jarak & poke dari jauh; jangan overextend tanpa vision.');
   if(roles[0]==='Tank')t.push('Buka vision & inisiasi duluan; tempel lindungi core saat war.');
@@ -351,15 +403,16 @@ function microTips(h){
 }
 function macroPlaybook(an,oa){
   const L=[];
-  if(oa.spike==='early')L.push('⏱️ EARLY: tim kita kuat awal — invasi jungle & paksa Turtle pertama.');
-  else if(an.spike==='early')L.push('⏱️ EARLY: musuh kuat awal — main aman, tukar objective, jangan paksa war.');
-  else L.push('⏱️ EARLY: menangkan lane masing-masing, rotasi cepat ke Turtle.');
+  L.push('⏱️ 0–2:00: clear wave cepat, ambil Lithowanderer & buff (Orange: true damage + slow; Ungu: -CD & hemat mana). Turtle spawn 2:00 di sisi EXP lane — roam mulai rotasi dari 1:40.');
+  if(oa.spike==='early')L.push('⚔️ EARLY: tim kita kuat awal — invasi jungle musuh & paksa Turtle pertama (2:00).');
+  else if(an.spike==='early')L.push('⚔️ EARLY: musuh kuat awal — tukar objective saja, jangan paksa war sebelum Turtle 2:00 aman.');
+  else L.push('⏱️ EARLY: menangkan lane masing-masing, kumpul 4 orang di Turtle 2:00.');
+  L.push('🐢 TURTLE (respawn tiap 2 mnt, berhenti 8:00): sekarang HEALING TURTLE — tidak ada shield lagi! Bunuh turtle = spawn allied Turtle yang bantu push lane terkuat musuh + heal hero di dekatnya. Contest turtle = alat push.');
+  L.push('💰 Patch 2.2.16: gold jungle -13% & team bounty 1.500 — jangan mati konyol, farming harus efisien. Turret = GOLDEN TURRET: gold tim per turret naik, prioritaskan trade turret.');
+  L.push('👁️ MID: pungut Revealing Wisps buat reveal posisi musuh sebelum gank; kuasai vision pit Lord.');
   if(oa.hardCC>=an.hardCC+2)L.push('⚔️ MID: CC kita unggul — paksa war di area sempit (pit Lord), inisiasi duluan.');
   else if(an.hardCC>oa.hardCC+1)L.push('⚔️ MID: CC musuh lebih banyak — pancing skill mereka dulu / main split push.');
-  else L.push('⚔️ MID: kuasai vision sekitar Lord, paksa musuh yang memulai war.');
-  if(oa.mob>=1.2&&oa.ranged>=2)L.push('🏁 LATE: tim lincah + ranged — split push & pickoff, hindari 5v5 frontal.');
-  else if(oa.tanky>=2)L.push('🏁 LATE: tim tebal — deathball mid, paksa Lord & tabrak formasi musuh.');
-  else L.push('🏁 LATE: jaga posisi core, menangkan satu teamfight penentu di Lord.');
+  L.push('👑 LORD 8:00 (respawn 3 mnt; 2,5 mnt setelah 18:00; evolve 12:00): menangkan satu teamfight penentu di pit, lalu end bareng Lord + wave.');
   return L;
 }
 function analyzeMatchup(ourIds,enemyIds,HEROES,ITEMS,EMBLEMS){
@@ -377,7 +430,8 @@ function analyzeMatchup(ourIds,enemyIds,HEROES,ITEMS,EMBLEMS){
   const picks=our.map(h=>{
     const em=emblemFor(h,EMBLEMS,h.lane);
     return{hero:h,lane:h.lane,build:buildFor(h,an,ITEMS),emblem:em.name,
-      matchups:matchupNotes(h,enemy,h.lane),micro:microTips(h)};
+      talentPick:talentFor(em.id,h,h.lane,enemy),
+      matchups:matchupNotes(h,enemy,h.lane),micro:microTips(h,h.lane)};
   });
   const threats=enemy.map(e=>{
     const best=Math.max(...our.map(o=>matchupScore(o,e,o.lane).s));
@@ -587,7 +641,7 @@ function renderRecommend(box){
   h+=`<div class="compchips" style="margin-top:6px">${R.enemy.map(x=>`<div class="cchip">${x.name}</div>`).join('')}</div>`;
   h+=`<div class="secT">✅ REKOMENDASI TIM COUNTER</div>`;
   R.picks.forEach(p=>{
-    const mu=matchupNotes(p.hero,R.enemy,p.lane),mi=microTips(p.hero);
+    const mu=matchupNotes(p.hero,R.enemy,p.lane),mi=microTips(p.hero,p.lane);
     h+=`<div class="pickcard"><div class="ph">${heroImg(p.hero,38)}
       <div><div class="pn">${p.hero.name}</div><div class="pl">${p.hero.roles.join('/')} · ${p.hero.traits||''}</div></div>
       <div style="flex:1"></div><div class="lanebadge">${p.slot}</div></div>`;
@@ -595,7 +649,7 @@ function renderRecommend(box){
     if(mu.length)h+=`<div style="font-size:12px;margin:4px 0">⚔️ <b>Counter ke:</b> ${mu.map(m=>`${m.enemy} <span style="color:var(--dim)">(${m.notes[0]})</span>`).join(' · ')}</div>`;
     h+=`<div class="build">${p.build.map(itemChip).join('')}</div>`;
     h+=`<div style="font-size:12px;margin:4px 0">🎮 <b>Mikro:</b> <span style="color:var(--dim)">${mi.join(' ')}</span></div>`;
-    h+=`<div class="emblemline">${emblemImg(p.emblem,22)} Emblem: <b>${p.emblem}</b> — ${p.talents.slice(0,2).join(' · ')}</div></div>`;
+    h+=`<div class="emblemline">${emblemImg(p.emblem,22)} Emblem: <b>${p.emblem}</b></div>${talentLine(p.talentPick)}</div>`;
   });
   h+=`<div class="secT">📋 STRATEGI + MAKRO</div>`;
   R.strategy.concat(macroPlaybook(R.an,analyzeEnemy(R.picks.map(p=>p.hero)))).forEach(s=>{h+=`<div class="strat">${s}</div>`;});
@@ -624,7 +678,7 @@ function renderMatchup(box){
     else h+=`<div style="font-size:12px;margin:4px 0;color:var(--dim)">Netral — tidak ada matchup unggul jelas.</div>`;
     h+=`<div class="build">${p.build.map(itemChip).join('')}</div>`;
     h+=`<div style="font-size:12px;margin:4px 0">🎮 <b>Mikro:</b> <span style="color:var(--dim)">${p.micro.join(' ')}</span></div>`;
-    h+=`<div class="emblemline">${emblemImg(p.emblem,22)} Emblem: <b>${p.emblem}</b></div></div>`;
+    h+=`<div class="emblemline">${emblemImg(p.emblem,22)} Emblem: <b>${p.emblem}</b></div>${talentLine(p.talentPick)}</div>`;
   });
   h+=`<div class="secT">📋 STRATEGI + MAKRO</div>`;
   M.strategy.forEach(s=>{h+=`<div class="strat">${s}</div>`;});
@@ -707,7 +761,8 @@ function renderRacik(){
   if(!h){box.innerHTML='';return;}
   const modes=heroModes(h);
   if(!modes.includes(racikMode))racikMode=modes[0];
-  const G=buildGlobal(h,racikMode,ITEMS),em=emblemFor(h,EMBLEMS,racikMode==='roam'?'roam':h.lane),mi=microTips(h);
+  const G=buildGlobal(h,racikMode,ITEMS),em=emblemFor(h,EMBLEMS,racikMode==='roam'?'roam':h.lane),mi=microTips(h,racikMode==='roam'?'roam':h.lane);
+  const tp=talentFor(em.id,h,racikMode==='roam'?'roam':h.lane,[]);
   const itemRow=it=>`<div class="skill"><div style="display:flex;gap:8px;align-items:center">`+
     `<img src="img/items/${it.id}.webp" loading="lazy" style="width:34px;height:34px;border-radius:8px;object-fit:cover;background:#0f1626" onerror="this.remove()">`+
     `<div class="sn">${it.name}</div></div><div class="sd">💡 ${G.reasons[it.id]||''}</div></div>`;
@@ -721,7 +776,8 @@ function renderRacik(){
     <div class="secT">🛠️ BUILD ${MODE_LABEL[racikMode].toUpperCase()}</div>
     ${G.build.map(itemRow).join('')}
     ${G.alt.length?`<div class="secT">🔄 ALTERNATIF SITUASIONAL</div><div class="build">${G.alt.map(itemChip).join('')}</div>`:''}
-    <div class="emblemline" style="margin-top:6px">${emblemImg(em.name,22)} Emblem: <b>${em.name}</b> — ${em.talents.join(' · ')}</div>
+    <div class="emblemline" style="margin-top:6px">${emblemImg(em.name,22)} Emblem: <b>${em.name}</b></div>
+    ${talentLine(tp)}
     <div style="font-size:12px;margin:6px 0">🎮 <b>Mikro:</b> <span style="color:var(--dim)">${mi.join(' ')}</span></div>
     <div class="secT">✨ SKILL</div>
     ${(h.skills||[]).map(s=>`<div class="skill"><div class="sn">${s.name}</div><div class="sd">${s.desc||''}</div></div>`).join('')}
