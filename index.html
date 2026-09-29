@@ -51,7 +51,10 @@ justify-content:center;font-size:11px;color:var(--dim);font-weight:800;overflow:
 .bigbtn{flex:0 0 auto;padding:13px 18px;border-radius:12px;border:none;background:var(--acc);color:#1a1206;
 font-size:14px;font-weight:800;cursor:pointer;}
 .bigbtn:disabled{opacity:.35;}
-#analisisTab{overflow-y:auto;}
+#analisisTab{flex:1 1 auto;min-height:0;overflow-y:auto;}
+#racikResult{flex:1 1 auto;min-height:0;overflow-y:auto;display:none;}
+#tabRacik.picked #racikGrid{display:none;}
+#tabRacik.picked #racikResult{display:block;}
 .secT{font-size:13px;font-weight:800;color:var(--acc);margin:12px 0 6px;letter-spacing:.3px;}
 .secT:first-child{margin-top:0;}
 .compchips{display:flex;flex-wrap:wrap;gap:6px;}
@@ -693,11 +696,12 @@ function renderRacikGrid(){
     const d=document.createElement('div');
     d.className='hero'+(racikId===h.id?' sel':'');
     d.innerHTML=heroImg(h,44)+`<div class="nm">${h.name}</div><div class="rl">${h.roles.join('/')}</div>`;
-    d.onclick=()=>{racikId=h.id;racikMode=heroModes(h)[0];renderRacikGrid();renderRacik();};
+    d.onclick=()=>{racikId=h.id;racikMode=heroModes(h)[0];$('tabRacik').classList.add('picked');renderRacikGrid();renderRacik();};
     g.appendChild(d);
   });
 }
 $('racikQ').addEventListener('input',renderRacikGrid);
+function clearRacik(){racikId=null;racikMode=null;$('tabRacik').classList.remove('picked');renderRacikGrid();renderRacik();}
 function renderRacik(){
   const box=$('racikResult'),h=byId(HEROES,racikId);
   if(!h){box.innerHTML='';return;}
@@ -707,7 +711,8 @@ function renderRacik(){
   const itemRow=it=>`<div class="skill"><div style="display:flex;gap:8px;align-items:center">`+
     `<img src="img/items/${it.id}.webp" loading="lazy" style="width:34px;height:34px;border-radius:8px;object-fit:cover;background:#0f1626" onerror="this.remove()">`+
     `<div class="sn">${it.name}</div></div><div class="sd">💡 ${G.reasons[it.id]||''}</div></div>`;
-  box.innerHTML=`<div class="pickcard" style="margin-top:8px">
+  box.innerHTML=`<div class="pickcard">
+    <button class="chip" onclick="clearRacik()" style="margin-bottom:6px">‹ Ganti hero</button>
     <div class="ph">${heroImg(h,52)}
       <div><div class="pn" style="font-size:16px">${h.name}</div>
       <div class="pl">${h.roles.join('/')} · ${h.dmg} · ${h.range}</div></div></div>
@@ -721,7 +726,7 @@ function renderRacik(){
     <div class="secT">✨ SKILL</div>
     ${(h.skills||[]).map(s=>`<div class="skill"><div class="sn">${s.name}</div><div class="sd">${s.desc||''}</div></div>`).join('')}
   </div>`;
-  box.scrollIntoView({behavior:'smooth',block:'start'});
+  box.scrollTop=0;
 }
 /* ================= INIT ================= */
 loadData();
