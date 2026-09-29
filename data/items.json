@@ -37,7 +37,7 @@
   "stats": "+70 Physical Attack, +10% Cooldown Reduction, +20% Spell Vamp",
   "passive": "",
   "counters": [],
-  "desc": "Sudah dihapus dari game; dahulu item spell vamp untuk fighter."
+  "desc": "Item spell vamp + cooldown untuk fighter/assassin yang spam skill."
  },
  {
   "id": "corrosion_scythe",
@@ -142,16 +142,6 @@
   "passive": "Lifeline: HP di bawah 30% memberi shield dan 50% movement speed 3 detik (CD 60 detik). Tiap 4 physical attack: +1 hybrid defense (maks 50).",
   "counters": [],
   "desc": "Item bertahan untuk marksman atau fighter; selamatkan diri dari burst."
- },
- {
-  "id": "scarlet_phantom",
-  "name": "Scarlet Phantom",
-  "cat": "attack",
-  "price": 2020,
-  "stats": "+30 Physical Attack, +20% Attack Speed, +25% Crit Chance",
-  "passive": "Frenzy: critical strike memberi 30% attack speed dan 5% crit chance tambahan 2 detik.",
-  "counters": [],
-  "desc": "Sudah dihapus dari game; dahulu item crit dan attack speed."
  },
  {
   "id": "sea_halberd",
@@ -346,7 +336,7 @@
   "stats": "+70 Magic Power, +100 Mana, +6 Mana Regen, +10% Cooldown Reduction",
   "passive": "Calamity: 3 detik setelah pakai skill, basic attack berikutnya memberi true damage 120% magic power (CD 1,5 detik) dan movement speed.",
   "counters": [],
-  "desc": "Sudah dihapus dari game; dahulu item basic-attack untuk mage."
+  "desc": "Untuk mage basic-attack: setelah pakai skill, basic attack berikutnya beri true damage."
  },
  {
   "id": "clock_of_destiny",
@@ -492,7 +482,7 @@
    "heal",
    "shield"
   ],
-  "desc": "Sudah dihapus dari game; dahulu item anti-regen untuk mage."
+  "desc": "Anti-heal dan anti-shield untuk mage; wajib saat musuh banyak heal/regen."
  },
  {
   "id": "shadow_twinblades",
@@ -502,7 +492,7 @@
   "stats": "+75 Magic Power, +15% Magic Lifesteal, +5% Movement Speed",
   "passive": "Assassination: setelah 5 detik tanpa damage, basic attack berikutnya memberi magic damage tambahan dan slow 60% 1,5 detik.",
   "counters": [],
-  "desc": "Sudah dihapus dari game; dahulu item burst untuk mage assassin."
+  "desc": "Burst untuk mage assassin; basic attack setelah 5 dtk tanpa damage beri magic damage + slow."
  },
  {
   "id": "starlium_scythe",
@@ -604,7 +594,7 @@
   "stats": "+250 HP",
   "passive": "Bud of Hope: diberikan Floryn dan Dew; kekuatannya terbuka saat Dew berevolusi.",
   "counters": [],
-  "desc": "Sudah dihapus dari game; dahulu item khusus sekutu Floryn."
+  "desc": "Item Floryn untuk sekutu; kekuatannya terbuka saat Dew berevolusi."
  },
  {
   "id": "magic_necklace",
@@ -654,7 +644,7 @@
   "stats": "+20 Magic Power, +5% Movement Speed",
   "passive": "Floryn bisa berbagi kekuatan Dew's Lantern ke sekutu; berevolusi setelah menyerap energi dalam battle.",
   "counters": [],
-  "desc": "Sudah dihapus dari game; dahulu item khusus sekutu Floryn."
+  "desc": "Item Floryn: berbagi kekuatan Dew's Lantern ke sekutu."
  },
  {
   "id": "antique_cuirass",
@@ -797,7 +787,7 @@
   "counters": [
    "burst-magic"
   ],
-  "desc": "Sudah dihapus dari game; dahulu counter burst damage tunggal."
+  "desc": "Counter burst tunggal: damage di atas 500 dikurangi kelebihannya; saat sekarat pulihkan HP."
  },
  {
   "id": "valkyries_shield",

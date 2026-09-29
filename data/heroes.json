@@ -870,7 +870,7 @@
   "burst": true,
   "sustain": false,
   "difficulty": 2,
-  "traits": "bola pantul, crit deras, slide lincah",
+  "traits": "ulti hook tarik musuh, crit deras, powerball",
   "skills": [
    {
     "name": "Mecha Legs",
@@ -886,7 +886,7 @@
    },
    {
     "name": "Worldie",
-    "desc": "Tendang bola energi ke hero: knock-back + stun 0,5 detik + slow 80%; bola memantul hingga 10x."
+    "desc": "Tendang bola energi ke hero: hook — tarik ke tepi attack range + stun 0,5 dtk + slow 80%; bola memantul hingga 10x."
    }
   ],
   "desc": "Marksman crit yang memantulkan bola energi antar musuh."

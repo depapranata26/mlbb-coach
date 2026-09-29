@@ -3,6 +3,9 @@
 Seluruh data diambil dari **Mobile Legends: Bang Bang Wiki** (mobile-legends.fandom.com)
 pada 29 September 2026, dengan verifikasi silang seperlunya.
 
+**Refresh patch 2.2.16 (Season 42 "Starward Decade", live 16 Sep 2026): 29 September 2026.**
+Lihat `DIFF_REPORT.md` untuk rincian perubahan.
+
 ## Wiki (sumber utama)
 - Daftar hero: https://mobile-legends.fandom.com/wiki/Category:Heroes
 - Daftar equipment: https://mobile-legends.fandom.com/wiki/Category:Equipment
