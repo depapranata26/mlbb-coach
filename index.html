@@ -299,10 +299,36 @@ function buildFor(hero,an,ITEMS){
 }
 
 const EMBLEM_MAP={Assassin:'assassin',Marksman:'marksman',Mage:'mage',Tank:'tank',Support:'support',Fighter:'fighter'};
-function emblemFor(hero,EMBLEMS,lane){
-  let role=hero.roles[0];
-  if(lane==='roam')role=(hero.roles||[]).includes('Tank')?'Tank':'Support';
-  return EMBLEMS.find(e=>e.id===EMBLEM_MAP[role])||EMBLEMS[0];
+/* Emblem adaptif: ikut lane (jungle/roam override) + alasan; enemy diproses di level talent */
+function emblemFor(hero,EMBLEMS,lane,enemy){
+  let role=(hero.roles||['Fighter'])[0],why='emblem standar '+role;
+  if(lane==='roam'){role=(hero.roles||[]).includes('Tank')?'Tank':'Support';why='roam butuh emblem '+role+' (tebal & sustain buat buka vision)';}
+  else if(lane==='jungle'&&hero.dmg==='physical'&&!(hero.roles||[]).includes('Tank')){role='Assassin';why='jungle physical — emblem Assassin buat penetrasi & adaptive attack';}
+  else if(lane==='jungle'){role='Tank';why='jungle tank — emblem Tank biar clear & contest objective aman';}
+  else if(lane==='gold'&&(hero.roles||[]).includes('Marksman')){why='emblem Marksman — scale attack & attack speed di gold lane';}
+  else if(lane==='mid'&&hero.dmg==='magic'){why='emblem Mage — magic power & penetrasi buat burst mid';}
+  else if(lane==='exp'){why='emblem '+role+' — duel & sustain di exp lane';}
+  const em=EMBLEMS.find(e=>e.id===EMBLEM_MAP[role])||EMBLEMS[0];
+  return{em,why};
+}
+/* Battle spell adaptif: ikut lane + komposisi musuh */
+function spellFor(h,mode,enemy){
+  const an=enemy&&enemy.length?analyzeEnemy(enemy):null;
+  const roles=h.roles||[],squishy=['Marksman','Mage','Assassin'].includes(roles[0]);
+  const hasDash=(h.mobility||0)>=2,w=kitWants(h);
+  if(mode==='jungle')return{name:'Retribution',why:'wajib jungle — secure buff, Turtle & Lord'};
+  if(an&&an.hardCC>=3&&squishy)return{name:'Purify',why:`musuh punya ${an.hardCC} CC keras — Purify biar nggak dikunci`};
+  if(mode==='gold'){
+    if(w.attackspeed||w.basicatk)return{name:'Inspire',why:'attack speed + damage ekstra ke turret buat push'};
+    return{name:'Flicker',why:hasDash?'punya dash bawaan — Flicker buat reposition darurat':'reposition & kabur dari dive'};
+  }
+  if(mode==='exp'){
+    if((roles.includes('Tank')||roles.includes('Fighter'))&&an&&an.physical>=3)return{name:'Vengeance',why:'musuh condong physical — pantulkan damage saat di-gank'};
+    if(h.burst&&an&&(an.physical+an.magic)<=4)return{name:'Execute',why:'burst + musuh tipis — eksekusi pasti'};
+    return{name:'Flicker',why:'fleksibel: inisiasi kombo / kabur'};
+  }
+  if(mode==='mid')return{name:'Flicker',why:hasDash?'punya dash bawaan — Flicker buat reposition darurat':'kabur dari dive & atur posisi kombo'};
+  return{name:'Flicker',why:'roam — inisiasi, selamatkan core, atau kabur'};
 }
 /* Pilihan talent per tier: T1/T2/T3 dari pool kurasi emblem, dipilih sesuai kit hero, mode, & lawan */
 function talentFor(emblemId,hero,lane,enemy){
@@ -386,9 +412,10 @@ function recommendTeam(enemyIds,HEROES,ITEMS,EMBLEMS){
   });
   picks.forEach(p=>{
     p.build=buildFor(p.hero,an,ITEMS);
-    const em=emblemFor(p.hero,EMBLEMS,p.lane);
-    p.emblem=em.name;p.talents=em.talents;
+    const EO=emblemFor(p.hero,EMBLEMS,p.lane,team),em=EO.em;
+    p.emblem=em.name;p.emblemWhy=EO.why;p.talents=em.talents;
     p.talentPick=talentFor(em.id,p.hero,p.lane,team);
+    p.spell=spellFor(p.hero,p.lane,team);
   });
   return{enemy:team,an,picks,strategy:makeStrategy(an)};
 }
@@ -449,9 +476,9 @@ function analyzeMatchup(ourIds,enemyIds,HEROES,ITEMS,EMBLEMS){
   if(phys>=4)warns.push('Tim full physical — musuh cukup build armor.');
   if(mag>=4)warns.push('Tim full magic — musuh cukup build magic defense.');
   const picks=our.map(h=>{
-    const em=emblemFor(h,EMBLEMS,h.lane);
-    return{hero:h,lane:h.lane,build:buildFor(h,an,ITEMS),emblem:em.name,
-      talentPick:talentFor(em.id,h,h.lane,enemy),
+    const EO=emblemFor(h,EMBLEMS,h.lane,enemy),em=EO.em;
+    return{hero:h,lane:h.lane,build:buildFor(h,an,ITEMS),emblem:em.name,emblemWhy:EO.why,
+      talentPick:talentFor(em.id,h,h.lane,enemy),spell:spellFor(h,h.lane,enemy),
       matchups:matchupNotes(h,enemy,h.lane),micro:microTips(h,h.lane)};
   });
   const threats=enemy.map(e=>{
@@ -538,16 +565,16 @@ function modeStatus(h,m){
 function buildGlobal(h,mode,ITEMS,enemyTeam){
   const w=kitWants(h);
   Object.entries(MODE_BIAS[mode]||{}).forEach(([k,v])=>{w[k]=(w[k]||0)+v;});
+  const an=enemyTeam&&enemyTeam.length?analyzeEnemy(enemyTeam):null;
   const candIds=[...(GLOBAL_POOLS[h.roles[0]]||[]),...(GLOBAL_POOLS[MODE_POOLS[mode]]||[])];
   const seen=new Set(),cands=[];
   candIds.forEach(id=>{const it=ITEMS.find(x=>x.id===id);if(it&&!seen.has(id)){seen.add(id);cands.push(it);}});
   const scored=cands.map(it=>({it,...synergyScore(it,w)})).sort((a,b)=>b.s-a.s);
-  const boot=bootFor(h,null,ITEMS);
+  const boot=bootFor(h,an,ITEMS);
   const build=boot?[boot]:[];
   scored.forEach(o=>{if(build.length<6&&!build.includes(o.it))build.push(o.it);});
   // konteks musuh: item counter rush dipindah ke slot awal (meta komunitas)
   const rush=[];
-  const an=enemyTeam&&enemyTeam.length?analyzeEnemy(enemyTeam):null;
   if(an){
     const isTank=['Tank','Support'].includes((h.roles||['Fighter'])[0]);
     const want=[];
@@ -610,6 +637,7 @@ document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
   b.classList.add('on');$(b.dataset.t).classList.add('on');
+  if(b.dataset.t==='tabRacik')renderRacik();
 });
 function goTab(id){document.querySelector(`nav button[data-t="${id}"]`).click();}
 
@@ -702,7 +730,7 @@ function renderRecommend(box){
     h+=`<div class="build">${p.build.map(it=>itemChip(it,(p.build.rush||[]).includes(it.name))).join('')}</div>`;
     if((p.build.rush||[]).length)h+=`<div style="font-size:11px;color:var(--dim);margin:2px 0 4px">⚡ = dibeli lebih awal khusus lawan musuh ini.</div>`;
     h+=`<div style="font-size:12px;margin:4px 0">🎮 <b>Mikro:</b> <span style="color:var(--dim)">${mi.join(' ')}</span></div>`;
-    h+=`<div class="emblemline">${emblemImg(p.emblem,22)} Emblem: <b>${p.emblem}</b></div>${talentLine(p.talentPick)}</div>`;
+    h+=`<div class="emblemline">${emblemImg(p.emblem,22)} Emblem: <b>${p.emblem}</b> <span style="color:var(--dim);font-size:11px">— ${p.emblemWhy||''}</span></div>${talentLine(p.talentPick)}<div style="font-size:12px;margin:4px 0">🌀 <b>Spell:</b> ${p.spell.name} <span style="color:var(--dim)">— ${p.spell.why}</span></div></div>`;
   });
   h+=`<div class="secT">📋 STRATEGI + MAKRO</div>`;
   R.strategy.concat(macroPlaybook(R.an,analyzeEnemy(R.picks.map(p=>p.hero)))).forEach(s=>{h+=`<div class="strat">${s}</div>`;});
@@ -732,7 +760,7 @@ function renderMatchup(box){
     h+=`<div class="build">${p.build.map(it=>itemChip(it,(p.build.rush||[]).includes(it.name))).join('')}</div>`;
     if((p.build.rush||[]).length)h+=`<div style="font-size:11px;color:var(--dim);margin:2px 0 4px">⚡ = dibeli lebih awal khusus lawan musuh ini.</div>`;
     h+=`<div style="font-size:12px;margin:4px 0">🎮 <b>Mikro:</b> <span style="color:var(--dim)">${p.micro.join(' ')}</span></div>`;
-    h+=`<div class="emblemline">${emblemImg(p.emblem,22)} Emblem: <b>${p.emblem}</b></div>${talentLine(p.talentPick)}</div>`;
+    h+=`<div class="emblemline">${emblemImg(p.emblem,22)} Emblem: <b>${p.emblem}</b> <span style="color:var(--dim);font-size:11px">— ${p.emblemWhy||''}</span></div>${talentLine(p.talentPick)}<div style="font-size:12px;margin:4px 0">🌀 <b>Spell:</b> ${p.spell.name} <span style="color:var(--dim)">— ${p.spell.why}</span></div></div>`;
   });
   h+=`<div class="secT">📋 STRATEGI + MAKRO</div>`;
   M.strategy.forEach(s=>{h+=`<div class="strat">${s}</div>`;});
@@ -817,8 +845,8 @@ function renderRacik(){
   const stNow=modeStatus(h,racikMode);
   const useEnemy=racikEnemy&&enemySel.length>0;
   const eTeam=useEnemy?enemySel.map(id=>byId(HEROES,id)).filter(Boolean):[];
-  const G=buildGlobal(h,racikMode,ITEMS,eTeam),em=emblemFor(h,EMBLEMS,racikMode),mi=microTips(h,racikMode);
-  const tp=talentFor(em.id,h,racikMode,eTeam);
+  const G=buildGlobal(h,racikMode,ITEMS,eTeam),EO=emblemFor(h,EMBLEMS,racikMode,eTeam),em=EO.em,mi=microTips(h,racikMode);
+  const tp=talentFor(em.id,h,racikMode,eTeam),SP=spellFor(h,racikMode,eTeam);
   const itemRow=it=>`<div class="skill"><div style="display:flex;gap:8px;align-items:center">`+
     `<img src="img/items/${it.id}.webp" loading="lazy" style="width:34px;height:34px;border-radius:8px;object-fit:cover;background:#0f1626" onerror="this.remove()">`+
     `<div class="sn">${it.name}${(G.rush||[]).includes(it.name)?' ⚡':''}</div></div><div class="sd">💡 ${G.reasons[it.id]||''}</div></div>`;
@@ -837,8 +865,9 @@ function renderRacik(){
     ${G.build.map(itemRow).join('')}
     ${(G.rush||[]).length?`<div style="font-size:11px;color:var(--dim);margin:4px 0">⚡ = dibeli lebih awal khusus lawan musuh ini.</div>`:''}
     ${G.alt.length?`<div class="secT">🔄 ALTERNATIF SITUASIONAL</div><div class="build">${G.alt.map(itemChip).join('')}</div>`:''}
-    <div class="emblemline" style="margin-top:6px">${emblemImg(em.name,22)} Emblem: <b>${em.name}</b></div>
+    <div class="emblemline" style="margin-top:6px">${emblemImg(em.name,22)} Emblem: <b>${em.name}</b> <span style="color:var(--dim);font-size:11px">— ${EO.why}</span></div>
     ${talentLine(tp)}
+    <div style="font-size:12px;margin:6px 0">🌀 <b>Spell:</b> ${SP.name} <span style="color:var(--dim)">— ${SP.why}</span></div>
     <div style="font-size:12px;margin:6px 0">🎮 <b>Mikro:</b> <span style="color:var(--dim)">${mi.join(' ')}</span></div>
     <div class="secT">✨ SKILL</div>
     ${(h.skills||[]).map(s=>`<div class="skill"><div class="sn">${s.name}</div><div class="sd">${s.desc||''}</div></div>`).join('')}

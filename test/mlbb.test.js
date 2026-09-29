@@ -80,6 +80,25 @@ ok(Gfree.build.length===6,'buildGlobal lane bebas 6 item: '+Gfree.build.map(i=>i
 const Gfree2=buildGlobal(B('franco'),'mid',ITEMS,[]);
 ok(Gfree2.build.length===6&&Gfree2.wants.length>0,'buildGlobal franco mid jalan');
 ok(heroModes(layla).indexOf('gold')===0,'default mode tetap natural pertama');
+// 12. spell adaptif lane + musuh
+const spJ=spellFor(B('harith'),'jungle',[]);
+ok(spJ.name==='Retribution','jungle = Retribution: '+spJ.why);
+const spG=spellFor(B('miya'),'gold',[]);
+ok(spG.name==='Inspire','Miya gold = Inspire: '+spG.why);
+const ccTeam=HEROES.filter(h=>(h.cc||[]).some(c=>HARD_CC.includes(c))).slice(0,5);
+const anCC=analyzeEnemy(ccTeam);
+ok(anCC.hardCC>=3,'tim CC sintetis hardCC>=3, dpt '+anCC.hardCC);
+ok(spellFor(B('miya'),'gold',ccTeam).name==='Purify','Purify vs CC berat');
+ok(spellFor(B('tigreal'),'roam',ccTeam).name==='Flicker','roam tetap Flicker walau CC berat');
+// 13. emblem adaptif lane
+const eJ=emblemFor(B('ling'),EMBLEMS,'jungle',[]);
+ok(eJ.em.id==='assassin','Ling jungle = emblem Assassin: '+eJ.why);
+const eR=emblemFor(B('tigreal'),EMBLEMS,'roam',[]);
+ok(eR.em.id==='tank','Tigreal roam = emblem Tank');
+ok(emblemFor(B('miya'),EMBLEMS,'gold',[]).em.id==='marksman','Miya gold = emblem Marksman');
+// 14. boots buildGlobal adaptif vs musuh
+const Gb=buildGlobal(B('miya'),'gold',ITEMS,ccTeam);
+ok(Gb.build[0].name==='Tough Boots','boots Tough vs CC: '+Gb.build.map(i=>i.name).join(','));
 console.log('\\n'+pass+' lolos, '+fail+' gagal');
 process.exit(fail?1:0);
 })();
